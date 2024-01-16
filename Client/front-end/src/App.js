@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+// import reportWebVitals from './reportWebVitals';
+import Header from './components/Header';
+import TableUsers from './components/TableUsers';
+import Container from 'react-bootstrap/Container';
+import Login from './components/Login';
+import Home from './components/Home'
+import MyDict from './components/MyDict'
+import Translate from './components/Translate'
+import { Route, Routes } from 'react-router-dom';
+import Contact from './components/Contact';
+import Register from './components/Register';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app-container'>
+      <Header />
+      <Container>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/translate" element={<Translate />} />
+          <Route path="/mydict" element={<MyDict />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/users" element={<TableUsers />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
+        </Routes>
+      </Container>
+      <Footer />
+
     </div>
   );
 }
