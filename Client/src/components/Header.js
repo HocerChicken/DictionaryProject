@@ -37,9 +37,17 @@ const Header = (props) => {
                 <NavLink to="/" className="nav-link mx-4 fw-bold ">
                   Trang chủ
                 </NavLink>
-                <NavLink to="/translate" className="nav-link mx-4 fw-bold ">
+                {/* <NavLink to="/translate" className="nav-link mx-4 fw-bold">
                   Tra từ
-                </NavLink>
+                </NavLink> */}
+                <NavDropdown title="Tra từ" id="basic-nav-dropdown" className="mx-4 fw-bold">
+                  <NavLink to="/translate" className="dropdown-item mt-1 blue ">
+                    Tra
+                  </NavLink>
+                  <NavLink to="/translate2" className="dropdown-item">
+                    Từ
+                  </NavLink>
+                </NavDropdown>
                 <NavLink to="/mydict" className="nav-link mx-4 fw-bold">
                   Từ của bạn
                 </NavLink>
