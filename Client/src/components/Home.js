@@ -1,5 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import headerIcon from '../assets/images/header-icon-bg.png'
+import Posts from '../components/posts'
+import Sidebar from '../components/sidebar'
 
 const Home = () => {
     const posts = [
@@ -23,63 +26,42 @@ const Home = () => {
             image: 'https://play-lh.googleusercontent.com/LOiZRCWwTINbA7Z8uhfBUcWoO6ZU_JegLAAh9bGZbfKjSBADhEATrtlUUPKl4mIi6Q',
 
         },
+        {
+            id: 4,
+            title: '5 website tự học tiếng Anh giao tiếp miễn phí',
+            content: 'Chỉ cần một chiếc máy tính có kết nối internet, truy cập vào các trang web học tiếng Anh trực tuyến mà không phải trả bất kỳ khoản phí nào là bạn đã có thể tự nâng cao trình độ tiếng Anh ngay tại nhà. Trên mạng có vô số trang web học tiếng Anh online nhưng 5 trang web sau đây rất hữu ích để bạn quan tâm và tham khảo.',
+            image: 'https://play-lh.googleusercontent.com/LOiZRCWwTINbA7Z8uhfBUcWoO6ZU_JegLAAh9bGZbfKjSBADhEATrtlUUPKl4mIi6Q',
+
+        },
+        {
+            id: 5,
+            title: '5 website tự học tiếng Anh giao tiếp miễn phí',
+            content: 'Chỉ cần một chiếc máy tính có kết nối internet, truy cập vào các trang web học tiếng Anh trực tuyến mà không phải trả bất kỳ khoản phí nào là bạn đã có thể tự nâng cao trình độ tiếng Anh ngay tại nhà. Trên mạng có vô số trang web học tiếng Anh online nhưng 5 trang web sau đây rất hữu ích để bạn quan tâm và tham khảo.',
+            image: 'https://play-lh.googleusercontent.com/LOiZRCWwTINbA7Z8uhfBUcWoO6ZU_JegLAAh9bGZbfKjSBADhEATrtlUUPKl4mIi6Q',
+
+        },
+        {
+            id: 6,
+            title: '5 website tự học tiếng Anh giao tiếp miễn phí',
+            content: 'Chỉ cần một chiếc máy tính có kết nối internet, truy cập vào các trang web học tiếng Anh trực tuyến mà không phải trả bất kỳ khoản phí nào là bạn đã có thể tự nâng cao trình độ tiếng Anh ngay tại nhà. Trên mạng có vô số trang web học tiếng Anh online nhưng 5 trang web sau đây rất hữu ích để bạn quan tâm và tham khảo.',
+            image: 'https://play-lh.googleusercontent.com/LOiZRCWwTINbA7Z8uhfBUcWoO6ZU_JegLAAh9bGZbfKjSBADhEATrtlUUPKl4mIi6Q',
+
+        },
     ];
     return (
         <>
-            <div className="homepage-container col-12 row">
-                <div className="col-lg-12 col-md-8 col-xs-12 mt-5 ">
+            <div className="homepage-container col-lg-12 ">
+                <div className='first-element row col-lg-12'>
+                    <div className='header-bg1'>
+                        <img src={headerIcon} style={{ height: 200, width: 200 }}></img>
 
-                    <div className="main-content ">
-                        {posts.map((post) => (
-                            <div className="post mt-4" key={post.id}>
-                                <img src={post.image} alt={post.title} />
-                                <div className="post-content">
-                                    <h2>{post.title}</h2>
-                                    <p>{post.content}</p>
-                                </div>
-                            </div>
-                        ))}
                     </div>
+                    <h1><p>YooDict —</p> <strong>dịch nhanh, chính xác và an toàn</strong></h1>
+                    <button>Dịch ngay</button>
                 </div>
-
-                <div className="section col-lg-12 col-md-4 col-xs-6 list-unstyled mt-5 bb-5 ">
-                    <div className="main-title-outer pull-left">
-                        <div className="main-title1">Bài quan tâm</div>
-                    </div>
-
-                    <div className="mt-5 row">
-                        <div className="col-lg-4 col-sm-5 col-md-4">
-                            <img src="https://bizweb.dktcdn.net/thumb/grande/100/211/938/files/tieng-anh-di-du-hoc.jpg?v=1498813113533" />
-                        </div>
-                        <div className="col-lg-8 col-sm-11 col-md-12">
-                            <h5>Cách học thuộc đoạn văn tiếng Anh nhanh nhất hiện nay</h5>
-                            <div className="text-danger sub-info">
-                            </div>
-                        </div>
-                    </div>
-                    <div className="mt-5 row">
-                        <div className="col-lg-4 col-sm-5 col-md-4">
-                            <img src="https://luyenthitoeic.edu.vn/uploads/cac-meo-luyen-thi-nguon-sach-va-cac-bai-kiem-tra-thuc-hanh-toeic-4.jpg" />
-                        </div>
-                        <div className="col-lg-8 col-sm-11 col-md-12">
-                            <h5>Các mẹo luyện thi, nguồn sách và các bài kiểm tra thực hành TOEIC</h5>
-                            <div className="text-danger sub-info">
-                            </div>
-                        </div>
-                    </div>
-                    <div className="mt-5 row">
-                        <div className="col-lg-4 col-sm-5 col-md-4">
-                            <img src="https://giasutrithuc.net/wp-content/uploads/2020/01/de-hoc-tot-tieng-Anh-12-gia-su-tri-thuc-4.jpg" />
-                        </div>
-                        <div className="col-lg-8 col-sm-11 col-md-12">
-                            <h5>Các mẹo luyện thi, nguồn sách và các bài kiểm tra thực hành TOEIC</h5>
-                            <div className="text-danger sub-info">
-                            </div>
-                        </div>
-                    </div>
-
-
-
+                <div className='main-home'>
+                    <Posts />
+                    <Sidebar />
                 </div>
 
             </div>
