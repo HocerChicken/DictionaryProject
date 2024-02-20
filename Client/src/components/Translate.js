@@ -16,11 +16,10 @@ const Translate = (props) => {
             </div>
           </div>
           <section className="services-section">
-            <h2>Dịch vụ của chúng tôi</h2>
+            <h2>Công cụ dịch</h2>
             <ul>
-              <li>Dịch thuật tiếng Anh</li>
-              <li>Dịch thuật tiếng Tây Ban Nha</li>
-              <li>Dịch thuật tiếng Pháp</li>
+              <li>Dịch thuật Hán Việt</li>
+              <li>Dịch thuật Hán Nôm</li>
             </ul>
           </section>
         </main>
