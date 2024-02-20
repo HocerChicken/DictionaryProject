@@ -15,7 +15,6 @@ code {
 .app-container {
   min-height: 110vh;
   position: relative;
-
   .login-container {
     display: flex;
     flex-direction: column;
@@ -91,16 +90,24 @@ code {
   }
 
   .header-container {
-    .navbar-nav .nav-link {
-      color: #dedede;
-
+    .logo {
+      display:block;
+      color: #fff;
+      font-style: bold;
+      font-weight: 600;
+      line-height: 32px;
       &:hover {
-        color: #570931;
+        color: #fff;
       }
     }
 
+    .navbar-nav .nav-link {
+      color: #fff;
+
+    }
+
     .navbar-nav .nav-link.active {
-      color: #570931;
+      
     }
   }
 
@@ -285,27 +292,19 @@ code {
     }
 
     .first-element {
-      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       height: 300px;
-      margin-top: 20px;
-
+      margin-top: 62px;
+      position: relative;
       .header-bg1 {
-        width: 200px;
-        height: 200px;
         position: absolute;
-        top: 20px;
-        left: 50px;
-
+        bottom: 100px;
       }
 
       h1 {
-        position: absolute;
         text-align: center;
-        margin: 40px 0 0 50px;
-        top: 20px;
-        left: 15px;
-
-
         p {
           font-weight: 100;
           display: inline;
@@ -317,21 +316,15 @@ code {
         border: 1px solid #006494;
         width: 200px;
         height: 50px;
-        color: #dedede;
+        color: #fff;
         text-transform: uppercase;
         font-weight: bold;
-        position: absolute;
-        top: 140px;
-        left: 600px;
-
+        margin-top: -150px;
         &:hover {
+          border: 1px solid #e74c3c;
           background-color: #e74c3c;
         }
       }
-
-
-
-
     }
 
     .title-article {
@@ -340,8 +333,6 @@ code {
       font-weight: bold;
       text-align: center;
     }
-
-
   }
 
   .main-home {
