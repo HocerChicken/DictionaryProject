@@ -4,38 +4,31 @@ import {
     MDBContainer,
     MDBCol,
     MDBRow,
-    MDBIcon,
     MDBBtn
 } from 'mdb-react-ui-kit';
 
-export default function Footer() {
+export default function App() {
     return (
-        <>
-            <div className="footer-container">
-                <MDBFooter className='bg-primary bg-gradient text-center text-white'>
-                    <MDBContainer className='p-4 pb-0'>
-                        <section className='mb-4'>
-                            <MDBBtn outline color="light" floating className='m-1' href='/' role='button'>
-                                <MDBIcon fab icon='facebook-f' />
+        <div className="footer-container">
+            <MDBFooter className='text-center text-white' style={{ backgroundColor: 'rgb(61, 86, 110)' }}>
+                <MDBContainer className='p-4 pb-0'>
+                    <section className=''>
+                        <p className='d-flex justify-content-center align-items-center'>
+                            <span className='me-3'>Đăng ký miễn phí</span>
+                            <MDBBtn type='button' outline color="light" rounded href='/'>
+                                Đăng ký !
                             </MDBBtn>
+                        </p>
+                    </section>
+                </MDBContainer>
 
-                            <MDBBtn outline color="light" floating className='m-1' href='/' role='button'>
-                                <MDBIcon fab icon='google' />
-                            </MDBBtn>
-                            <MDBBtn outline color="light" floating className='m-1' href='/' role='button'>
-                                <MDBIcon icon='phone' />
-                            </MDBBtn>
-                        </section>
-                    </MDBContainer>
-
-                    <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-                        © 2024 Copyright: {""}
-                        <a className='text-white' href='/'>
-                            YooDict.vn
-                        </a>
-                    </div>
-                </MDBFooter>
-            </div>
-        </>
+                <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+                    © 2024 Copyright:
+                    <a className='text-white' href='/'>
+                        YooDict.vn
+                    </a>
+                </div>
+            </MDBFooter>
+        </div>
     );
 }

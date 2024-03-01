@@ -5,7 +5,7 @@ import Sidebar from './sidebar';
 const Single = () => {
     return (
         <>
-            <div className='posts'>
+            <div className='single'>
                 <SinglePost />
                 <Sidebar />
             </div>

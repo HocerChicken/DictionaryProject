@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
@@ -12,9 +13,12 @@ code {
     monospace;
 }
 
+// file app.js
 .app-container {
   min-height: 110vh;
   position: relative;
+
+  //login.js
   .login-container {
     display: flex;
     flex-direction: column;
@@ -68,16 +72,8 @@ code {
       outline: none;
       border: none;
       padding: 8px 5px;
-
-      &.active {
-        background-color: #006494;
-        color: #fff;
-      }
-    }
-
-    button[disabled=disabled],
-    button:disabled {
-      cursor: not-allowed;
+      background-color: #006494;
+      color: #fff;
     }
 
     .back {
@@ -85,17 +81,17 @@ code {
       margin-top: 30px;
       cursor: pointer;
     }
-
-
   }
 
+  //file header.js
   .header-container {
     .logo {
-      display:block;
+      display: block;
       color: #fff;
       font-style: bold;
       font-weight: 600;
       line-height: 32px;
+
       &:hover {
         color: #fff;
       }
@@ -105,15 +101,19 @@ code {
       color: #fff;
 
     }
-
-    .navbar-nav .nav-link.active {
-      
-    }
   }
 
-  .translate-container {
-    .translate-area {
-      text-align: center;
+  //translate.js
+  .translate {
+    display: flex;
+  }
+
+  // file translatePart.jsx
+  .translate-part-container {
+    flex: 9;
+
+    .translate-part-area {
+      text-align: left;
       margin-top: 20px;
 
       input {
@@ -131,9 +131,17 @@ code {
         border: none;
         margin-bottom: 50px;
       }
+
+      select {
+
+        height: 50px;
+        margin: 30px 1px;
+      }
     }
+
   }
 
+  // file contact.js
   .contact-container {
     * {
       box-sizing: border-box;
@@ -206,6 +214,7 @@ code {
 
   }
 
+  // file footer.js
   .footer-container {
     margin-top: 20%;
     position: absolute;
@@ -213,6 +222,7 @@ code {
     width: 100%;
   }
 
+  // home.js
   .homepage-container {
     height: 100%;
     width: 100%;
@@ -298,6 +308,7 @@ code {
       height: 300px;
       margin-top: 62px;
       position: relative;
+
       .header-bg1 {
         position: absolute;
         bottom: 100px;
@@ -305,6 +316,7 @@ code {
 
       h1 {
         text-align: center;
+
         p {
           font-weight: 100;
           display: inline;
@@ -320,6 +332,7 @@ code {
         text-transform: uppercase;
         font-weight: bold;
         margin-top: -150px;
+
         &:hover {
           border: 1px solid #e74c3c;
           background-color: #e74c3c;
@@ -335,10 +348,12 @@ code {
     }
   }
 
+  //home.js
   .main-home {
     display: flex;
   }
 
+  //sidebar.jsx
   .sidebar {
     flex: 3;
     margin: 20px;
@@ -388,6 +403,7 @@ code {
 
   }
 
+  //posts.jsx
   .posts {
     flex: 9;
     display: flex;
@@ -395,6 +411,7 @@ code {
     margin: 20px;
   }
 
+  // post.jsx
   .main-post {
     width: 385px;
     margin: 0px 25px 40px 25px;
@@ -461,10 +478,12 @@ code {
     }
   }
 
+  //single.jsx
   .single {
     display: flex;
   }
 
+  //singlePost.jsx
   .singlePost {
     flex: 9;
 
@@ -537,4 +556,59 @@ code {
 
   }
 
+  //register.jsx
+  .register {
+    height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.5)),
+      url("https://images.pexels.com/photos/317355/pexels-photo-317355.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-size: cover;
+
+
+    .registerTitle {
+      font-size: 50px;
+    }
+
+    .registerForm {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .registerForm>label {
+      margin: 10px 0;
+    }
+
+    .registerInput {
+      padding: 10px;
+      background-color: white;
+      border: none;
+    }
+
+    .registerButton {
+      margin-top: 20px;
+      cursor: pointer;
+      background-color: teal;
+      border: none;
+      color: white;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    .registerLoginButton {
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: lightcoral;
+      cursor: pointer;
+      border: none;
+      padding: 10px;
+      color: white;
+      border-radius: 10px;
+    }
+  }
 }
