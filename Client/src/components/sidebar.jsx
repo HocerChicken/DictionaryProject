@@ -24,7 +24,6 @@ const Sidebar = () => {
         <>
 
             <div className='sidebar'>
-
                 <span className="sidebarSection">Bài quan tâm</span>
                 {posts.map((post) => (
                     <div className="section-post">

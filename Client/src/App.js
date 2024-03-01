@@ -11,7 +11,7 @@ import { Route, Routes } from "react-router-dom";
 import Contact from "./components/Contact";
 import Register from "./components/Register";
 import Footer from "./components/Footer";
-
+import Single from "./components/single";
 function App() {
   return (
     <div className="app-container">
@@ -25,6 +25,7 @@ function App() {
           <Route path="/users" element={<TableUsers />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/single" element={<Single />} />
         </Routes>
       </Container>
       <Footer />
