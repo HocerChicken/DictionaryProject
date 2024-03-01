@@ -28,9 +28,7 @@ function App() {
           <Route path="/single" element={<Single />} />
         </Routes>
       </Container>
-      {/* <Footer /> */}
-
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

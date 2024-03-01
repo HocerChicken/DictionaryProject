@@ -1,11 +1,34 @@
-body {
+/*
+SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 
+/ 96 / 128
+
+FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 
+/ 52 / 62 / 74 / 86 / 98
+*/
+
+/* COLOR SYSTEM
+  -- MAIN COLOR: #0b7285;
+  -- GREY COLOR: #343a40;
+*/
+
+$main--color: #0b7285;
+$grey--color: #343a40;
+
+* {
   margin: 0;
+<<<<<<< HEAD
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+=======
+  padding: 0;
+  font-family: "Inter", sans-serif;
+>>>>>>> a89f4a4f35d6aceb109c677e56c3d0bbf58fa2cd
 }
 
 code {
@@ -15,6 +38,7 @@ code {
 
 // file app.js
 .app-container {
+  
   min-height: 110vh;
   position: relative;
 
@@ -88,7 +112,6 @@ code {
     .logo {
       display: block;
       color: #fff;
-      font-style: bold;
       font-weight: 600;
       line-height: 32px;
 
@@ -99,7 +122,6 @@ code {
 
     .navbar-nav .nav-link {
       color: #fff;
-
     }
   }
 
@@ -356,7 +378,7 @@ code {
   //sidebar.jsx
   .sidebar {
     flex: 3;
-    margin: 20px;
+    margin-right: 20px;
     padding-bottom: 30px;
     background-color: #fdfbfb;
     border-radius: 10px;
@@ -419,9 +441,9 @@ code {
 
     .postImg {
       width: 100%;
-      height: 280px;
+      height: 200px;
       object-fit: cover;
-      border-radius: 10px;
+      border-radius: 5px;
 
       &:hover {
         opacity: 80%;
