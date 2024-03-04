@@ -1,13 +1,13 @@
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 
-const Translate = (props) => {
+const Translate2 = (props) => {
   return (
     <>
       <div className="translate-container">
         <Breadcrumb className="mt-5">
           <Breadcrumb.Item href="/">Trang chủ</Breadcrumb.Item>
           <Breadcrumb.Item active>Tra cứu</Breadcrumb.Item>
-          <Breadcrumb.Item active>Hán - Việt</Breadcrumb.Item>
+          <Breadcrumb.Item active>Hán - Nôm</Breadcrumb.Item>
         </Breadcrumb>
         <main>
           <div className="translate-area">
@@ -35,4 +35,4 @@ const Translate = (props) => {
   );
 };
 
-export default Translate;
+export default Translate2;

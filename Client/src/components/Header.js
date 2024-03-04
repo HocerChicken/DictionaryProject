@@ -6,8 +6,18 @@ import logoApp from "../assets/images/logo3.png";
 import { useLocation, NavLink } from "react-router-dom";
 import { DownOutlined, SmileOutlined } from "@ant-design/icons";
 import { Dropdown, Space } from "antd";
+import { useState } from "react";
 const Header = (props) => {
   const location = useLocation();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const handleDropdownToggle = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const handleDropdownClose = () => {
+    setDropdownOpen(false);
+  };
 
   return (
     <>
@@ -19,19 +29,28 @@ const Header = (props) => {
         referrerpolicy="no-referrer"
       />
       <div>
-        <Navbar
-          expand="lg"
-          className="header-container "
-          style={{ backgroundColor: "#3d566e" }}
-        >
-          <Container>
+        <Navbar expand="lg" className="header-container ">
+          <Container fluid>
             <Navbar.Brand href="#home" className="logo">
-              Yoo Dict
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="icon-header"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"
+                />
+              </svg>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav " />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <NavLink to="/" className="nav-link mx-4 fw-bold ">
+                <NavLink to="/" className="nav-link mx-4 fw-bold">
                   Trang chủ
                 </NavLink>
                 <NavLink to="/mydict" className="nav-link mx-4 fw-bold">
@@ -43,14 +62,25 @@ const Header = (props) => {
                 <NavDropdown
                   title="Tra từ"
                   id="basic-nav-dropdown"
-                  className="mx-4 fw-bold"
-                  onMouseEnter={(e) => e.target.click()}
-                  onMouseLeave={(e) => e.target.click()}
+                  className={`mx-4 fw-bold ${dropdownOpen ? "show" : ""}`}
+                  show={dropdownOpen}
+                  onMouseEnter={handleDropdownToggle}
+                  onMouseLeave={handleDropdownClose}
                 >
-                  <NavLink to="/translate" className="dropdown-item mt-1 blue">
+                  <NavLink
+                    to="/translate"
+                    className="dropdown-item mt-1 blue"
+                    activeClassName="visited"
+                    onClick={handleDropdownClose}
+                  >
                     Hán Việt
                   </NavLink>
-                  <NavLink to="/translate2" className="dropdown-item">
+                  <NavLink
+                    to="/translate2"
+                    className="dropdown-item"
+                    activeClassName="visited"
+                    onClick={handleDropdownClose}
+                  >
                     Hán Nôm
                   </NavLink>
                 </NavDropdown>
@@ -59,6 +89,7 @@ const Header = (props) => {
                 <NavDropdown
                   className="mx-4 fs-5"
                   title={<i class="fa-solid fa-user"></i>}
+                  drop="start"
                   id="basic-nav-dropdown"
                 >
                   <NavDropdown.Item className="login-button" href="/login">
