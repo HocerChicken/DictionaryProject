@@ -115,12 +115,12 @@ $white--color: #fff;
     text-align: left;
   }
 
-  // file translatePart.jsx
-  .translate-part-container {
+  // file translate.js
+  .translate-container {
     flex: 9;
 
-    .translate-part-area {
-      text-align: left;
+    .translate-area {
+      text-align: center;
       margin-top: 20px;
 
       input {
