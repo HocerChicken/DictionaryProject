@@ -1,33 +1,22 @@
 const express = require("express");
-const { PORT, mongoDBUrl } = require("./config.js");
-const mongoose = require("mongoose");
 const Word = require("./models/wordModel.js");
-// const wordRoutes = require("./Routes/wordRoute.js");
-const authRoute = require("./Routes/auth")
-const userRoute = require("./Routes/users")
-const app = express();
+const authRoute = require("./Routes/auth");
+const userRoute = require("./Routes/users");
+const wordRoutes = require("./Routes/wordRoute.js");
 
+const app = express();
 const dotenv = require("dotenv");
 
 dotenv.config();
+require("./db");
 app.use(express.json());
-
-mongoose
-    .connect(process.env.MONGO_URL, {
-    })
-    .then(console.log("Connected to MongoDB"))
-    .catch((err) => console.log(err));
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 
+app.use(express.json());
 
-
-//Middleware for passing requests body
-
-// app.use(express.json());
-
-// app.use("/api/words", wordRoutes);
+app.use("/api/words", wordRoutes);
 
 // mongoose.set("strictQuery", false);
 // mongoose
@@ -42,9 +31,6 @@ app.use("/api/users", userRoute);
 //         console.log(err);
 //     });
 
-app.use("/kento", (req, res) => {
-    console.log("hey this kento url")
-})
 app.listen("5000", () => {
-    console.log("Backend is running.");
+  console.log("Backend is running.");
 });
