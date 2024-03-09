@@ -24,11 +24,14 @@ function App() {
           <Route path="/mydict" element={<MyDict />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/users" element={<TableUsers />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+
           <Route path="/single" element={<Single />} />
         </Routes>
       </Container>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </div>
   );
 }

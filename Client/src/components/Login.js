@@ -1,9 +1,27 @@
 import { useState } from "react";
+import axios from "axios";
+import { useContext, useRef } from "react";
+import { Link } from "react-router-dom";
+import { Context } from "../context/Context";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isShowPassword, setIsShowPassword] = useState(false);
+  const userRef = useRef();
+  const passwordRef = useRef();
+  const { dispatch, isFetching } = useContext(Context);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch({ type: "LOGIN_START" });
+    try {
+      const res = await axios.post("/auth/login", {
+        username: userRef.current.value,
+        password: passwordRef.current.value,
+      });
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+    } catch (err) {
+      dispatch({ type: "LOGIN_FAILURE" });
+    }
+  };
   return (
     <>
       <link
@@ -13,41 +31,32 @@ const Login = () => {
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
       />
-
-      <div className="login-container col-12 col-lg-6 col-sm-4 ">
-        <div className="tittle">Đăng nhập tài khoản của bạn</div>
-        <div className="text">Email</div>
-        <input
-          type="text"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-        <div className="text">Mật khẩu</div>
-        <div className="input-2">
+      <div className="login">
+        <span className="loginTitle">Login</span>
+        <form className="loginForm" onSubmit={handleSubmit}>
+          <label>Username</label>
           <input
-            type={isShowPassword === true ? "text" : "password"}
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            type="text"
+            className="loginInput"
+            placeholder="Enter your username..."
+            ref={userRef}
           />
-          <i
-            className={
-              isShowPassword === true
-                ? "fa-solid fa-eye"
-                : "fa-solid fa-eye-slash"
-            }
-            onClick={() => setIsShowPassword(!isShowPassword)}
-          ></i>
-        </div>
-
-        <button
-          className={email && password ? "active" : ""}
-          disabled={email && password ? false : true}
-        >
-          Đăng nhập{" "}
+          <label>Password</label>
+          <input
+            type="password"
+            className="loginInput"
+            placeholder="Enter your password..."
+            ref={passwordRef}
+          />
+          <button className="loginButton" type="submit" disabled={isFetching}>
+            Login
+          </button>
+        </form>
+        <button className="loginRegisterButton">
+          <Link className="link" to="/register">
+            Register
+          </Link>
         </button>
-        <div className="back">
-          <i class="fa-solid fa-angle-left"></i> Go back
-        </div>
       </div>
     </>
   );
