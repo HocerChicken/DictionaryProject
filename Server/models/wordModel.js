@@ -1,9 +1,18 @@
 const mongoose = require("mongoose");
-
 const wordSchema = new mongoose.Schema({
-    word: { type: String, required: true },
-    definition: { type: String, required: true },
+  _id: {
+    type: mongoose.Schema.Types.ObjectId,
+    default: mongoose.Types.ObjectId,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  definitions: {
+    source: {
+      type: [mongoose.Schema.Types.Mixed],
+    },
+  },
 });
 
-const Word = mongoose.model("Word", wordSchema);
-module.exports = Word;
+module.exports = mongoose.model("dictionaries", wordSchema);
