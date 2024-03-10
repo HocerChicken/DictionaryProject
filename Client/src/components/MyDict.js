@@ -1,7 +1,5 @@
 const Translate = (props) => {
-    return (<>
-
-    </>)
-}
+  return <></>;
+};
 
 export default Translate;

@@ -17,7 +17,7 @@ import { Context } from "./context/Context";
 
 import TranslatePart from "./components/translatePart";
 function App() {
-  const { user } = useContext(Context)
+  const { user } = useContext(Context);
   return (
     <div className="app-container">
       <Header />
@@ -35,7 +35,19 @@ function App() {
       </Container>
       <Routes>
         {/* <Route path="/login" element={<Login />} /> */}
-        <Route path="/login" element={user ? <Container> <Home /> </Container> : <Login />} />
+        <Route
+          path="/login"
+          element={
+            user ? (
+              <Container>
+                {" "}
+                <Home />{" "}
+              </Container>
+            ) : (
+              <Login />
+            )
+          }
+        />
         <Route path="/register" element={<Register />} />
       </Routes>
     </div>

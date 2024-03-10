@@ -122,6 +122,18 @@ $white--color: #fff;
   .translate-container {
     flex: 9;
 
+    .breadcrumb {
+      width: 22%;
+      background-color: $white--color;
+      padding: 10px;
+      border: 1px solid $blue-color;
+      border-radius: 15px;
+    }
+    
+    .translation-result h3{
+      margin-bottom: 24px;
+    }
+
     .translate-area {
       text-align: center;
       margin-top: 20px;
@@ -129,7 +141,7 @@ $white--color: #fff;
       input {
         width: 400px;
         height: 50px;
-        margin: 30px 0;
+        margin: 24px 0;
         padding-left: 5px;
       }
 
@@ -139,7 +151,7 @@ $white--color: #fff;
         color: #fff;
         font-weight: 500;
         border: none;
-        margin-bottom: 50px;
+        margin-bottom: 40px;
 
         &:hover {
           background-color: rgba(234, 60, 60, 0.8);
@@ -149,61 +161,33 @@ $white--color: #fff;
   }
 
   .contact-container {
-    * {
-      box-sizing: border-box;
-    }
-
-
     h1 {
-      margin: 0;
+      font-size: 80px;
+      padding: 96px 188px;
     }
 
     .contact-section {
-      max-width: 800px;
+      max-width: 960px;
       margin: 0 auto;
       background-color: #fff;
       padding: 20px;
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
 
-    h2 {
-      margin-top: 0;
+      .contact-title {
+        font-size: 18px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      .contact-info {
+        margin-top: -12px;
+      }
+      .icon-contact {
+        width: 36px;
+        height: 36px;
+        margin-right: 10px;
+      }
     }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-
-    input[type='text'],
-    input[type='email'],
-    textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-    }
-
-    button {
-      width: 100%;
-      background-color: $blue-color;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #228be6;
-    }
-
   }
 
   // file footer.js
@@ -324,8 +308,22 @@ $white--color: #fff;
         text-transform: uppercase;
         font-weight: bold;
         margin-top: -150px;
-
+        font-size: 16px;
+        cursor: pointer;
+        a {
+          line-height: 50px;
+          width: 100%;
+          height: 100%;
+          display: inline-block;
+          &:link, &:visited {
+            color: $grey--color;
+            text-decoration: none;
+          }
+        }
         &:hover {
+          a {
+            color: $white--color;
+          }
           border: 1px solid $white--color;
           background-color: $blue-color;
           color: $white--color;
@@ -370,7 +368,6 @@ $white--color: #fff;
       border-top: 1px solid #ffa8a8;
       background-color: $secondary--color;
       border-bottom: 1px solid #ffa8a8;
-      font-family: "Varela Round", sans-serif;
       font-size: 20px;
       color: #ffe3e3;
       font-weight: 600;
@@ -461,7 +458,6 @@ $white--color: #fff;
       }
 
       .postDesc {
-        font-family: "Varela Round", sans-serif;
         font-size: 14px;
         color: #444;
         line-height: 1.7;
@@ -498,9 +494,6 @@ $white--color: #fff;
     .singlePostTitle {
       text-align: center;
       margin: 10px;
-      font-family: 'Lora', serif;
-
-
     }
 
     h1 {
@@ -533,9 +526,7 @@ $white--color: #fff;
       display: flex;
       justify-content: space-between;
       font-size: 16px;
-      font-family: "Varela Round", sans-serif;
       color: #b39656;
-
     }
 
     .singlePostDesc {
@@ -554,7 +545,6 @@ $white--color: #fff;
 
   //register.jsx
   .register {
-    font-family: 'Varela';
     height: calc(100vh - 50px);
     display: flex;
     flex-direction: column;
@@ -592,8 +582,6 @@ $white--color: #fff;
     }
 
     .registerInput {
-      // height: 15px;
-      // width: 100px;
       padding: 15px 100px;
       background-color: white;
       border: none;
@@ -662,10 +650,12 @@ $white--color: #fff;
       background-color: #f9f9f9;
     }
 
+
     // Table cell styles
     tbody td p {
+      font-weight: 500;
       margin: 0;
-      line-height: 1.5;
+      line-height: 1.7;
     }
 
     // Table cell styles for title

@@ -1,8 +1,8 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import headerIcon from "../assets/images/header-icon-bg.png";
-import Posts from "../components/posts";
-import Sidebar from "../components/sidebar";
+import Posts from "./posts";
+import Sidebar from "./sidebar";
 
 const Home = () => {
   const posts = [
@@ -56,24 +56,24 @@ const Home = () => {
     },
   ];
   return (
-    <>
-      <div className="homepage-container col-lg-12 ">
-        <div className="first-element row col-lg-12">
-          <div className="header-bg1">
-            <img src={headerIcon} style={{ height: 150, width: 200 }}></img>
-          </div>
-          <h1>
-            <p>YooDict — </p>
-            <strong>dịch nhanh, chính xác và an toàn</strong>
-          </h1>
-          <button>Dịch ngay</button>
+    <div className="homepage-container col-lg-12 ">
+      <div className="first-element row col-lg-12">
+        <div className="header-bg1">
+          <img src={headerIcon} style={{ height: 150, width: 200 }}></img>
         </div>
-        <div className="main-home">
-          <Posts />
-          <Sidebar />
-        </div>
+        <h1>
+          <p>YooDict — </p>
+          <strong>dịch nhanh, chính xác và an toàn</strong>
+        </h1>
+        <button>
+          <a href="/translate">Dịch ngay</a>
+        </button>
       </div>
-    </>
+      <div className="main-home">
+        <Posts />
+        <Sidebar />
+      </div>
+    </div>
   );
 };
 

@@ -9,16 +9,18 @@ function Contact() {
       <main>
         <section className="contact-section">
           <div className="contact">
-            <p>Gọi chúng tôi</p>
-            <p>+034 8875 442</p>
+            <p className="contact-title">Gọi chúng tôi</p>
+            <p className="contact-info">+034 8875 442</p>
           </div>
           <div className="contact">
-            <p>Gũi email</p>
-            <p>phamthaihoc008@gmail.com</p>
+            <p className="contact-title">Gũi email</p>
+            <p className="contact-info">phamthaihoc008@gmail.com</p>
           </div>
           <div className="contact">
-            <p>Địa chỉ</p>
-            <p>Phường Tân Phong, Quận 7, thành phố Hồ Chí Minh</p>
+            <p className="contact-title">Địa chỉ</p>
+            <p className="contact-info">
+              Phường Tân Phong, Quận 7, thành phố Hồ Chí Minh
+            </p>
           </div>
           <div className="icon-section">
             <a href="https://www.facebook.com">

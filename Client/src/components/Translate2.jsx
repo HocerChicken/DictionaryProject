@@ -4,7 +4,6 @@ import TableData from "./TableData";
 
 const Translate2 = (props) => {
   return (
-    <>
       <div className="translate-container">
         <Breadcrumb className="mt-5">
           <Breadcrumb.Item href="/">Trang chủ</Breadcrumb.Item>
@@ -33,7 +32,6 @@ const Translate2 = (props) => {
           </section>
         </main>
       </div>
-    </>
   );
 };
 
