@@ -4,6 +4,9 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useLocation, NavLink } from "react-router-dom";
 import { useState } from "react";
+import { useContext } from "react";
+import { Context } from "../context/Context";
+
 const Header = (props) => {
   const location = useLocation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -14,8 +17,15 @@ const Header = (props) => {
 
   const handleDropdownClose = () => {
     setDropdownOpen(false);
+
   };
 
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
+
+
+  const { user, dispatch } = useContext(Context);
   return (
     <>
       <link
@@ -82,6 +92,10 @@ const Header = (props) => {
                   </NavLink>
                 </NavDropdown>
               </Nav>
+              {/* <li className="topListItem" onClick={handleLogout}>
+                {user && "LOGOUT"}
+              </li> */}
+
               <Nav>
                 <NavDropdown
                   className="mx-4 fs-5"
@@ -89,10 +103,18 @@ const Header = (props) => {
                   drop="start"
                   id="basic-nav-dropdown"
                 >
-                  <NavDropdown.Item className="login-button" href="/login">
-                    Đăng nhập
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="/register">Đăng ký</NavDropdown.Item>
+                  {user ? (
+                    <NavDropdown.Item className="topListItem" onClick={handleLogout}>
+                      LOGOUT
+                    </NavDropdown.Item>
+                  ) : (
+                    <>
+                      <NavDropdown.Item className="login-button" href="/login">
+                        Đăng nhập
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/register">Đăng ký</NavDropdown.Item>
+                    </>
+                  )}
                 </NavDropdown>
               </Nav>
             </Navbar.Collapse>

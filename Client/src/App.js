@@ -12,7 +12,11 @@ import Contact from "./components/Contact";
 import Register from "./components/Register";
 import Footer from "./components/Footer";
 import Single from "./components/single";
+import { useContext } from "react";
+import { Context } from "./context/Context";
+
 function App() {
+  const { user } = useContext(Context)
   return (
     <div className="app-container">
       <Header />
@@ -29,7 +33,8 @@ function App() {
         </Routes>
       </Container>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/login" element={user ? <Container> <Home /> </Container> : <Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </div>

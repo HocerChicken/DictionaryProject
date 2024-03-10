@@ -1,13 +1,13 @@
-import { useState } from "react";
-import axios from "axios";
-import { useContext, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { Context } from "../context/Context";
 
 const Login = () => {
   const userRef = useRef();
   const passwordRef = useRef();
-  const { dispatch, isFetching } = useContext(Context);
+  const { user, dispatch, isFetching } = useContext(Context);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,8 +20,11 @@ const Login = () => {
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE" });
+      setError("Tên tài khoản hoặc mật khẩu không chính xác!");
+      return;
     }
   };
+
   return (
     <>
       <link
@@ -32,31 +35,32 @@ const Login = () => {
         referrerPolicy="no-referrer"
       />
       <div className="login">
-        <span className="loginTitle">Login</span>
+        <span className="loginTitle">Đăng nhập</span>
         <form className="loginForm" onSubmit={handleSubmit}>
-          <label>Username</label>
+          <label>Tên tài khoản</label>
           <input
             type="text"
             className="loginInput"
-            placeholder="Enter your username..."
+            placeholder="Nhập tên tài khoản..."
             ref={userRef}
           />
-          <label>Password</label>
+          <label>Mật khẩu</label>
           <input
             type="password"
             className="loginInput"
-            placeholder="Enter your password..."
+            placeholder="Nhập mật khẩu..."
             ref={passwordRef}
           />
           <button className="loginButton" type="submit" disabled={isFetching}>
-            Login
+            Đăng nhập
           </button>
         </form>
-        <button className="loginRegisterButton">
+        {error && <span className="errorMessage">{error}</span>}
+        {/* <button className="loginRegisterButton">
           <Link className="link" to="/register">
-            Register
+            Đăng ký
           </Link>
-        </button>
+        </button> */}
       </div>
     </>
   );

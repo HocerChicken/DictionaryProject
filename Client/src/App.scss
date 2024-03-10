@@ -43,57 +43,66 @@ $white--color: #fff;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("https://images.pexels.com/photos/768473/pexels-photo-768473.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+    background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url("https://cdn5.f-cdn.com/contestentries/1578585/21468461/5d62b49ac544b_thumb900.jpg");
     background-size: cover;
-  }
 
-  .loginTitle {
-    font-size: 50px;
-  }
+    .loginTitle {
+      font-size: 50px;
+      text-transform: uppercase;
+    }
 
-  .loginForm {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
+    .loginForm {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
 
-    >label {
-      margin: 10px 0;
+      >label {
+        margin: 10px 0;
+      }
+    }
+
+    .loginInput {
+      padding: 15px 100px;
+      background-color: white;
+      background-color: $background-color_1;
+      border: none;
+    }
+
+    .loginButton {
+      margin-top: 20px;
+      cursor: pointer;
+      background-color: $background-color_2;
+      border: none;
+      color: $color_1;
+      border-radius: 10px;
+      padding: 10px;
+      text-transform: uppercase;
+
+      &:disabled {
+        cursor: not-allowed;
+        background-color: $background-color_3;
+      }
+    }
+
+    .loginRegisterButton {
+      position: absolute;
+      top: 80%;
+      right: 47%;
+      background-color: $background-color_4;
+      cursor: pointer;
+      border: none;
+      padding: 10px;
+      color: $color_1;
+      border-radius: 10px;
+    }
+
+    .errorMessage {
+      margin-top: 15px;
+      color: red;
+      text-transform: uppercase;
+      font-weight: 600;
     }
   }
-
-  .loginInput {
-    padding: 10px;
-    background-color: $background-color_1;
-    border: none;
-  }
-
-  .loginButton {
-    margin-top: 20px;
-    cursor: pointer;
-    background-color: $background-color_2;
-    border: none;
-    color: $color_1;
-    border-radius: 10px;
-    padding: 10px;
-
-    &:disabled {
-      cursor: not-allowed;
-      background-color: $background-color_3;
-    }
-  }
-
-  .loginRegisterButton {
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background-color: $background-color_4;
-    cursor: pointer;
-    border: none;
-    padding: 10px;
-    color: $color_1;
-    border-radius: 10px;
-  }
-
 
   //file header.js
   .header-container {
