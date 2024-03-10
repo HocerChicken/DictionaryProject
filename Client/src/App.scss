@@ -153,28 +153,13 @@ $white--color: #fff;
       box-sizing: border-box;
     }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-    }
-
-    header {
-      padding: 20px;
-      text-align: center;
-      text-transform: uppercase;
-    }
 
     h1 {
       margin: 0;
     }
 
-    main {
-      padding: 20px;
-    }
-
     .contact-section {
-      max-width: 500px;
+      max-width: 800px;
       margin: 0 auto;
       background-color: #fff;
       padding: 20px;
@@ -371,7 +356,6 @@ $white--color: #fff;
     flex-direction: column;
     align-items: center;
 
-
     img {
       height: 150px;
       width: 100%;
@@ -445,7 +429,6 @@ $white--color: #fff;
       }
 
       .postCat {
-        // font-family: "Varela Round", sans-serif;
         font-size: 11px;
         color: #be9656;
         line-height: 20px;
