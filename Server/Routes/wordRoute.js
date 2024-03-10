@@ -3,7 +3,7 @@ const Dictionaries = require("../models/wordModel");
 const router = express.Router();
 
 //Route to get a specific word by title
-router.get("/:slug", async (req, res) => {
+router.get("/:title", async (req, res) => {
   try {
     const { title } = req.params;
     const word = await Dictionaries.findOne({ title });

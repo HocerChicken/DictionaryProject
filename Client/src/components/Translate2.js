@@ -1,4 +1,6 @@
 import Breadcrumb from "react-bootstrap/Breadcrumb";
+import React, { useState } from "react";
+import TableData from "./TableData";
 
 const Translate2 = (props) => {
   return (

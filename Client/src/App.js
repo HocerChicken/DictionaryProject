@@ -15,6 +15,7 @@ import Single from "./components/single";
 import { useContext } from "react";
 import { Context } from "./context/Context";
 
+import TranslatePart from "./components/translatePart";
 function App() {
   const { user } = useContext(Context)
   return (
@@ -28,7 +29,7 @@ function App() {
           <Route path="/mydict" element={<MyDict />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/users" element={<TableUsers />} />
-
+          <Route path="/hello" element={<TranslatePart />} />
           <Route path="/single" element={<Single />} />
         </Routes>
       </Container>

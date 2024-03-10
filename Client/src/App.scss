@@ -647,4 +647,61 @@ $white--color: #fff;
       }
     }
   }
+
+  // Table styles
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    // Table header styles
+    thead th {
+      font-weight: bold;
+    }
+
+    // Table body styles
+    tbody td {
+      font-weight: normal;
+    }
+
+    // Table row styles
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    // Table cell styles
+    tbody td p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    // Table cell styles for title
+    tbody td:first-child {
+      font-weight: 600;
+      color: blue;
+    }
+
+    // Table cell styles for class reference
+    tbody td p:last-child {
+      text-align: right;
+      color: red;
+      font-style: italic;
+    }
+
+    th {
+      &:not(:last-child) {
+        margin-right: 20px; // Increase the margin between <th> elements
+      }
+    }
+  }
 }
