@@ -3,9 +3,11 @@ const Word = require("./models/wordModel.js");
 const authRoute = require("./Routes/auth");
 const userRoute = require("./Routes/users");
 const wordRoutes = require("./Routes/wordRoute.js");
+var cors = require("cors");
 
 const app = express();
 const dotenv = require("dotenv");
+app.use(cors());
 
 dotenv.config();
 require("./db");

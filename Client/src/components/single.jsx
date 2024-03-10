@@ -9,7 +9,6 @@ const Single = () => {
                 <SinglePost />
                 <Sidebar />
             </div>
-
         </>
     )
 }

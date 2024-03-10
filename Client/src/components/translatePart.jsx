@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import TableData from "./TableData";
 
 const TranslatePart = () => {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const [data, setData] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await fetch(`http://localhost:5000/api/words/${title}`);
+    if (!response.ok) {
+      if (response.status === 404) {
+        setData(null);
+      } else {
+        throw new Error(`${response.status}`);
+      }
+    }
     const data = await response.json();
     setData(data);
   };
@@ -17,8 +25,8 @@ const TranslatePart = () => {
         <main>
           <div className="translate-part-area">
             <form onSubmit={handleSubmit}>
-              <input 
-                placeholder="Nhập văn bản cần dịch..." 
+              <input
+                placeholder="Nhập văn bản cần dịch..."
                 onChange={(e) => setTitle(e.target.value)}
               />
               <div>
@@ -27,7 +35,13 @@ const TranslatePart = () => {
             </form>
             <div className="translation-result">
               <h3>Kết quả dịch</h3>
-              <p>{data ? JSON.stringify(data) : 'Đoạn văn dịch thuật'}</p>
+              <p>
+                {data?.message ? (
+                  "không tim thấy từ"
+                ) : (
+                  <TableData data={data} />
+                )}
+              </p>
             </div>
           </div>
           <section className="services-section">
@@ -42,5 +56,4 @@ const TranslatePart = () => {
     </>
   );
 };
-
 export default TranslatePart;
