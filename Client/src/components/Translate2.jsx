@@ -1,8 +1,9 @@
 import Breadcrumb from "react-bootstrap/Breadcrumb";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TableData from "./TableData";
 
 const Translate2 = (props) => {
+  useEffect(() => window.scrollTo(0, 0), []);
   return (
     <div className="translate-container">
       <Breadcrumb className="mt-5">

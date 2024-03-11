@@ -19,20 +19,21 @@ const Post = () => {
 
   return (
     <>
-      {posts.map((aPost) => (
-        <div className="main-post" key={aPost._id}>
-          <img className="postImg" src={aPost.image} />
-          <div className="postInfo">
-            <span
-              className="postTitle"
-              onClick={() => handlePostClick(aPost.title)}
-            >
-              {aPost.title}
-            </span>
+      {Array.isArray(posts) &&
+        posts.map((aPost) => (
+          <div className="main-post" key={aPost._id}>
+            <img className="postImg" src={aPost.image} />
+            <div className="postInfo">
+              <span
+                className="postTitle"
+                onClick={() => handlePostClick(aPost.title)}
+              >
+                {aPost.title}
+              </span>
+            </div>
+            <p className="postDesc">{aPost.thumbnail}</p>
           </div>
-          <p className="postDesc">{aPost.thumbnail}</p>
-        </div>
-      ))}
+        ))}
     </>
   );
 };

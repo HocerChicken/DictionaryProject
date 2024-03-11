@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import headerIcon from "../assets/images/header-icon-bg.png";
 import Posts from "./posts";
@@ -6,6 +6,7 @@ import Sidebar from "./sidebar";
 import Footer from "./Footer";
 
 const Home = () => {
+  useEffect(() => window.scrollTo(0, 0), []);
   return (
     <>
       <div className="homepage-container col-lg-12 ">

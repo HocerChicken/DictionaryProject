@@ -1,10 +1,11 @@
 import Breadcrumb from "react-bootstrap/Breadcrumb";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TableData from "./TableData";
 import { Context } from "../context/Context";
 import { useContext } from "react";
 
 const Translate = () => {
+  useEffect(() => window.scrollTo(0, 0), []);
   const [title, setTitle] = useState("");
   const [data, setData] = useState(null);
   const { user } = useContext(Context);

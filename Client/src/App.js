@@ -10,6 +10,7 @@ import Translate2 from "./components/Translate2";
 import { Route, Routes } from "react-router-dom";
 import Contact from "./components/Contact";
 import Register from "./components/Register";
+import PostsAdmin from "./components/PostsAdmin";
 import Footer from "./components/Footer";
 import Single from "./components/single";
 import { useContext } from "react";
@@ -29,6 +30,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/users" element={<TableUsers />} />
           <Route path="/single/:id" element={<Single />} />
+          <Route path="/postsAdmin" element={<PostsAdmin />} />
         </Routes>
       </Container>
       <Routes>
