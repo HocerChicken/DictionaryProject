@@ -29,8 +29,7 @@ function App() {
           <Route path="/mydict" element={<MyDict />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/users" element={<TableUsers />} />
-          <Route path="/hello" element={<TranslatePart />} />
-          <Route path="/single" element={<Single />} />
+          <Route path="/single/:id" element={<Single />} />
         </Routes>
       </Container>
       <Routes>

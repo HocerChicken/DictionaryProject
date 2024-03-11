@@ -1,30 +1,29 @@
 const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema(
-    {
-        title: {
-            type: String,
-            required: true,
-            unique: true,
-        },
-        desc: {
-            type: String,
-            required: true,
-        },
-        photo: {
-            type: String,
-            required: false,
-        },
-        username: {
-            type: String,
-            required: true,
-        },
-        categories: {
-            type: Array,
-            required: false,
-        },
+  {
+    _id: {
+      $oid: {
+        type: "ObjectId",
+      },
     },
-    { timestamps: true }
+    title: {
+      type: "String",
+    },
+    image: {
+      type: "String",
+    },
+    thumbnail: {
+      type: "String",
+    },
+    content: {
+      type: "String",
+    },
+    isHot: {
+      type: "Boolean",
+    },
+  },
+  { timestamps: true }
 );
 
-module.exports = mongoose.model("Post", PostSchema);
+module.exports = mongoose.model("posts", PostSchema);

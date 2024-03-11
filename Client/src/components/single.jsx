@@ -5,8 +5,13 @@ import Sidebar from "./sidebar";
 const Single = () => {
   return (
     <div className="single">
-      <SinglePost />
-      <Sidebar />
+      <div
+        className="main-home"
+        style={{ backgroundColor: "#fff", marginTop: "64px" }}
+      >
+        <SinglePost />
+        <Sidebar />
+      </div>
     </div>
   );
 };
