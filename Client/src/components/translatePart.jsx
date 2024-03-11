@@ -37,7 +37,7 @@ const TranslatePart = () => {
               <h3>Kết quả dịch</h3>
               <p>
                 {data?.message ? (
-                  "không tim thấy từ"
+                  "không tìm thấy từ"
                 ) : (
                   <TableData data={data} />
                 )}

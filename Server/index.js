@@ -3,6 +3,7 @@ const Word = require("./models/wordModel.js");
 const authRoute = require("./Routes/auth");
 const userRoute = require("./Routes/users");
 const wordRoutes = require("./Routes/wordRoute.js");
+// const dictionaryRoute = require("./Routes/dictionaryRoute.js");
 var cors = require("cors");
 
 const app = express();

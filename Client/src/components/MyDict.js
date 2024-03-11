@@ -1,5 +1,9 @@
-const Translate = (props) => {
-  return <></>;
+const myDict = (props) => {
+  return (
+    <>
+
+    </>
+  );
 };
 
-export default Translate;
+export default myDict;

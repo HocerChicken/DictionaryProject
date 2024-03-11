@@ -1,10 +1,13 @@
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import React, { useState } from "react";
 import TableData from "./TableData";
+import { Context } from "../context/Context";
+import { useContext } from "react";
 
 const Translate = () => {
   const [title, setTitle] = useState("");
   const [data, setData] = useState(null);
+  const { user } = useContext(Context);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,6 +22,11 @@ const Translate = () => {
     const data = await response.json();
     setData(data);
   };
+
+  // const handleSave = async (event) => {
+  //   e.preventDefault();
+
+  // }
   return (
     <div className="translate-container">
       <Breadcrumb className="mt-5">
@@ -43,6 +51,7 @@ const Translate = () => {
               {data?.message ? "không tim thấy từ" : <TableData data={data} />}
             </p>
           </div>
+          {data && user && <button className="saveWord">Lưu từ</button>}
         </div>
       </main>
     </div>

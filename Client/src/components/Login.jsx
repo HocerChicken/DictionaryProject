@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Context } from "../context/Context";
 
+
 const Login = () => {
   const userRef = useRef();
   const passwordRef = useRef();
@@ -17,6 +18,14 @@ const Login = () => {
         username: userRef.current.value,
         password: passwordRef.current.value,
       });
+      if (userRef.current.value === "admin" && passwordRef.current.value === "123456") {
+
+        // Chuyển hướng đến một trang khác thay vì trang chính
+        window.location.href = "/single" // Thay đổi đường dẫn tùy thuộc vào trang bạn muốn chuyển hướng
+        dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+        return;
+      }
+
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE" });
@@ -24,7 +33,6 @@ const Login = () => {
       return;
     }
   };
-
   return (
     <>
       <link
