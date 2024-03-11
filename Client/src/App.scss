@@ -113,7 +113,7 @@ $white--color: #fff;
       width: 36px;
       height: 36px;
       margin-left: 18px;
-      @media (max-width: 768px) {
+      @media (max-width: 1400px) {
         stroke: $blue-color;
       }
     }
@@ -139,7 +139,7 @@ $white--color: #fff;
 
     .translate-area {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 48px;
 
       input {
         width: 400px;
@@ -165,8 +165,8 @@ $white--color: #fff;
 
   .contact-container {
     h1 {
-      font-size: 80px;
-      padding: 96px 188px;
+      font-size: 62px;
+      padding: 80px 188px;
       @media (max-width: 768px) {
         font-size: 32px;
         padding: 64px 0;
@@ -292,7 +292,7 @@ $white--color: #fff;
 
       .header-bg1 {
         position: absolute;
-        @media (max-width: 768px) {
+        @media (max-width: 1400px) {
           display: none;
         }
         bottom: 100px;

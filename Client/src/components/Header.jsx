@@ -16,13 +16,11 @@ const Header = (props) => {
 
   const handleDropdownClose = () => {
     setDropdownOpen(false);
-
   };
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
   };
-
 
   const { user, dispatch } = useContext(Context);
   return (
@@ -79,7 +77,7 @@ const Header = (props) => {
                     activeClassName="visited"
                     onClick={handleDropdownClose}
                   >
-                    Hán Việt
+                    Việt - Việt
                   </NavLink>
                   <NavLink
                     to="/translate2"
@@ -87,7 +85,7 @@ const Header = (props) => {
                     activeClassName="visited"
                     onClick={handleDropdownClose}
                   >
-                    Hán Nôm
+                    Việt - Nôm
                   </NavLink>
                 </NavDropdown>
               </Nav>
@@ -103,7 +101,10 @@ const Header = (props) => {
                   id="basic-nav-dropdown"
                 >
                   {user ? (
-                    <NavDropdown.Item className="topListItem" onClick={handleLogout}>
+                    <NavDropdown.Item
+                      className="topListItem"
+                      onClick={handleLogout}
+                    >
                       LOGOUT
                     </NavDropdown.Item>
                   ) : (
@@ -111,7 +112,9 @@ const Header = (props) => {
                       <NavDropdown.Item className="login-button" href="/login">
                         Đăng nhập
                       </NavDropdown.Item>
-                      <NavDropdown.Item href="/register">Đăng ký</NavDropdown.Item>
+                      <NavDropdown.Item href="/register">
+                        Đăng ký
+                      </NavDropdown.Item>
                     </>
                   )}
                 </NavDropdown>

@@ -32,7 +32,7 @@ const Translate = () => {
       <Breadcrumb className="mt-5">
         <Breadcrumb.Item href="/">Trang chủ</Breadcrumb.Item>
         <Breadcrumb.Item active>Tra cứu</Breadcrumb.Item>
-        <Breadcrumb.Item active>Hán - Việt</Breadcrumb.Item>
+        <Breadcrumb.Item active>Việt - Việt</Breadcrumb.Item>
       </Breadcrumb>
       <main>
         <div className="translate-area">
