@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const PersonalDictionary = require('../models/PersonalDictionary'); // Import model của từ điển cá nhân
+const PersonalDictionary = require('../models/personalDictionary'); // Import model của từ điển cá nhân
 
 // Endpoint để kiểm tra bộ từ điển cá nhân của người dùng
 router.get('/:userId', async (req, res) => {
@@ -12,7 +12,7 @@ router.get('/:userId', async (req, res) => {
             return res.status(404).json({ message: "Bộ từ điển cá nhân không tồn tại." });
         }
 
-        res.json({ dictionary });
+        res.json(dictionary);
     } catch (error) {
         console.error("Lỗi khi kiểm tra từ điển cá nhân:", error);
         res.status(500).json({ message: "Đã xảy ra lỗi khi kiểm tra từ điển cá nhân." });
@@ -23,15 +23,16 @@ router.get('/:userId', async (req, res) => {
 router.put('/:userId', async (req, res) => {
     try {
         const userId = req.params.userId;
-        const { dictionary } = req.body;
+        const { title, definitions } = req.body;
 
         let personalDictionary = await PersonalDictionary.findOne({ userId });
 
         if (!personalDictionary) {
-            personalDictionary = new PersonalDictionary({ userId, dictionary });
+            personalDictionary = new PersonalDictionary({ userId, title, definitions });
             await personalDictionary.save();
         } else {
-            personalDictionary.dictionary = dictionary;
+            personalDictionary.title = title;
+            personalDictionary.definitions = definitions;
             await personalDictionary.save();
         }
 
