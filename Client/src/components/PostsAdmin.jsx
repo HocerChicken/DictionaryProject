@@ -1,117 +1,92 @@
-import React, { useState, useEffect } from "react";
-import { Button, Form, Card, Container, Row, Col } from "react-bootstrap";
-import axios from "axios";
+import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 
-const PostForm = ({ post, onSubmit }) => {
-  const [title, setTitle] = useState(post ? post.title : "");
-  const [content, setContent] = useState(post ? post.content : "");
+const FormPostCreate = ({ onSubmit }) => {
+  const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
+  const [content, setContent] = useState("");
+  const [isHot, setIsHot] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    onSubmit({ title, content });
+
+    try {
+      const response = await fetch("http://localhost:5000/api/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title, image, thumbnail, content, isHot }),
+      });
+
+      if (response.ok) {
+        alert("Post created successfully!");
+      } else {
+        alert("Failed to create post.");
+      }
+    } catch (error) {
+      alert("Failed to create post");
+      console.error(error);
+    }
+
+    onSubmit({ title, image, thumbnail, content, isHot });
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group>
-        <Form.Label>Title</Form.Label>
-        <Form.Control
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>Content</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={3}
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
-  );
-};
-
-const Post = ({ post, onUpdate, onDelete }) => (
-  <Card style={{ width: "18rem" }}>
-    <Card.Body>
-      <Card.Title>{post.title}</Card.Title>
-      <Card.Text>{post.content}</Card.Text>
-      <Button variant="primary" onClick={() => onUpdate(post)}>
-        Update
-      </Button>
-      <Button variant="danger" onClick={() => onDelete(post.id)}>
-        Delete
-      </Button>
-    </Card.Body>
-  </Card>
-);
-
-const PostAdmin = () => {
-  const [posts, setPosts] = useState([]);
-  const [selectedPost, setSelectedPost] = useState(null);
-
-  useEffect(() => {
-    axios
-      .get("/api/posts")
-      .then((response) => setPosts(response.data))
-      .catch((error) => console.error(error));
-  }, []);
-
-  const handleCreate = (post) => {
-    axios
-      .post("/api/posts", post)
-      .then((response) => setPosts([...posts, response.data]))
-      .catch((error) => console.error(error));
-  };
-
-  const handleUpdate = (post) => {
-    setSelectedPost(post);
-  };
-
-  const handleDelete = (id) => {
-    axios
-      .delete(`/api/posts/${id}`)
-      .then(() => setPosts(posts.filter((post) => post.id !== id)))
-      .catch((error) => console.error(error));
-  };
-
-  const handleSubmit = (post) => {
-    axios
-      .put(`/api/posts/${selectedPost.id}`, post)
-      .then((response) => {
-        setPosts(
-          posts.map((p) => (p.id === selectedPost.id ? response.data : p))
-        );
-        setSelectedPost(null);
-      })
-      .catch((error) => console.error(error));
-  };
-
-  return (
-    <Container>
-      <Row>
-        <Col>
-          <PostForm
-            post={selectedPost}
-            onSubmit={selectedPost ? handleSubmit : handleCreate}
+    <div className="PostsAdmin">
+      <h1 className="mt-5">Tạo bài viết</h1>
+      <Form onSubmit={handleSubmit} method="POST" className="mt-5">
+        <Form.Group>
+          <Form.Label>Tiêu đề</Form.Label>
+          <Form.Control
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
-        </Col>
-      </Row>
-      <Row>
-        {posts.map((post) => (
-          <Col key={post.id}>
-            <Post post={post} onUpdate={handleUpdate} onDelete={handleDelete} />
-          </Col>
-        ))}
-      </Row>
-    </Container>
+        </Form.Group>
+        <Form.Group className="mt-3">
+          <Form.Label>Đường dẫn ảnh</Form.Label>
+          <Form.Control
+            type="text"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mt-3">
+          <Form.Label>Tiểu tiêu đề</Form.Label>
+          <Form.Control
+            type="text"
+            value={thumbnail}
+            onChange={(e) => setThumbnail(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mt-3">
+          <Form.Label>Nội dung</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows={10}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mt-3">
+          <Form.Check
+            type="checkbox"
+            label="Nổi bật"
+            className="my-3"
+            checked={isHot}
+            onChange={(e) => setIsHot(e.target.checked)}
+          />
+        </Form.Group>
+        <div className="d-grid gap-2">
+          <Button variant="primary" type="submit" className="full-">
+            Tạo bài viết
+          </Button>
+        </div>
+      </Form>
+    </div>
   );
 };
 
-export default PostAdmin;
+export default FormPostCreate;

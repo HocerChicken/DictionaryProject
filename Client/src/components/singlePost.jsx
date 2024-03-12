@@ -15,8 +15,6 @@ const SinglePost = () => {
       .catch((error) => console.error(error));
   }, [title]);
 
-  console.log(post.content);
-
   return (
     <div className="singlePost">
       <div className="SinglePostWrapper">

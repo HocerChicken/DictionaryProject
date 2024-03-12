@@ -10,12 +10,12 @@ import Translate2 from "./components/Translate2";
 import { Route, Routes } from "react-router-dom";
 import Contact from "./components/Contact";
 import Register from "./components/Register";
+import PostsAdmin from "./components/PostsAdmin";
 import Footer from "./components/Footer";
 import Single from "./components/single";
 import { useContext } from "react";
 import { Context } from "./context/Context";
 
-import TranslatePart from "./components/translatePart";
 function App() {
   const { user } = useContext(Context);
   return (
@@ -30,6 +30,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/users" element={<TableUsers />} />
           <Route path="/single/:id" element={<Single />} />
+          <Route path="/postsAdmin" element={<PostsAdmin />} />
         </Routes>
       </Container>
       <Routes>
@@ -49,6 +50,7 @@ function App() {
         />
         <Route path="/register" element={<Register />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

@@ -14,6 +14,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET POSTs IS HOT
+router.get("/ishot", async (req, res) => {
+  try {
+    const postList = await Posts.find({ isHot: true });
+    if (postList.length === 0)
+      return res.status(404).send({ message: "No hot posts found" });
+    res.status(200).json(postList);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 //GET POST BY Title
 router.get("/:title", async (req, res) => {
   try {

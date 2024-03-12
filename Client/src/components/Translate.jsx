@@ -1,10 +1,11 @@
 import Breadcrumb from "react-bootstrap/Breadcrumb";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TableData from "./TableData";
 import { Context } from "../context/Context";
 import { useContext } from "react";
 
 const Translate = () => {
+  useEffect(() => window.scrollTo(0, 0), []);
   const [title, setTitle] = useState("");
   const [data, setData] = useState(null);
   const { user } = useContext(Context);
@@ -34,7 +35,7 @@ const Translate = () => {
       <Breadcrumb className="mt-5">
         <Breadcrumb.Item href="/">Trang chủ</Breadcrumb.Item>
         <Breadcrumb.Item active>Tra cứu</Breadcrumb.Item>
-        <Breadcrumb.Item active>Hán - Việt</Breadcrumb.Item>
+        <Breadcrumb.Item active>Việt - Việt</Breadcrumb.Item>
       </Breadcrumb>
       <main>
         <div className="translate-area">
