@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../App.scss";
-import { Base64 } from "js-base64";
+// import { Base64 } from "js-base64";
 import { useParams } from "react-router-dom";
 
 const SinglePost = () => {
