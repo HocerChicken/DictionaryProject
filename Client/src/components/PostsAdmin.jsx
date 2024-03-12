@@ -1,42 +1,55 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
 
-const FormPostCreate = ({ onSubmit }) => {
+const FormPostCreate = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [thumbnail, setThumbnail] = useState("");
   const [content, setContent] = useState("");
   const [isHot, setIsHot] = useState(false);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const resetInput = () => {
+    setTitle("");
+    setImage("");
+    setThumbnail("");
+    setContent("");
+    setIsHot(false);
+  };
 
-    try {
-      const response = await fetch("http://localhost:5000/api/posts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title, image, thumbnail, content, isHot }),
+  const postData = () => {
+    fetch("http://localhost:5000/api/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        image,
+        thumbnail,
+        content,
+        isHot,
+      }),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        alert("Tạo bài viết thành công");
+        resetInput();
+      })
+      .catch((error) => {
+        alert("Tạo bài viết thất bại");
+        console.error(error);
       });
+  };
 
-      if (response.ok) {
-        alert("Post created successfully!");
-      } else {
-        alert("Failed to create post.");
-      }
-    } catch (error) {
-      alert("Failed to create post");
-      console.error(error);
-    }
-
-    onSubmit({ title, image, thumbnail, content, isHot });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    postData();
   };
 
   return (
     <div className="PostsAdmin">
       <h1 className="mt-5">Tạo bài viết</h1>
-      <Form onSubmit={handleSubmit} method="POST" className="mt-5">
+      <Form onSubmit={handleSubmit} className="mt-5">
         <Form.Group>
           <Form.Label>Tiêu đề</Form.Label>
           <Form.Control
@@ -80,7 +93,7 @@ const FormPostCreate = ({ onSubmit }) => {
           />
         </Form.Group>
         <div className="d-grid gap-2">
-          <Button variant="primary" type="submit" className="full-">
+          <Button variant="primary" type="submit">
             Tạo bài viết
           </Button>
         </div>
