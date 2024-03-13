@@ -90,8 +90,6 @@ export default function TableData({ data }) {
           </tr>
         ))}
       </tbody>
-
     </Table>
-
   );
 }

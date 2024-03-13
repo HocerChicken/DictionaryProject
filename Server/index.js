@@ -3,7 +3,7 @@ const authRoute = require("./Routes/auth");
 const userRoute = require("./Routes/users");
 const postRoute = require("./Routes/posts");
 const wordRoutes = require("./Routes/wordRoute.js");
-const wordRoutes = require("./Routes/word2Route.js");
+const word2Routes = require("./Routes/word2Route.js");
 const dictionaryRoute = require("./Routes/dictionaryRoute.js");
 var cors = require("cors");
 

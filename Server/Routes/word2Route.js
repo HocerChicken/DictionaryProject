@@ -1,12 +1,12 @@
 const express = require("express");
-const Dictionaries = require("../models/wordModel");
+const Dictionaries2 = require("../models/word2Model");
 const router = express.Router();
 
 //Route to get a specific word by title
 router.get("/:quocngu", async (req, res) => {
   try {
     const { quocngu } = req.params;
-    const word = await Dictionaries.findOne({ quocngu });
+    const word = await Dictionaries2.findOne({ quocngu });
 
     if (!word) {
       return res.status(404).send({ message: "Word not found" });
