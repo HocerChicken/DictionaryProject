@@ -29,7 +29,7 @@ const Translate = () => {
 
   // }
 
-  console.log(user._id)
+  // console.log(user._id)  
   return (
     <div className="translate-container">
       <Breadcrumb className="mt-5">
@@ -54,7 +54,7 @@ const Translate = () => {
               {data?.message ? "không tim thấy từ" : <TableData data={data} />}
             </p>
           </div>
-          {data && user && <button className="saveWord" >Lưu từ</button>}
+          {/* {data && user && <button className="saveWord" >Lưu từ</button>} */}
         </div>
       </main>
     </div>

@@ -7,21 +7,16 @@ const definitionSchema = new mongoose.Schema({
 });
 
 const personalDictionarySchema = new mongoose.Schema({
-    userId: {
+    username: {
         type: String,
         required: true
-    },
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        default: mongoose.Types.ObjectId
     },
     title: {
-        type: String,
+        type: Array,
         required: true
     },
-    definitions: [definitionSchema]
 });
 
-const PersonalDictionary = mongoose.model('PersonalDictionary', personalDictionarySchema);
+const PersonalDictionary = mongoose.model('personaldictionaries', personalDictionarySchema);
 
 module.exports = PersonalDictionary;

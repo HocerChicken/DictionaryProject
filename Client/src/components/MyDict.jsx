@@ -1,47 +1,71 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { Context } from "../context/Context";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import TableData from "./TableData";
+
 
 const MyDict = () => {
-  const [dictionary, setDictionary] = useState([]);
+  const [title, setTitle] = useState("");
+  const [data, setData] = useState(null);
 
-  useEffect(() => {
-    const fetchDictionary = async () => {
-      try {
-        const userId = getUserId(); // Hàm này để lấy userId của người dùng, có thể bạn đã lưu ở một nơi nào đó trong ứng dụng của bạn
-        const response = await axios.get(`/mydict/${userId}`);
-        const titles = response.data.dictionary.map(item => item.title);
-        setDictionary(titles);
-      } catch (error) {
-        console.error('Lỗi khi lấy dữ liệu từ điển cá nhân:', error);
+  const { user } = useContext(Context);
+  const [dataDict, setDataDict] = useState([]);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (dict) => {
+    // event.preventDefault();
+    const response = await fetch(`http://localhost:5000/api/words/${dict}`);
+    if (!response.ok) {
+      if (response.status === 404) {
+        setData(null);
+      } else {
+        throw new Error(`${response.status}`);
       }
-    };
-
-    fetchDictionary();
-  }, []);
-
-  // Hàm này sử dụng để lấy userId từ cookies
-  const getUserId = () => {
-    // Đây chỉ là một ví dụ đơn giản, bạn có thể triển khai hàm này phù hợp với cách bạn lưu trữ cookies
-    const cookies = document.cookie.split(';');
-    const userIdCookie = cookies.find(cookie => cookie.trim().startsWith('userId='));
-    if (userIdCookie) {
-      return userIdCookie.split('=')[1];
     }
-    return null; // Trả về null nếu không tìm thấy userId trong cookies
+    const data = await response.json();
+    setData(data);
   };
 
+  useEffect(() => {
+    console.log(user.username); // Kiểm tra giá trị của user.username
+    fetch(`http://localhost:5000/api/dictionaries/${user.username}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(">>>>>> Data:", data); // Kiểm tra dữ liệu trả về từ máy chủ
+        setDataDict(data);
+
+      })
+      .catch((error) => console.error(error));
+    // Kiểm tra giá trị của dataDict
+  }, []);
+
+  const handleDictClick = (dictId) => {
+    navigate(`/single/${dictId}`);
+  };
+  console.log("kq:", Array.isArray(dataDict.title))
   return (
-    <div>
-      <h1>Quản lý từ của tôi</h1>
-      <div className="dictionary-container">
-        {dictionary.map((title, index) => (
-          <div className="dictionary-item" key={index}>
-            <h2>{title}</h2>
-          </div>
-        ))}
+    <>
+      <div className='myDict'>
+        {Array.isArray(dataDict.title) &&
+          dataDict.title.map((dict) => (
+            // <div className="dictWord" key={dict._id} onClick={handleSubmit(dict)}>
+            <div className="dictWord" key={dict._id} onClick={() => handleSubmit(dict)}>
+              <span >
+                {dict}
+              </span>
+            </div>
+          ))}
+
+        <div className="translation-result">
+          <h3>Nghĩa của từ</h3>
+          <p>
+            {data?.message ? "không tim thấy từ" : <TableData data={data} />}
+          </p>
+        </div>
       </div>
-    </div>
+    </>
   );
-};
+}
 
 export default MyDict;
