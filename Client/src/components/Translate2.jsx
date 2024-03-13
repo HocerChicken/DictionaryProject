@@ -49,13 +49,6 @@ const Translate2 = (props) => {
             </p>
           </div>
         </div>
-        <section className="services-section">
-          <h2>Công cụ dịch</h2>
-          <ul>
-            <li>Dịch thuật Hán Việt</li>
-            <li>Dịch thuật Hán Nôm</li>
-          </ul>
-        </section>
       </main>
     </div>
   );
