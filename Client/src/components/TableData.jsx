@@ -8,8 +8,8 @@ export default function TableData({ data }) {
   const dataGet = JSON.stringify(data);
   const jsonData = JSON.parse(dataGet);
   const { user } = useContext(Context);
-  console.log(">>>>> data:", data)
-  console.log(">>>>> dataGet:", dataGet)
+  console.log(">>>>> data:", data);
+  console.log(">>>>> dataGet:", dataGet);
 
   // const handleSave = async (event) => {
   //   event.preventDefault();
@@ -34,42 +34,53 @@ export default function TableData({ data }) {
   const handleSave = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/api/dictionaries/${user.username}`);
+      const response = await fetch(
+        `http://localhost:5000/api/dictionaries/${user.username}`
+      );
       const data = await response.json();
       if (!data) {
-        const createResponse = await fetch('http://localhost:5000/api/dictionaries', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ username: user.username, title: [jsonData.title] }),
-        });
+        const createResponse = await fetch(
+          "http://localhost:5000/api/dictionaries",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              username: user.username,
+              title: [jsonData.title],
+            }),
+          }
+        );
         if (createResponse.ok) {
-          console.log('New data saved successfully');
+          console.log("New data saved successfully");
         } else {
-          console.error('Failed to save new data:', createResponse.statusText);
+          console.error("Failed to save new data:", createResponse.statusText);
         }
       } else {
         const updatedTitles = [...data.title, jsonData.title];
-        const updateResponse = await fetch(`http://localhost:5000/api/dictionaries/${user.username}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            title: updatedTitles,
-          }),
-        });
+        const updateResponse = await fetch(
+          `http://localhost:5000/api/dictionaries/${user.username}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: updatedTitles,
+            }),
+          }
+        );
         if (updateResponse.ok) {
-          console.log('Data updated successfully');
+          console.log("Data updated successfully");
         } else {
-          console.error('Failed to update data:', updateResponse.statusText);
+          console.error("Failed to update data:", updateResponse.statusText);
         }
       }
     } catch (error) {
-      console.error('Error saving data:', error.message);
+      console.error("Error saving data:", error.message);
     }
-  }
+  };
   return (
     <Table striped bordered hover style={{ width: "1200px", margin: "0 auto" }}>
       <thead>
@@ -114,14 +125,11 @@ export default function TableData({ data }) {
           </tr>
         ))}
       </tbody>
-<<<<<<< HEAD
-      {data && user && <button className="saveWord" onClick={handleSave}>Lưu từ</button>}
-
+      {data && user && (
+        <button className="saveWord" onClick={handleSave}>
+          Lưu từ
+        </button>
+      )}
     </Table>
-
-
-=======
-    </Table>
->>>>>>> 6c8833ee68f15a6dad7f2b2e9d51fd8f03befd2b
   );
 }

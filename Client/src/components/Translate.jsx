@@ -28,11 +28,6 @@ const Translate = () => {
   //   e.preventDefault();
 
   // }
-
-<<<<<<< HEAD
-  // console.log(user._id)  
-=======
->>>>>>> 6c8833ee68f15a6dad7f2b2e9d51fd8f03befd2b
   return (
     <div className="translate-container">
       <Breadcrumb className="mt-5">
@@ -57,11 +52,6 @@ const Translate = () => {
               {data?.message ? "không tim thấy từ" : <TableData data={data} />}
             </p>
           </div>
-<<<<<<< HEAD
-          {/* {data && user && <button className="saveWord" >Lưu từ</button>} */}
-=======
-          {data && user && <button className="saveWord">Lưu từ</button>}
->>>>>>> 6c8833ee68f15a6dad7f2b2e9d51fd8f03befd2b
         </div>
       </main>
     </div>

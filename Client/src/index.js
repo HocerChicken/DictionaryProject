@@ -6,7 +6,7 @@ import reportwebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from "react-router-dom"
 import { ContextProvider } from "./context/Context"
-// >>>>>>> 39a2e957d5d53e208d629de232b087aaa0ff1987
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
