@@ -114,10 +114,14 @@ export default function TableData({ data }) {
           </tr>
         ))}
       </tbody>
+<<<<<<< HEAD
       {data && user && <button className="saveWord" onClick={handleSave}>Lưu từ</button>}
 
     </Table>
 
 
+=======
+    </Table>
+>>>>>>> 6c8833ee68f15a6dad7f2b2e9d51fd8f03befd2b
   );
 }
