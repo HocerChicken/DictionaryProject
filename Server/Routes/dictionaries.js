@@ -8,7 +8,7 @@ router.get("/:username", async (req, res) => {
         const { username } = req.params;
         const dic = await PersonalDictionary.findOne({ username });
         if (!dic) {
-            return res.status(404).send({ message: "Word not found" });
+            return res.status(200).json(null);
         }
         return res.status(200).json(dic);
     } catch (error) {
@@ -18,7 +18,7 @@ router.get("/:username", async (req, res) => {
 });
 
 // Endpoint để cập nhật hoặc tạo mới bộ từ điển cá nhân
-router.post('/', async (req, res) => {
+router.post('', async (req, res) => {
     const newDictionary = new PersonalDictionary(req.body);
     try {
         const savedDictionary = await newDictionary.save();
@@ -46,7 +46,6 @@ router.put('/:username', async (req, res) => {
             if (!Array.isArray(title)) {
                 console.log("loi 1")
                 return res.status(400).send({ message: 'Invalid title format' });
-
             }
 
             if (title.length > 0) {

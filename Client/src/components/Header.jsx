@@ -57,9 +57,9 @@ const Header = (props) => {
                 <NavLink to="/" className="nav-link mx-4 fw-bold">
                   Trang chủ
                 </NavLink>
-                <NavLink to="/mydict" className="nav-link mx-4 fw-bold">
+                {user && <NavLink to="/mydict" className="nav-link mx-4 fw-bold">
                   Từ của bạn
-                </NavLink>
+                </NavLink>}
                 <NavLink to="/contact" className="nav-link mx-4 fw-bold">
                   Liên hệ
                 </NavLink>
@@ -105,7 +105,7 @@ const Header = (props) => {
                       className="topListItem"
                       onClick={handleLogout}
                     >
-                      LOGOUT
+                      Đăng xuất
                     </NavDropdown.Item>
                   ) : (
                     <>

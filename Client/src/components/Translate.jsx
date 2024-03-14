@@ -43,7 +43,7 @@ const Translate = () => {
             </div>
           </form>
           <div className="translation-result">
-            <h3>kết quả dịch</h3>
+            {data && <h3>Kết quả dịch</h3>}
             <p>
               {data?.message ? "không tim thấy từ" : <TableData data={data} />}
             </p>

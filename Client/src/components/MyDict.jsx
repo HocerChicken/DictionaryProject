@@ -3,47 +3,69 @@ import { Context } from "../context/Context";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import TableData from "./TableData";
+import TableData2 from "./TableData2";
+
 
 
 const MyDict = () => {
   const [title, setTitle] = useState("");
   const [data, setData] = useState(null);
-
+  const [count, setCount] = useState(1);
+  const [translate, setTranslate] = useState("");
   const { user } = useContext(Context);
   const [dataDict, setDataDict] = useState([]);
   const navigate = useNavigate();
+  const [selectedDict, setSelectedDict] = useState('');
 
   const handleSubmit = async (dict) => {
-    // event.preventDefault();
-    const response = await fetch(`http://localhost:5000/api/words/${dict}`);
-    if (!response.ok) {
-      if (response.status === 404) {
-        setData(null);
-      } else {
-        throw new Error(`${response.status}`);
+    console.log(">>>> count", count)
+
+    if (count === 1) {
+      const response = await fetch(`http://localhost:5000/api/words/${dict}`);
+      if (!response.ok) {
+        if (response.status === 404) {
+          setData(null);
+        } else {
+          throw new Error(`${response.status}`);
+        }
       }
+      const data = await response.json();
+      setData(data);
+      setTranslate(1);
+      setCount(2)
     }
-    const data = await response.json();
-    setData(data);
+    if (count === 2) {
+      const response = await fetch(`http://localhost:5000/api/word2s/${dict}`);
+      if (!response.ok) {
+        if (response.status === 404) {
+          setData(null);
+        } else {
+          throw new Error(`${response.status}`);
+        }
+      }
+      const data = await response.json();
+      setData(data);
+      setTranslate(2)
+      setCount(1);
+    }
   };
 
+  const handleClick = async (value) => {
+    setTranslate(value);
+  };
+
+
+
   useEffect(() => {
-    console.log(user.username); // Kiểm tra giá trị của user.username
     fetch(`http://localhost:5000/api/dictionaries/${user.username}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(">>>>>> Data:", data); // Kiểm tra dữ liệu trả về từ máy chủ
         setDataDict(data);
-
       })
       .catch((error) => console.error(error));
     // Kiểm tra giá trị của dataDict
   }, []);
 
-  const handleDictClick = (dictId) => {
-    navigate(`/single/${dictId}`);
-  };
-  console.log("kq:", Array.isArray(dataDict.title))
   return (
     <>
       <div className='myDict'>
@@ -57,12 +79,34 @@ const MyDict = () => {
             </div>
           ))}
 
-        <div className="translation-result">
+        {/* <div className="translation-result">
           <h3>Nghĩa của từ</h3>
           <p>
-            {data?.message ? "không tim thấy từ" : <TableData data={data} />}
+            {data?.message ? "không tim thấy từ" : <TableData2 data={data} />}
           </p>
-        </div>
+        </div> */}
+
+
+        {/* <div className="options">
+          <button onClick={() => handleClick(1)}>Việt - việt</button>
+          <button onClick={() => handleClick(2)}> Việt - Nôm</button>
+        </div> */}
+        {
+          translate == 1 && <div className="translation-result">
+            <h3>Nghĩa của từ</h3>
+            <p>
+              {data?.message ? "không tim thấy từ" : <TableData data={data} translate={translate} />}
+            </p>
+          </div>
+        }
+        {
+          translate == 2 && <div className="translation-result">
+            <h3>Nghĩa của từ</h3>
+            <p>
+              {data?.message ? "không tim thấy từ" : <TableData2 data={data} translate={translate} />}
+            </p>
+          </div>
+        }
       </div>
     </>
   );
