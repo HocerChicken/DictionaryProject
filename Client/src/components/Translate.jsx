@@ -24,12 +24,6 @@ const Translate = () => {
     setData(data);
   };
 
-  // const handleSave = async (event) => {
-  //   e.preventDefault();
-
-  // }
-
-  // console.log(user._id)  
   return (
     <div className="translate-container">
       <Breadcrumb className="mt-5">

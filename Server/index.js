@@ -5,7 +5,10 @@ const postRoute = require("./Routes/posts");
 const wordRoutes = require("./Routes/wordRoute.js");
 const dictionaryRoutes = require("./Routes/dictionaries.js");
 const word2Routes = require("./Routes/word2Route.js");
+<<<<<<< HEAD
 const dictionaryRoute = require("./Routes/dictionaries.js");
+=======
+>>>>>>> e82bf7ea40999d9404af6655a739633a95cad2a3
 var cors = require("cors");
 
 const app = express();
@@ -20,7 +23,12 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/words", wordRoutes);
+<<<<<<< HEAD
 app.use("/api/dictionaries", dictionaryRoute);
+=======
+app.use("/api/word2s", word2Routes);
+app.use("/api/dictionaries", dictionaryRoutes);
+>>>>>>> e82bf7ea40999d9404af6655a739633a95cad2a3
 
 app.listen(5000, () => {
   console.log("Backend is running.");

@@ -40,7 +40,6 @@ function App() {
           element={
             user ? (
               <Container>
-
                 <Home />
               </Container>
             ) : (
