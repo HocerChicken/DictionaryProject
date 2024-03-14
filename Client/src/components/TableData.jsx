@@ -8,41 +8,22 @@ export default function TableData({ data }) {
   const dataGet = JSON.stringify(data);
   const jsonData = JSON.parse(dataGet);
   const { user } = useContext(Context);
-  console.log(">>>>> data:", data)
-  console.log(">>>>> dataGet:", dataGet)
-
-  // const handleSave = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     const response = await fetch(`http://localhost:5000/api/dictionaries`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ username: user.username, title: jsonData.title }),
-  //     });
-  //     if (response.ok) {
-  //       console.log('Data saved successfully');
-  //     } else {
-  //       console.error('Failed to save data:', response.statusText);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error saving data:', error.message);
-  //   }
-  // }
 
   const handleSave = async (event) => {
     event.preventDefault();
     try {
       const response = await fetch(`http://localhost:5000/api/dictionaries/${user.username}`);
       const data = await response.json();
+      console.log(">>>>> response:", response)
+      console.log(">>>>> data:", data)
+
       if (!data) {
         const createResponse = await fetch('http://localhost:5000/api/dictionaries', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ username: user.username, title: [jsonData.title] }),
+          body: JSON.stringify({ username: user.username, title: [...data.title, jsonData.title] }),
         });
         if (createResponse.ok) {
           console.log('New data saved successfully');
@@ -114,14 +95,8 @@ export default function TableData({ data }) {
           </tr>
         ))}
       </tbody>
-<<<<<<< HEAD
       {data && user && <button className="saveWord" onClick={handleSave}>Lưu từ</button>}
 
     </Table>
-
-
-=======
-    </Table>
->>>>>>> 6c8833ee68f15a6dad7f2b2e9d51fd8f03befd2b
   );
 }

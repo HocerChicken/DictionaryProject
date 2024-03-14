@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Context } from "../context/Context";
@@ -8,6 +8,16 @@ const Login = () => {
   const passwordRef = useRef();
   const { user, dispatch, isFetching } = useContext(Context);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setError(null); // Xóa thông báo lỗi sau mỗi 5 giây
+    }, 3000);
+
+    return () => {
+      clearInterval(intervalId); // Clear interval khi component bị unmount
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,6 +44,7 @@ const Login = () => {
       return;
     }
   };
+
   return (
     <>
       <link

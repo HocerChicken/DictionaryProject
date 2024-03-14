@@ -49,7 +49,6 @@ router.put('/:username', async (req, res) => {
 
             }
 
-
             if (title.length > 0) {
                 let check = true
                 dictionary.title.map((item, index) => {
@@ -63,7 +62,6 @@ router.put('/:username', async (req, res) => {
                 if (!check) {
                     return res.status(400).send({ message: 'Duplicate titles found' });
                 }
-
             }
             dictionary.title = title;
             // dictionary.definitions = definitions; ủa bên kia cái fetch có cần định nghĩa lại post lần nữa hông ta, put chứ
