@@ -3,7 +3,7 @@ import Table from "react-bootstrap/Table";
 import "../App.scss";
 import { Context } from "../context/Context";
 import { useContext } from "react";
-import { useState } from "react"
+import { useState } from "react";
 
 export default function TableData({ data, translate }) {
   const dataGet = JSON.stringify(data);
@@ -14,61 +14,72 @@ export default function TableData({ data, translate }) {
   const handleSave = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/api/dictionaries/${user.username}`);
+      const response = await fetch(
+        `http://localhost:5000/api/dictionaries/${user.username}`
+      );
       const data = await response.json();
       if (!data) {
-        console.log("hi")
-        const createResponse = await fetch('http://localhost:5000/api/dictionaries', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ username: user.username, title: [jsonData.title] }),
-        });
+        console.log("hi");
+        const createResponse = await fetch(
+          "http://localhost:5000/api/dictionaries",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              username: user.username,
+              title: [jsonData.title],
+            }),
+          }
+        );
 
         if (createResponse.ok) {
-          console.log('New data saved successfully');
+          console.log("New data saved successfully");
         } else {
-          console.error('Failed to save new data:', createResponse.statusText);
+          console.error("Failed to save new data:", createResponse.statusText);
         }
       }
       const isWordExists = data.title.includes(jsonData.title);
       if (isWordExists) {
         setSaveMessage("Từ đã có trong từ điển");
-      }
-
-      else {
+      } else {
         const updatedTitles = [...data.title, jsonData.title];
-        const updateResponse = await fetch(`http://localhost:5000/api/dictionaries/${user.username}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            title: updatedTitles,
-          }),
-        });
+        const updateResponse = await fetch(
+          `http://localhost:5000/api/dictionaries/${user.username}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: updatedTitles,
+            }),
+          }
+        );
         if (updateResponse.ok) {
           setSaveMessage("Đã lưu vào từ điển");
-          console.log('Data updated successfully');
+          console.log("Data updated successfully");
         } else {
-          console.error('Failed to update data:', updateResponse.statusText);
+          console.error("Failed to update data:", updateResponse.statusText);
         }
       }
     } catch (error) {
-      console.error('Error saving data:', error.message);
+      console.error("Error saving data:", error.message);
     }
-  }
+  };
   return (
     <>
       {translate && <h1>Viet - Viet</h1>}
-      <Table striped bordered hover style={{ width: "1200px", margin: "0 auto" }}>
-        {jsonData && <thead>
-          <tr>
-            <th>Từ</th>
-            <th>Nghĩa</th>
-          </tr>
-        </thead>}
+      <Table striped bordered hover style={{}}>
+        {jsonData && (
+          <thead>
+            <tr>
+              <th>Từ</th>
+              <th>Nghĩa</th>
+            </tr>
+          </thead>
+        )}
         <tbody>
           {jsonData?.definitions?.source.map((item, index) => (
             <tr key={index}>
@@ -106,12 +117,13 @@ export default function TableData({ data, translate }) {
           ))}
         </tbody>
       </Table>
-      {data && user && <button className="saveWord" onClick={handleSave}>Lưu từ</button>}
+      {data && user && (
+        <button className="saveWord" onClick={handleSave}>
+          Lưu từ
+        </button>
+      )}
 
       {saveMessage && <p className="saveMessage">{saveMessage}</p>}
-
     </>
-
-
   );
 }

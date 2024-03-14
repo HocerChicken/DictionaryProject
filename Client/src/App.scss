@@ -164,6 +164,17 @@ $white--color: #fff;
           background-color: rgba(234, 60, 60, 0.8);
         }
       }
+      table {
+        width: "1200px"; margin: 0 auto;
+        @media (max-width: 768px) {
+          width: 370px;
+          margin: 0 auto;
+        }
+        @media (min-width: 768px) and (max-width: 1200px) {
+          width: 768px;
+          margin: 0 auto;
+        }
+      }
     }
   }
 
@@ -765,7 +776,7 @@ $white--color: #fff;
       display: block;
     }
 
-    ;
+    
   }
 
 }
