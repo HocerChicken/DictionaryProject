@@ -14,32 +14,36 @@ const UserCreatePost = () => {
             title,
             content,
         }
-        console.log(">> title:", title)
-        console.log(">> content:", content)
+        console.log(file);
         if (file) {
             const data = new FormData();
             const filename = Date.now() + file.name;
+            console.log("file-name: ", filename)
             data.append("name", filename);
             data.append("file", file);
             newPost.image = filename;
+
             try {
-                await axios("/upload", data)
+                console.log("đã thêm thành công")
+                await axios.post("/upload", data)
+                console.log("đã thêm thành công")
             } catch (err) { }
         }
         try {
             const res = await axios.post("/posts", newPost);
-            window.location.replace("/post/" + res.data._id)
+            window.location.replace("/")
+            // console.log(">>>>> successfully")
 
         } catch (err) { }
     }
     return (
         <div className="userCreatePost">
             {file &&
-                <img
+                (<img
                     className="writeImg"
                     src={URL.createObjectURL(file)}
                     alt=""
-                />
+                />)
             }
             <form className="writeForm" onSubmit={handleSubmit}>
                 <div className="writeFormGroup">

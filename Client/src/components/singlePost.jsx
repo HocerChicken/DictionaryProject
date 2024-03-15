@@ -14,6 +14,7 @@ const SinglePost = () => {
       .then((data) => setPost(data))
       .catch((error) => console.error(error));
   }, [title]);
+  const PF = "http://localhost:5000/images/"
 
   return (
     <div className="singlePost">
@@ -24,7 +25,9 @@ const SinglePost = () => {
           <i className="singlePostIcon far fa-trash-alt"></i>
         </div> */}
 
-        <img src={post.image} className="singlePostImg" alt="error" />
+        <img src={PF + post.image} className="singlePostImg" alt="error" />
+        {console.log(">>>> Post image:", post.image)}
+        {console.log(">>>> PF Post image:", PF + post.image)}
 
         <div className="singlePostInfo">
 

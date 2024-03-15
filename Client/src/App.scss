@@ -155,7 +155,6 @@ $white--color: #fff;
           background-color: rgba(234, 60, 60, 0.8);
         }
       }
-<<<<<<< HEAD
 
       .translate-input {
         width: 800px;
@@ -164,18 +163,21 @@ $white--color: #fff;
         padding-left: 5px;
         border-radius: 5px;
         border: 1px solid;
-=======
-      table {
-        width: "1200px"; margin: 0 auto;
-        @media (max-width: 768px) {
-          width: 370px;
+
+        table {
+          width: "1200px";
           margin: 0 auto;
+
+          @media (max-width: 768px) {
+            width: 370px;
+            margin: 0 auto;
+          }
+
+          @media (min-width: 768px) and (max-width: 1200px) {
+            width: 768px;
+            margin: 0 auto;
+          }
         }
-        @media (min-width: 768px) and (max-width: 1200px) {
-          width: 768px;
-          margin: 0 auto;
-        }
->>>>>>> 644ef0a7dc2c8aa14f2d45b1cd2e710b60221023
       }
     }
 
@@ -779,7 +781,7 @@ $white--color: #fff;
       display: block;
     }
 
-    
+
   }
 
   .userPost {
