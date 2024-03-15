@@ -2,8 +2,9 @@ const express = require("express");
 const authRoute = require("./Routes/auth");
 const userRoute = require("./Routes/users");
 const postRoute = require("./Routes/posts");
-const wordVietRoutes = require("./Routes/wordVietRoute.js");
-const wordCheckNomRoutes = require("./Routes/wordCheckNomRoute.js");
+const wordVietRoute = require("./Routes/wordVietRoute.js");
+const wordCheckNomRoute = require("./Routes/wordCheckNomRoute.js");
+const wordNomRoutes = require("./Routes/wordNomRoute.js");
 const dictionaryRoutes = require("./Routes/dictionaries.js");
 const userPostRoute = require("./Routes/userPosts");
 const multer = require("multer");
@@ -37,8 +38,9 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
-app.use("/api/wordviets", wordVietRoutes);
-app.use("/api/wordchecknoms", wordCheckNomRoutes);
+app.use("/api/wordviets", wordVietRoute);
+app.use("/api/wordchecknoms", wordCheckNomRoute);
+app.use("/api/wordnoms", wordNomRoutes);
 app.use("/api/dictionaries", dictionaryRoutes);
 app.use("/api/userPosts", userPostRoute);
 

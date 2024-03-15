@@ -1,9 +1,9 @@
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import React, { useContext, useEffect, useState } from "react";
-import TableData2 from "./TableData2";
+import TableCheckNomData from "./TableCheckNomData";
 import { Context } from "../context/Context";
 
-const Translate2 = (props) => {
+const TranslateCheckNom = (props) => {
   useEffect(() => window.scrollTo(0, 0), []);
   const [title, setTitle] = useState("");
   const [data, setData] = useState(null);
@@ -48,7 +48,11 @@ const Translate2 = (props) => {
           <div className="translation-result">
             {data && <h3>Kết quả dịch</h3>}
             <p>
-              {data?.message ? "không tim thấy" : <TableData2 data={data} />}
+              {data?.message ? (
+                "không tim thấy"
+              ) : (
+                <TableCheckNomData data={data} />
+              )}
             </p>
           </div>
         </div>
@@ -57,4 +61,4 @@ const Translate2 = (props) => {
   );
 };
 
-export default Translate2;
+export default TranslateCheckNom;
