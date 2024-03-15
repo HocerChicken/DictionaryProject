@@ -17,6 +17,8 @@ const Post = () => {
     navigate(`/single/${postId}`);
   };
 
+  const PF = "localhost:5000/images/"
+
   return (
     <>
       {Array.isArray(posts) &&

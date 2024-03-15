@@ -60,9 +60,7 @@ const Header = (props) => {
                 {user && <NavLink to="/mydict" className="nav-link mx-4 fw-bold">
                   Từ của bạn
                 </NavLink>}
-                <NavLink to="/contact" className="nav-link mx-4 fw-bold">
-                  Liên hệ
-                </NavLink>
+
                 <NavDropdown
                   title="Tra từ"
                   id="basic-nav-dropdown"
@@ -88,6 +86,9 @@ const Header = (props) => {
                     Việt - Nôm
                   </NavLink>
                 </NavDropdown>
+                <NavLink to="/contact" className="nav-link mx-4 fw-bold">
+                  Liên hệ
+                </NavLink>
               </Nav>
               {/* <li className="topListItem" onClick={handleLogout}>
                 {user && "LOGOUT"}

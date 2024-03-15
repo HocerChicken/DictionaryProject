@@ -55,22 +55,20 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const post = await Posts.findById(req.params.id);
-    if (post.username === req.body.username) {
-      try {
-        const updatedPost = await Posts.findByIdAndUpdate(
-          req.params.id,
-          {
-            $set: req.body,
-          },
-          { new: true }
-        );
-        res.status(200).json(updatedPost);
-      } catch (err) {
-        res.status(500).json(err);
-      }
-    } else {
-      res.status(401).json("You can update only your post!");
+
+    try {
+      const updatedPost = await Posts.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
+      res.status(200).json(updatedPost);
+    } catch (err) {
+      res.status(500).json(err);
     }
+
   } catch (err) {
     res.status(500).json(err);
   }
@@ -80,16 +78,13 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const post = await Posts.findById(req.params.id);
-    if (post.username === req.body.username) {
-      try {
-        await post.delete();
-        res.status(200).json("Post has been deleted...");
-      } catch (err) {
-        res.status(500).json(err);
-      }
-    } else {
-      res.status(401).json("You can delete only your post!");
+    try {
+      await post.deleteOne();
+      res.status(200).json("Post has been deleted...");
+    } catch (err) {
+      res.status(500).json(err);
     }
+
   } catch (err) {
     res.status(500).json(err);
   }

@@ -27,9 +27,7 @@ const SinglePost = () => {
         <img src={post.image} className="singlePostImg" alt="error" />
 
         <div className="singlePostInfo">
-          {/* <span className="singlePostAuthor">
-            Tác giả: <b>Nguyễn Tấn Lực</b>
-          </span> */}
+
         </div>
         <div
           className="singlePostDesc"

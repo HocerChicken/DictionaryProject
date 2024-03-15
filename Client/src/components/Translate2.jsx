@@ -34,7 +34,7 @@ const Translate2 = (props) => {
           <form>
             <input
               placeholder="Nhập văn bản cần dịch"
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => setTitle(e.target.value.toLocaleLowerCase())}
             ></input>
             <div>
               <button type="submit" onClick={handleSubmit}>
