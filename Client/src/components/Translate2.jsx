@@ -45,7 +45,7 @@ const Translate2 = (props) => {
           <div className="translation-result">
             {data && <h3>Kết quả dịch</h3>}
             <p>
-              {data?.message ? "không tim thấy từ" : <TableData2 data={data} />}
+              {data?.message ? "không tim thấy" : <TableData2 data={data} />}
             </p>
           </div>
         </div>
