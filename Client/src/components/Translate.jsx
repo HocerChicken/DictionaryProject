@@ -12,7 +12,9 @@ const Translate = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch(`http://localhost:5000/api/words/${title}`);
+    const response = await fetch(
+      `http://localhost:5000/api/wordviets/${title}`
+    );
     if (!response.ok) {
       if (response.status === 404) {
         setData(null);

@@ -2,10 +2,10 @@ const express = require("express");
 const authRoute = require("./Routes/auth");
 const userRoute = require("./Routes/users");
 const postRoute = require("./Routes/posts");
-const wordRoutes = require("./Routes/wordRoute.js");
-const word2Routes = require("./Routes/word2Route.js");
+const wordVietRoutes = require("./Routes/wordVietRoute.js");
+const wordCheckNomRoutes = require("./Routes/wordCheckNomRoute.js");
 const dictionaryRoutes = require("./Routes/dictionaries.js");
-const userPostRoute = require("./Routes/userPosts")
+const userPostRoute = require("./Routes/userPosts");
 const multer = require("multer");
 const path = require("path");
 var cors = require("cors");
@@ -38,11 +38,10 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
-app.use("/api/words", wordRoutes);
-app.use("/api/word2s", word2Routes);
+app.use("/api/wordviets", wordVietRoutes);
+app.use("/api/wordchecknoms", wordCheckNomRoutes);
 app.use("/api/dictionaries", dictionaryRoutes);
 app.use("/api/userPosts", userPostRoute);
-
 
 app.listen(5000, () => {
   console.log("Backend is running.");

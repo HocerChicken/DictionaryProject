@@ -33,4 +33,4 @@ const word2Schema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("dictionaries2", word2Schema);
+module.exports = mongoose.model("DictCheckNom", word2Schema);

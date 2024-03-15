@@ -5,16 +5,19 @@ import { Context } from "../../context/Context";
 
 const UserCreatePost = () => {
     const [title, setTitle] = useState("")
+    const [thumbnail, setThumbnail] = useState("")
     const [content, setContent] = useState("")
+
     const [file, setFile] = useState("")
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newPost = {
             title,
+            thumbnail,
             content,
         }
-        console.log(file);
+        console.log(">>> title", title);
         if (file) {
             const data = new FormData();
             const filename = Date.now() + file.name;
@@ -26,12 +29,11 @@ const UserCreatePost = () => {
             try {
                 console.log("đã thêm thành công")
                 await axios.post("/upload", data)
-                console.log("đã thêm thành công")
             } catch (err) { }
         }
         try {
             const res = await axios.post("/posts", newPost);
-            window.location.replace("/")
+            window.location.replace("/single/" + res.data.title)
             // console.log(">>>>> successfully")
 
         } catch (err) { }
@@ -62,7 +64,18 @@ const UserCreatePost = () => {
                         autoFocus={true}
                         onChange={e => setTitle(e.target.value)}
                     />
+
                 </div>
+                <div className="writeFormGroup">
+                    <textarea
+                        className="writeInput writeDesc"
+                        placeholder="Mô tả ngắn"
+                        type="text"
+                        autoFocus={true}
+                        onChange={e => setThumbnail(e.target.value)}
+                    />
+                </div>
+
                 <div className="writeFormGroup">
                     <textarea
                         className="writeInput writeText"

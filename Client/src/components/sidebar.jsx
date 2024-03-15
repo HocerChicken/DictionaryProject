@@ -16,13 +16,15 @@ const Sidebar = () => {
   const handlePostClick = (postId) => {
     navigate(`/single/${postId}`);
   };
+  const PF = "http://localhost:5000/images/"
+
   return (
     <div className="sidebar">
       <span className="sidebarSection">Bài quan tâm</span>
       {Array.isArray(posts) &&
         posts.map((post) => (
           <div className="section-post" key={post.id}>
-            <img src={post.image} alt=""></img>
+            <img src={PF + post.image} alt=""></img>
             <p
               className="section-title"
               onClick={() => handlePostClick(post.title)}

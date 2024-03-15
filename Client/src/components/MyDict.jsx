@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Context } from "../context/Context";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import TableData from "./TableData";
 import TableData2 from "./TableData2";
-
-
 
 const MyDict = () => {
   const [title, setTitle] = useState("");
@@ -15,13 +13,15 @@ const MyDict = () => {
   const { user } = useContext(Context);
   const [dataDict, setDataDict] = useState([]);
   const navigate = useNavigate();
-  const [selectedDict, setSelectedDict] = useState('');
+  const [selectedDict, setSelectedDict] = useState("");
 
   const handleSubmit = async (dict) => {
-    console.log(">>>> count", count)
+    console.log(">>>> count", count);
 
     if (count === 1) {
-      const response = await fetch(`http://localhost:5000/api/words/${dict}`);
+      const response = await fetch(
+        `http://localhost:5000/api/wordviets/${dict}`
+      );
       if (!response.ok) {
         if (response.status === 404) {
           setData(null);
@@ -32,10 +32,12 @@ const MyDict = () => {
       const data = await response.json();
       setData(data);
       setTranslate(1);
-      setCount(2)
+      setCount(2);
     }
     if (count === 2) {
-      const response = await fetch(`http://localhost:5000/api/word2s/${dict}`);
+      const response = await fetch(
+        `http://localhost:5000/api/wordchecknoms/${dict}`
+      );
       if (!response.ok) {
         if (response.status === 404) {
           setData(null);
@@ -45,7 +47,7 @@ const MyDict = () => {
       }
       const data = await response.json();
       setData(data);
-      setTranslate(2)
+      setTranslate(2);
       setCount(1);
     }
   };
@@ -53,8 +55,6 @@ const MyDict = () => {
   const handleClick = async (value) => {
     setTranslate(value);
   };
-
-
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/dictionaries/${user.username}`)
@@ -68,14 +68,16 @@ const MyDict = () => {
 
   return (
     <>
-      <div className='myDict'>
+      <div className="myDict">
         {Array.isArray(dataDict.title) &&
           dataDict.title.map((dict) => (
             // <div className="dictWord" key={dict._id} onClick={handleSubmit(dict)}>
-            <div className="dictWord" key={dict._id} onClick={() => handleSubmit(dict)}>
-              <span >
-                {dict}
-              </span>
+            <div
+              className="dictWord"
+              key={dict._id}
+              onClick={() => handleSubmit(dict)}
+            >
+              <span>{dict}</span>
             </div>
           ))}
 
@@ -86,30 +88,37 @@ const MyDict = () => {
           </p>
         </div> */}
 
-
         {/* <div className="options">
           <button onClick={() => handleClick(1)}>Việt - việt</button>
           <button onClick={() => handleClick(2)}> Việt - Nôm</button>
         </div> */}
-        {
-          translate == 1 && <div className="translation-result">
+        {translate == 1 && (
+          <div className="translation-result">
             <h3>Nghĩa của từ</h3>
             <p>
-              {data?.message ? "không tim thấy từ" : <TableData data={data} translate={translate} />}
+              {data?.message ? (
+                "không tim thấy từ"
+              ) : (
+                <TableData data={data} translate={translate} />
+              )}
             </p>
           </div>
-        }
-        {
-          translate == 2 && <div className="translation-result">
+        )}
+        {translate == 2 && (
+          <div className="translation-result">
             <h3>Nghĩa của từ</h3>
             <p>
-              {data?.message ? "không tim thấy từ" : <TableData2 data={data} translate={translate} />}
+              {data?.message ? (
+                "không tim thấy từ"
+              ) : (
+                <TableData2 data={data} translate={translate} />
+              )}
             </p>
           </div>
-        }
+        )}
       </div>
     </>
   );
-}
+};
 
 export default MyDict;

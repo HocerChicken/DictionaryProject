@@ -11,7 +11,9 @@ const Translate2 = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch(`http://localhost:5000/api/word2s/${title}`);
+    const response = await fetch(
+      `http://localhost:5000/api/wordchecknoms/${title}`
+    );
     if (!response.ok) {
       if (response.status === 404) {
         setData(null);

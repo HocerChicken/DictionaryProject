@@ -55,9 +55,8 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const post = await Posts.findById(req.params.id);
-    console.log(">>> post:", req.body)
     try {
-      const updatedPost = await post.findByIdAndUpdate(
+      const updatedPost = await Posts.findByIdAndUpdate(
         req.params.id,
         {
           $set: req.body,
@@ -67,13 +66,12 @@ router.put("/:id", async (req, res) => {
       res.status(200).json(updatedPost);
     } catch (err) {
       console.log("sai dòng nhỏ")
+      console.log(">>> error:", err)
       res.status(500).json(err);
     }
-
   } catch (err) {
     console.log("sai dòng to")
     res.status(500).json(err);
-
   }
 });
 
