@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const wordSchema = new mongoose.Schema({
   _id: {
     type: mongoose.Schema.Types.ObjectId,
@@ -15,4 +16,4 @@ const wordSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("dictionaries", wordSchema);
+module.exports = mongoose.model("DictViet", wordSchema);
