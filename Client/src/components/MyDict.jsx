@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Context } from "../context/Context";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import TableData from "./TableData";
-import TableData2 from "./TableData2";
+import TableVietData from "./TableVietData";
+import TableCheckNomData from "./TableCheckNomData";
 
 const MyDict = () => {
   const [title, setTitle] = useState("");
@@ -99,7 +99,7 @@ const MyDict = () => {
               {data?.message ? (
                 "không tim thấy từ"
               ) : (
-                <TableData data={data} translate={translate} />
+                <TableVietData data={data} translate={translate} />
               )}
             </p>
           </div>
@@ -111,7 +111,7 @@ const MyDict = () => {
               {data?.message ? (
                 "không tim thấy từ"
               ) : (
-                <TableData2 data={data} translate={translate} />
+                <TableCheckNomData data={data} translate={translate} />
               )}
             </p>
           </div>

@@ -57,9 +57,11 @@ const Header = (props) => {
                 <NavLink to="/" className="nav-link mx-4 fw-bold">
                   Trang chủ
                 </NavLink>
-                {user && <NavLink to="/mydict" className="nav-link mx-4 fw-bold">
-                  Từ của bạn
-                </NavLink>}
+                {user && (
+                  <NavLink to="/mydict" className="nav-link mx-4 fw-bold">
+                    Từ của bạn
+                  </NavLink>
+                )}
 
                 <NavDropdown
                   title="Tra từ"
@@ -75,15 +77,23 @@ const Header = (props) => {
                     activeClassName="visited"
                     onClick={handleDropdownClose}
                   >
-                    Việt - Việt
+                    Từ điển tiếng Việt
                   </NavLink>
                   <NavLink
                     to="/translate2"
+                    className="dropdown-item mt-1 blue"
+                    activeClassName="visited"
+                    onClick={handleDropdownClose}
+                  >
+                    Từ điển chữ Nôm
+                  </NavLink>
+                  <NavLink
+                    to="/translate3"
                     className="dropdown-item"
                     activeClassName="visited"
                     onClick={handleDropdownClose}
                   >
-                    Việt - Nôm
+                    Tra cứu chữ nôm
                   </NavLink>
                 </NavDropdown>
                 <NavLink to="/contact" className="nav-link mx-4 fw-bold">
