@@ -3,43 +3,47 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import { Context } from "../../context/Context";
 
-const UserCreatePost = () => {
+const AdminManage = () => {
     const [title, setTitle] = useState("")
+    const [thumbnail, setThumbnail] = useState("")
     const [content, setContent] = useState("")
     const [file, setFile] = useState("")
+    const { user } = useContext(Context);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newPost = {
+            username: user.username,
             title,
+            thumbnail,
             content,
         }
-        console.log(">> title:", title)
-        console.log(">> content:", content)
+        console.log(">>> title", title);
         if (file) {
             const data = new FormData();
             const filename = Date.now() + file.name;
+            console.log("file-name: ", filename)
             data.append("name", filename);
             data.append("file", file);
             newPost.image = filename;
+
             try {
-                await axios("/upload", data)
+                await axios.post("/upload", data)
             } catch (err) { }
         }
         try {
             const res = await axios.post("/posts", newPost);
-            window.location.replace("/post/" + res.data._id)
-
+            window.location.replace("/single/" + res.data._id)
         } catch (err) { }
     }
     return (
-        <div className="userCreatePost">
+        <div className="adminManage">
             {file &&
-                <img
+                (<img
                     className="writeImg"
                     src={URL.createObjectURL(file)}
                     alt=""
-                />
+                />)
             }
             <form className="writeForm" onSubmit={handleSubmit}>
                 <div className="writeFormGroup">
@@ -58,7 +62,18 @@ const UserCreatePost = () => {
                         autoFocus={true}
                         onChange={e => setTitle(e.target.value)}
                     />
+
                 </div>
+                <div className="writeFormGroup">
+                    <textarea
+                        className="writeInput writeDesc"
+                        placeholder="Mô tả ngắn"
+                        type="text"
+                        autoFocus={true}
+                        onChange={e => setThumbnail(e.target.value)}
+                    />
+                </div>
+
                 <div className="writeFormGroup">
                     <textarea
                         className="writeInput writeText"
@@ -75,4 +90,4 @@ const UserCreatePost = () => {
         </div>
     );
 }
-export default UserCreatePost;
+export default AdminManage;

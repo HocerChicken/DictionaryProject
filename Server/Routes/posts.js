@@ -27,10 +27,10 @@ router.get("/ishot", async (req, res) => {
 });
 
 //GET POST BY Title
-router.get("/:title", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    const { title } = req.params;
-    const post = await Posts.findOne({ title });
+    const { id } = req.params;
+    const post = await Posts.findById(id);
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
@@ -55,7 +55,6 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const post = await Posts.findById(req.params.id);
-
     try {
       const updatedPost = await Posts.findByIdAndUpdate(
         req.params.id,
@@ -66,10 +65,12 @@ router.put("/:id", async (req, res) => {
       );
       res.status(200).json(updatedPost);
     } catch (err) {
+      console.log("sai dòng nhỏ")
+      console.log(">>> error:", err)
       res.status(500).json(err);
     }
-
   } catch (err) {
+    console.log("sai dòng to")
     res.status(500).json(err);
   }
 });

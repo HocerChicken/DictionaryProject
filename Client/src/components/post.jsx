@@ -17,18 +17,18 @@ const Post = () => {
     navigate(`/single/${postId}`);
   };
 
-  const PF = "localhost:5000/images/"
+  const PF = "http://localhost:5000/images/"
 
   return (
     <>
       {Array.isArray(posts) &&
         posts.map((aPost) => (
           <div className="main-post" key={aPost._id}>
-            <img className="postImg" src={aPost.image} />
+            <img className="postImg" src={PF + aPost.image} />
             <div className="postInfo">
               <span
                 className="postTitle"
-                onClick={() => handlePostClick(aPost.title)}
+                onClick={() => handlePostClick(aPost._id)}
               >
                 {aPost.title}
               </span>

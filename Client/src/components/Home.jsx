@@ -4,8 +4,11 @@ import headerIcon from "../assets/images/header-icon-bg.png";
 import Posts from "./posts";
 import Sidebar from "./sidebar";
 import Footer from "./Footer";
+import { useContext } from "react";
+import { Context } from "../context/Context";
 
 const Home = () => {
+  const { user, dispatch } = useContext(Context);
   useEffect(() => window.scrollTo(0, 0), []);
   return (
     <>

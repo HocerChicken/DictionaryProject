@@ -32,7 +32,8 @@ const Login = () => {
         passwordRef.current.value === "123456"
       ) {
         // Chuyển hướng đến một trang khác thay vì trang chính
-        window.location.href = "/postsAdmin"; // Thay đổi đường dẫn tùy thuộc vào trang bạn muốn chuyển hướng
+        window.location.href = "/"; // Thay đổi đường dẫn tùy thuộc vào trang bạn muốn chuyển hướng
+
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
         return;
       }

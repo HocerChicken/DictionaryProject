@@ -163,12 +163,16 @@ $white--color: #fff;
         padding-left: 5px;
         border-radius: 5px;
         border: 1px solid;
+
         table {
-          width: "1200px"; margin: 0 auto;
+          width: "1200px";
+          margin: 0 auto;
+
           @media (max-width: 768px) {
             width: 370px;
             margin: 0 auto;
           }
+
           @media (min-width: 768px) and (max-width: 1200px) {
             width: 768px;
             margin: 0 auto;
@@ -535,6 +539,52 @@ $white--color: #fff;
     padding-left: 12px;
     padding-right: 12px;
 
+    .singlePostWrapper {
+      padding: 20px;
+      padding-right: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .singlePostTitleInput {
+      margin: 10px;
+      font-size: 28px;
+      width: 100%;
+      font-family: "Lora", sans-serif;
+      border: none;
+      border-bottom: 1px solid #000;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .singlePostDescInput {
+      border: none;
+      color: #666;
+      font-size: 18px;
+      line-height: 25px;
+      width: 100%;
+      border: #000 1px solid;
+      margin-top: 15px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .singlePostButton {
+      border: none;
+      background-color: teal;
+      padding: 5px;
+      width: 100px;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      align-self: flex-end;
+      margin-top: 20px;
+    }
+
     p {
       color: #212529;
     }
@@ -550,6 +600,8 @@ $white--color: #fff;
       text-align: center;
       margin: 24px;
     }
+
+
 
     h1 {
       font-size: 25px !important;
@@ -595,6 +647,7 @@ $white--color: #fff;
         font-weight: 600;
       }
     }
+
 
   }
 
@@ -776,78 +829,10 @@ $white--color: #fff;
       display: block;
     }
 
-    
+
   }
 
-  .userPost {
-    .singlePost {
-      flex: 9;
-    }
-
-    .singlePostWrapper {
-      padding: 20px;
-      padding-right: 0;
-    }
-
-    .singlePostImg {
-      width: 100%;
-      height: 300px;
-      border-radius: 5px;
-      object-fit: cover;
-    }
-
-    .singlePostTitle {
-      text-align: center;
-      margin: 10px;
-      font-size: 28px;
-      font-family: "Lora", sans-serif;
-    }
-
-    .singlePostEdit {
-      float: right;
-      font-size: 16px;
-    }
-
-    .singlePostIcon {
-      margin-left: 10px;
-      cursor: pointer;
-    }
-
-    .singlePostIcon:first-child {
-      color: teal;
-    }
-
-    .singlePostIcon:last-child {
-      color: tomato;
-    }
-
-    .singlePostInfo {
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 16px;
-      color: #be9656;
-      font-family: "Varela Round", Arial, Helvetica, sans-serif;
-    }
-
-    .singlePostAuthor {
-      margin-left: 5px;
-    }
-
-    .singlePostDesc {
-      color: #666;
-      font-size: 18px;
-      line-height: 25px;
-    }
-
-    .singlePostDesc::first-letter {
-      margin-left: 20px;
-      font-size: 30px;
-      font-weight: 600;
-    }
-  }
-
-  .userCreatePost {
+  .adminManage {
     .write {
       padding-top: 50px;
     }
@@ -883,11 +868,20 @@ $white--color: #fff;
       cursor: pointer;
     }
 
+    .writeInput2 {
+      width: 70vw;
+
+    }
+
     .writeInput {
       font-size: 30px;
       border: none;
-      padding: 20px;
+      padding: 10px;
       width: 70vw;
+
+      &:hover {
+        border: 1px radius black;
+      }
     }
 
     .writeInput::placeholder {
@@ -902,6 +896,13 @@ $white--color: #fff;
     .writeText {
       width: 70vw;
       height: 100vh;
+      font-family: inherit;
+      font-size: 20px;
+    }
+
+    .writeDesc {
+      width: 70vw;
+      height: 10vh;
       font-family: inherit;
       font-size: 20px;
     }
@@ -921,5 +922,122 @@ $white--color: #fff;
       align-items: center;
     }
   }
+
+  $color_1: lightcoral;
+  $color_2: red;
+  $color_3: white;
+  $color_4: gray;
+  $background-color_1: lightcoral;
+  $background-color_2: teal;
+  $background-color_3: rgb(1, 114, 114);
+
+  .accountSettings {
+    display: flex;
+  }
+
+  .settingsWrapper {
+    flex: 9;
+    padding: 20px;
+  }
+
+  .settingsTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .settingsTitleUpdate {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: $background-color_2;
+    // text-align: center;
+    margin: auto;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .settingsTitleDelete {
+    color: $color_2;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .settingsForm {
+    display: flex;
+    flex-direction: column;
+
+    >label {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+
+    >input {
+      color: $color_4;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      height: 30px;
+      border: none;
+      border-bottom: 1px solid lightgray;
+    }
+  }
+
+  .settingsPP {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    >img {
+      height: 70px;
+      width: 70px;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+  }
+
+  .settingsPPIcon {
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+    margin-left: 10px;
+    color: $color_3;
+    background-color: $background-color_1;
+    cursor: pointer;
+  }
+
+  .settingsPPButton {
+    &:focus {
+      outline-style: none;
+    }
+  }
+
+  .settingsPPInput {
+    width: 30%;
+  }
+
+  .settingsSubmitButton {
+    align-self: center;
+    width: 150px;
+    border: none;
+    border-radius: 10px;
+    color: $color_3;
+    background-color: $background-color_2;
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: $background-color_3;
+    }
+  }
+
 
 }
