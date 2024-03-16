@@ -9,7 +9,6 @@ import { Context } from "../context/Context";
 
 const Header = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
   const handleDropdownToggle = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -52,85 +51,129 @@ const Header = (props) => {
               </svg>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav " />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <NavLink to="/" className="nav-link mx-4 fw-bold">
-                  Trang chủ
-                </NavLink>
-                {user && (
-                  <NavLink to="/mydict" className="nav-link mx-4 fw-bold">
-                    Từ của bạn
-                  </NavLink>
-                )}
 
-                <NavDropdown
-                  title="Tra từ"
-                  id="basic-nav-dropdown"
-                  className={`mx-4 fw-bold ${dropdownOpen ? "show" : ""}`}
-                  show={dropdownOpen}
-                  onMouseEnter={handleDropdownToggle}
-                  onMouseLeave={handleDropdownClose}
-                >
-                  <NavLink
-                    to="/translate"
-                    className="dropdown-item mt-1 blue"
-                    activeClassName="visited"
-                    onClick={handleDropdownClose}
-                  >
-                    Từ điển tiếng Việt
-                  </NavLink>
-                  <NavLink
-                    to="/translate2"
-                    className="dropdown-item mt-1 blue"
-                    activeClassName="visited"
-                    onClick={handleDropdownClose}
-                  >
-                    Từ điển chữ Nôm
-                  </NavLink>
-                  <NavLink
-                    to="/translate3"
-                    className="dropdown-item"
-                    activeClassName="visited"
-                    onClick={handleDropdownClose}
-                  >
-                    Tra cứu chữ nôm
-                  </NavLink>
-                </NavDropdown>
-                <NavLink to="/contact" className="nav-link mx-4 fw-bold">
-                  Liên hệ
-                </NavLink>
-              </Nav>
-              {/* <li className="topListItem" onClick={handleLogout}>
-                {user && "LOGOUT"}
-              </li> */}
-
-              <Nav>
-                <NavDropdown
-                  className="mx-4 fs-5"
-                  title={<i class="fa-solid fa-user"></i>}
-                  drop="start"
-                  id="basic-nav-dropdown"
-                >
-                  {user ? (
-                    <NavDropdown.Item
-                      className="topListItem"
-                      onClick={handleLogout}
+            {(user && user.username === "admin") ?
+              (
+                <Navbar.Collapse id="basic-navbar-nav1">
+                  <Nav className="me-auto">
+                    <NavLink to="/posts" className="nav-link mx-4 fw-bold">
+                      Quản lý bài viết
+                    </NavLink>
+                    <NavLink to="/users" className="nav-link mx-4 fw-bold">
+                      Quản lý người dùng
+                    </NavLink>
+                    <NavLink to="/response" className="nav-link mx-4 fw-bold">
+                      Quản lý phản hồi
+                    </NavLink>
+                  </Nav>
+                  <Nav>
+                    <NavDropdown
+                      className="mx-4 fs-5"
+                      title={<i class="fa-solid fa-user"></i>}
+                      drop="start"
+                      id="basic-nav-dropdown"
                     >
-                      Đăng xuất
-                    </NavDropdown.Item>
-                  ) : (
-                    <>
-                      <NavDropdown.Item className="login-button" href="/login">
-                        Đăng nhập
-                      </NavDropdown.Item>
-                      <NavDropdown.Item href="/register">
-                        Đăng ký
-                      </NavDropdown.Item>
-                    </>
-                  )}
-                </NavDropdown>
-              </Nav>
-            </Navbar.Collapse>
+                      {user ? (
+                        <NavDropdown.Item
+                          className="topListItem"
+                          onClick={handleLogout}
+                        >
+                          Đăng xuất
+                        </NavDropdown.Item>
+                      ) : (
+                        <>
+                          <NavDropdown.Item className="login-button" href="/login">
+                            Đăng nhập
+                          </NavDropdown.Item>
+                          <NavDropdown.Item href="/register">
+                            Đăng ký
+                          </NavDropdown.Item>
+                        </>
+                      )}
+                    </NavDropdown>
+                  </Nav>
+                </Navbar.Collapse>
+              )
+              : (
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="me-auto">
+                    <NavLink to="/" className="nav-link mx-4 fw-bold">
+                      Trang chủ
+                    </NavLink>
+                    <NavLink to="/posts" className="nav-link mx-4 fw-bold">
+                      Bài viết
+                    </NavLink>
+                    {user && (
+                      <NavLink to="/mydict" className="nav-link mx-4 fw-bold">
+                        Từ của bạn
+                      </NavLink>
+                    )}
+
+                    <NavDropdown
+                      title="Tra từ"
+                      id="basic-nav-dropdown"
+                      className={`mx-4 fw-bold ${dropdownOpen ? "show" : ""}`}
+                      show={dropdownOpen}
+                      onMouseEnter={handleDropdownToggle}
+                      onMouseLeave={handleDropdownClose}
+                    >
+                      <NavLink
+                        to="/translate"
+                        className="dropdown-item mt-1 blue"
+                        activeClassName="visited"
+                        onClick={handleDropdownClose}
+                      >
+                        Từ điển tiếng Việt
+                      </NavLink>
+                      <NavLink
+                        to="/translate2"
+                        className="dropdown-item mt-1 blue"
+                        activeClassName="visited"
+                        onClick={handleDropdownClose}
+                      >
+                        Từ điển chữ Nôm
+                      </NavLink>
+                      <NavLink
+                        to="/translate3"
+                        className="dropdown-item"
+                        activeClassName="visited"
+                        onClick={handleDropdownClose}
+                      >
+                        Tra cứu chữ nôm
+                      </NavLink>
+                    </NavDropdown>
+                    <NavLink to="/contact" className="nav-link mx-4 fw-bold">
+                      Liên hệ
+                    </NavLink>
+                  </Nav>
+                  <Nav>
+                    <NavDropdown
+                      className="mx-4 fs-5"
+                      title={<i class="fa-solid fa-user"></i>}
+                      drop="start"
+                      id="basic-nav-dropdown"
+                    >
+                      {user ? (
+                        <NavDropdown.Item
+                          className="topListItem"
+                          onClick={handleLogout}
+                        >
+                          Đăng xuất
+                        </NavDropdown.Item>
+                      ) : (
+                        <>
+                          <NavDropdown.Item className="login-button" href="/login">
+                            Đăng nhập
+                          </NavDropdown.Item>
+                          <NavDropdown.Item href="/register">
+                            Đăng ký
+                          </NavDropdown.Item>
+                        </>
+                      )}
+                    </NavDropdown>
+                  </Nav>
+                </Navbar.Collapse>
+              )}
           </Container>
         </Navbar>
       </div>

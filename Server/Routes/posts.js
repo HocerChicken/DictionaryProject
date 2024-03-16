@@ -27,10 +27,10 @@ router.get("/ishot", async (req, res) => {
 });
 
 //GET POST BY Title
-router.get("/:title", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    const { title } = req.params;
-    const post = await Posts.findOne({ title });
+    const { id } = req.params;
+    const post = await Posts.findById(id);
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }

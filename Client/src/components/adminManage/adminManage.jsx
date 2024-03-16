@@ -3,16 +3,17 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import { Context } from "../../context/Context";
 
-const UserCreatePost = () => {
+const AdminManage = () => {
     const [title, setTitle] = useState("")
     const [thumbnail, setThumbnail] = useState("")
     const [content, setContent] = useState("")
-
     const [file, setFile] = useState("")
+    const { user } = useContext(Context);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newPost = {
+            username: user.username,
             title,
             thumbnail,
             content,
@@ -27,19 +28,16 @@ const UserCreatePost = () => {
             newPost.image = filename;
 
             try {
-                console.log("đã thêm thành công")
                 await axios.post("/upload", data)
             } catch (err) { }
         }
         try {
             const res = await axios.post("/posts", newPost);
-            window.location.replace("/single/" + res.data.title)
-            // console.log(">>>>> successfully")
-
+            window.location.replace("/single/" + res.data._id)
         } catch (err) { }
     }
     return (
-        <div className="userCreatePost">
+        <div className="adminManage">
             {file &&
                 (<img
                     className="writeImg"
@@ -92,4 +90,4 @@ const UserCreatePost = () => {
         </div>
     );
 }
-export default UserCreatePost;
+export default AdminManage;

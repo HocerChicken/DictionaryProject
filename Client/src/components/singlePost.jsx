@@ -16,29 +16,57 @@ const SinglePost = () => {
 
 
   useEffect(() => {
+    const getPost = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/posts/${params.id}`);
+        setPost(res.data);
+        setTitle(res.data.title);
+        setContent(res.data.content);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getPost();
+  }, [params.id]);
 
-    fetch(`http://localhost:5000/api/posts/${params.id}`)
-      .then((response) => response.json())
-      .then((data) => setPost(data))
-      .catch((error) => console.error(error));
-    // setTitle(res.data.title);
-    // setDesc(res.data.desc);
-  }, [params]);
-  const PF = "http://localhost:5000/images/"
+  const PF = "http://localhost:5000/images/";
+
   const handleDelete = async () => {
     try {
-      await axios.delete(`/posts/${post._id}`)
-      window.location.replace("/")
+      await axios.delete(`http://localhost:5000/api/posts/${post._id}`);
+      window.location.replace("/");
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-    } catch (err) { }
+  const handleUpdate = async () => {
+    try {
+      await axios.put(`http://localhost:5000/api/posts/${post._id}`, {
+        username: user.username,
+        title,
+        content,
+      });
+
+      setUpdateMode(false);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   return (
     <div className="singlePost">
       <div className="SinglePostWrapper">
-        {updateMode ? <input type="text" value={post.title} className="singlePostTitleInput" autoFocus /> : (
-          <h1 className="singlePostTitle">{post.title}</h1>
-        )}
+        {updateMode ?
+          <input
+            type="text"
+            value={title}
+            className="singlePostTitleInput"
+            autoFocus
+            onChange={(e) => setTitle(e.target.value)}
+          /> : (
+            <h1 className="singlePostTitle">{title}</h1>
+          )}
         {post.username === user?.username && (
           <div className="singlePostEdit">
             <i className="singlePostIcon far fa-edit" onClick={() => setUpdateMode(true)}></i>
@@ -47,20 +75,27 @@ const SinglePost = () => {
         )}
 
 
-        <img src={PF + post.image} className="singlePostImg" alt="error" />
+        {post.image && (<img src={PF + post.image} className="singlePostImg" alt="error" />)}
         {/* <div className="singlePostInfo">
         </div> */}
         {updateMode ? (
-          <textarea className="singlePostDescInput" value={post.content} />
+          <textarea className="singlePostDescInput"
+            value={content}
+            onChange={(e) => setContent(e.target.value)} />
         ) :
           (
             <div
               className="singlePostDesc"
-              dangerouslySetInnerHTML={{ __html: post.content }}
+              dangerouslySetInnerHTML={{ __html: content }}
             ></div>
           )
         }
+        {
+          updateMode && (
+            <button className="singlePostButton" onClick={handleUpdate}>Cập nhật</button>
 
+          )
+        }
       </div>
     </div>
   );

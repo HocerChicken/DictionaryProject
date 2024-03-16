@@ -25,13 +25,10 @@ const Post = () => {
         posts.map((aPost) => (
           <div className="main-post" key={aPost._id}>
             <img className="postImg" src={PF + aPost.image} />
-            {console.log(">>>> Post image:", aPost.image)}
-            {console.log(">>>> PF Post image:", PF + aPost.image)}
-
             <div className="postInfo">
               <span
                 className="postTitle"
-                onClick={() => handlePostClick(aPost.title)}
+                onClick={() => handlePostClick(aPost._id)}
               >
                 {aPost.title}
               </span>

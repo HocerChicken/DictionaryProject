@@ -15,9 +15,11 @@ import PostsAdmin from "./components/PostsAdmin";
 import Footer from "./components/Footer";
 import Single from "./components/single";
 import UserPost from "./components/userPost/userPosts";
-import UserCreatePost from "./components/userCreatePost/userCreatePost";
+import AdminManage from "./components/adminManage/adminManage";
 import { useContext } from "react";
 import { Context } from "./context/Context";
+import Posts from "./components/posts"
+import AccountSettings from "./components/accountSettings";
 
 function App() {
   const { user } = useContext(Context);
@@ -36,7 +38,10 @@ function App() {
           <Route path="/single/:id" element={<Single />} />
           <Route path="/postsAdmin" element={<PostsAdmin />} />
           <Route path="/userPost" element={<UserPost />} />
-          <Route path="/userCreatePost" element={<UserCreatePost />} />
+          <Route path="/adminManage" element={<AdminManage />} />
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/accountSettings" element={<AccountSettings />} />
+
         </Routes>
       </Container>
       <Routes>
