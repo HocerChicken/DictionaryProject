@@ -19,4 +19,15 @@ router.get("/:quocngu", async (req, res) => {
   }
 });
 
+router.delete("/delete/all", (req, res) => {
+  DictCheckNoms.deleteMany({}, (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).json(err);
+    } else {
+      res.status(200).json("Delete all successfully");
+    }
+  });
+});
+
 module.exports = router;

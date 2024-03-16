@@ -5,7 +5,7 @@ import { Context } from "../context/Context";
 import { useContext } from "react";
 
 const Translate = () => {
-  useEffect(() => window.scrollTo(0, 0), []);
+  useEffect(() => window.scrollTo(50, 50), []);
   const [title, setTitle] = useState("");
   const [data, setData] = useState(null);
   const { user } = useContext(Context);

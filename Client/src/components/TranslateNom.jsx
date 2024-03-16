@@ -4,7 +4,7 @@ import { Context } from "../context/Context";
 import TableNomData from "./TableNomData";
 
 const TranslateNom = (props) => {
-  useEffect(() => window.scrollTo(0, 0), []);
+  useEffect(() => window.scrollTo(50, 50), []);
   const [title, setTitle] = useState("");
   const [data, setData] = useState(null);
   const { user } = useContext(Context);
@@ -26,7 +26,7 @@ const TranslateNom = (props) => {
     <div className="translate-container">
       <Breadcrumb className="mt-5">
         <Breadcrumb.Item href="/">Trang chủ</Breadcrumb.Item>
-        <Breadcrumb.Item active>Tra cứu</Breadcrumb.Item>
+        <Breadcrumb.Item active>Từ điển</Breadcrumb.Item>
         <Breadcrumb.Item active>Việt - Nôm</Breadcrumb.Item>
       </Breadcrumb>
       <main>
