@@ -39,51 +39,57 @@ router.get("/", async (req, res) => {
 router.get("/nom/:nom", async (req, res) => {
   try {
     const { nom } = req.params;
-    const words = await DictCheckNoms.find({ "dinhnghia.phanloai.nom": nom });
-
+    const words = await DictCheckNoms.find({
+      "dinhnghia.phanloai.nom": nom,
+    }).lean();
     const objectArray = [];
     words.forEach((item) => {
+      let quocngu = item.quocngu;
       const arrayOfObject = item.dinhnghia.phanloai;
       arrayOfObject.forEach((obj) => {
         if (obj.nom === nom) {
-          objectArray.push(obj);
+          const newObj = {
+            quocngu: quocngu,
+            ...obj,
+          };
+          objectArray.push(newObj);
         }
       });
     });
-    if (words.length === 0) {
+    if (objectArray.length === 0) {
       return res.status(404).send({ message: "Not found" });
     }
     return res.status(200).json(objectArray);
   } catch (error) {
-    console.log(error.message);
     return res.status(500).send({ message: error.message });
   }
 });
 
 // Route to get a specific definitioins by "maunicode"
-router.get("/maunicode/:maunicode", async (req, res) => {
+router.get("/maunicode/:unicode", async (req, res) => {
   try {
-    const { maunicode } = req.params;
-    console.log(ma);
+    const { unicode } = req.params;
     const words = await DictCheckNoms.find({
-      "dinhnghia.phanloai.maunicode": maunicode,
-    });
+      "dinhnghia.phanloai.maunicode": unicode,
+    }).lean();
     const objectArray = [];
     words.forEach((item) => {
       const arrayOfObject = item.dinhnghia.phanloai;
       arrayOfObject.forEach((obj) => {
-        console.log(obj.hasOwnProperty("maunicode"));
-        if (obj.maunicode && obj.maunicode === maunicode) {
-          objectArray.push(obj);
+        if (obj.maunicode === unicode) {
+          const newObj = {
+            quocngu: item.quocngu,
+            ...obj,
+          };
+          objectArray.push(newObj);
         }
       });
     });
-    if (words.length === 0) {
+    if (objectArray.length === 0) {
       return res.status(404).send({ message: "Not found" });
     }
     return res.status(200).json(objectArray);
   } catch (error) {
-    console.log(error.message);
     return res.status(500).send({ message: error.message });
   }
 });

@@ -71,12 +71,17 @@ export default function TableData({ data, translate }) {
   return (
     <>
       {translate && <h1>Viet - Viet</h1>}
-      <Table striped bordered hover style={{}}>
+      <Table
+        striped
+        bordered
+        hover
+        style={{ width: "1200px", margin: "0 auto" }}
+      >
         {jsonData && (
           <thead>
             <tr>
-              <th>Từ</th>
-              <th>Nghĩa</th>
+              <th style={{ width: "200px" }}>Quốc Ngữ</th>
+              <th>Định nghĩa</th>
             </tr>
           </thead>
         )}
