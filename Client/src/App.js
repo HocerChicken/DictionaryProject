@@ -21,12 +21,17 @@ import { Context } from "./context/Context";
 import Posts from "./components/posts";
 import AccountSettings from "./components/accountSettings";
 import FlashCardList from "./components/flashCard/FlashCardList";
+import FlashCardNom from "./components/FlashCardNom/FlashCardList";
+
+
 import axios from "axios";
+
 
 function App() {
   const { user } = useContext(Context);
   const [flashcards, setFlashcards] = useState(SAMPLE_FLASHCARDS)
-  const [wordData, setWordData] = useState()
+  const [nomFlashcards, setNomFlashcards] = useState()
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -42,6 +47,21 @@ function App() {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const fetchData1 = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/wordnoms/random');
+        const data = response.data;
+        setNomFlashcards(data); // Lưu trữ danh sách từ ngẫu nhiên trong biến state wordData
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData1();
+  }, []);
+
   return (
     <div className="app-container">
       <Header />
@@ -60,11 +80,10 @@ function App() {
           <Route path="/adminManage" element={<AdminManage />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/accountSettings" element={<AccountSettings />} />
-<<<<<<< Updated upstream
           <Route path="/flashCardList" element={<FlashCardList flashcards={flashcards} />} />
+          <Route path="/flashCardNom" element={<FlashCardNom flashcards={nomFlashcards} />} />
 
-=======
->>>>>>> Stashed changes
+
         </Routes>
       </Container>
       <Routes>
