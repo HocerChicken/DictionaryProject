@@ -15,6 +15,7 @@ const getRandomWordFromDatabase = async () => {
   }
 };
 
+
 router.get("/random", async (req, res) => {
   try {
     const randomWords = await getRandomWordFromDatabase();
