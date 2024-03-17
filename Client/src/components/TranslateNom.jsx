@@ -20,8 +20,8 @@ const TranslateNom = (props) => {
       }
     }
     setData(arrayOfData);
-    console.log(arrayOfData);
   };
+
   const getResByTitle = async (title) => {
     const response = await fetch(`http://localhost:5000/api/wordnoms/${title}`);
     if (!response.ok) {
