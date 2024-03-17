@@ -18,7 +18,7 @@ import UserPost from "./components/userPost/userPosts";
 import AdminManage from "./components/adminManage/adminManage";
 import { useContext, useState, useEffect } from "react";
 import { Context } from "./context/Context";
-import Posts from "./components/posts"
+import Posts from "./components/posts";
 import AccountSettings from "./components/accountSettings";
 import FlashCardList from "./components/flashCard/FlashCardList";
 import axios from "axios";
@@ -60,8 +60,11 @@ function App() {
           <Route path="/adminManage" element={<AdminManage />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/accountSettings" element={<AccountSettings />} />
+<<<<<<< Updated upstream
           <Route path="/flashCardList" element={<FlashCardList flashcards={flashcards} />} />
 
+=======
+>>>>>>> Stashed changes
         </Routes>
       </Container>
       <Routes>

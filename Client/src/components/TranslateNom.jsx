@@ -11,16 +11,28 @@ const TranslateNom = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const arrayOfTitle = title.split(" ") || "";
+    const arrayOfData = [];
+    for (let title of arrayOfTitle) {
+      const resData = await getResByTitle(title);
+      if (resData) {
+        arrayOfData.push(resData);
+      }
+    }
+    setData(arrayOfData);
+    console.log(arrayOfData);
+  };
+  const getResByTitle = async (title) => {
     const response = await fetch(`http://localhost:5000/api/wordnoms/${title}`);
     if (!response.ok) {
       if (response.status === 404) {
-        setData(null);
+        return null;
       } else {
         throw new Error(`${response.status}`);
       }
     }
     const data = await response.json();
-    setData(data);
+    return data;
   };
   return (
     <div className="translate-container">
@@ -46,7 +58,11 @@ const TranslateNom = (props) => {
           <div className="translation-result">
             {data && <h3>Kết quả dịch</h3>}
             <p>
-              {data?.message ? "không tim thấy" : <TableNomData data={data} />}
+              {data && data.length === 0 ? (
+                "không tìm thấy"
+              ) : (
+                <TableNomData data={data} />
+              )}
             </p>
           </div>
         </div>

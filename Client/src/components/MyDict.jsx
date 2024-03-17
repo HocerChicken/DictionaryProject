@@ -36,7 +36,7 @@ const MyDict = () => {
     }
     if (count === 2) {
       const response = await fetch(
-        `http://localhost:5000/api/wordchecknoms/${dict}`
+        `http://localhost:5000/api/wordnoms/${dict}`
       );
       if (!response.ok) {
         if (response.status === 404) {

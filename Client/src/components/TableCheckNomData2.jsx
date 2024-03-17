@@ -2,7 +2,7 @@ import React from "react";
 import Table from "react-bootstrap/Table";
 import "../App.scss";
 
-export default function TableNomData({ data, translate }) {
+export default function TableCheckNomData2({ data, translate }) {
   const dataGet = JSON.stringify(data);
   const jsonData = JSON.parse(dataGet);
 
@@ -24,9 +24,9 @@ export default function TableNomData({ data, translate }) {
           </thead>
         )}
         <tbody>
-          {jsonData?.map((item, index) =>
-            item?.dinhnghia?.phanloai.map((definition, index2) => (
-              <tr key={index2}>
+          {Array.isArray(jsonData) &&
+            jsonData.map((item, index) => (
+              <tr key={index}>
                 <td
                   style={{
                     fontWeight: "600",
@@ -42,24 +42,30 @@ export default function TableNomData({ data, translate }) {
                     <li className="tb-meaning-cell">
                       Nôm:{" "}
                       <span style={{ color: "blue", fontSize: "22px" }}>
-                        {definition.hannom}
+                        {item.nom}
                       </span>
                     </li>
                     <li className="tb-meaning-cell">
-                      Ngữ cảnh: {definition.ngucanh}
+                      Mã Unicode:{" "}
+                      <span style={{ color: "blue", fontSize: "22px" }}>
+                        {item.maunicode}
+                      </span>
+                    </li>
+                    <li className="tb-meaning-cell">Bộ thủ: {item.bothu}</li>
+                    <li className="tb-meaning-cell">
+                      Ngữ cảnh: {item.ngucanh}
                     </li>
                     <li className="tb-meaning-cell">
-                      Phiên âm: {definition.phienam}
+                      Phiên âm: {item.phienam}
                     </li>
                     <p className="tb-meaning-cell">
                       {" "}
-                      Nguồn tham khảo: {definition.nguon}
+                      Nguồn tham khảo: {item.nguon}
                     </p>
                   </ul>
                 </td>
               </tr>
-            ))
-          )}
+            ))}
         </tbody>
       </Table>
     </>

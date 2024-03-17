@@ -9,11 +9,15 @@ const dictionaryRoutes = require("./Routes/dictionaries.js");
 const userPostRoute = require("./Routes/userPosts");
 const multer = require("multer");
 const path = require("path");
-var cors = require("cors");
-
+const cors = require("cors");
+const corsOptions = {
+  origin: "http://localhost:3000",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  Credential: true,
+};
 const app = express();
+app.use(cors({ corsOptions }));
 const dotenv = require("dotenv");
-app.use(cors());
 
 dotenv.config();
 require("./db");
