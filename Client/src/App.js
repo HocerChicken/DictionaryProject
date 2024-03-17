@@ -25,14 +25,16 @@ import axios from "axios";
 
 function App() {
   const { user } = useContext(Context);
-  const [flashcards, setFlashcards] = useState(SAMPLE_FLASHCARDS)
-  const [wordData, setWordData] = useState()
+  const [flashcards, setFlashcards] = useState(SAMPLE_FLASHCARDS);
+  const [wordData, setWordData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/wordViets/random');
+        const response = await axios.get(
+          "http://localhost:5000/api/wordViets/random"
+        );
         const data = response.data;
         setFlashcards(data); // Lưu trữ danh sách từ ngẫu nhiên trong biến state wordData
         setIsLoading(false);
@@ -60,11 +62,10 @@ function App() {
           <Route path="/adminManage" element={<AdminManage />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/accountSettings" element={<AccountSettings />} />
-<<<<<<< Updated upstream
-          <Route path="/flashCardList" element={<FlashCardList flashcards={flashcards} />} />
-
-=======
->>>>>>> Stashed changes
+          <Route
+            path="/flashCardList"
+            element={<FlashCardList flashcards={flashcards} />}
+          />
         </Routes>
       </Container>
       <Routes>
@@ -88,8 +89,6 @@ function App() {
   );
 }
 
-const SAMPLE_FLASHCARDS = [
-
-]
+const SAMPLE_FLASHCARDS = [];
 
 export default App;

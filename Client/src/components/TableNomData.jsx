@@ -4,8 +4,10 @@ import "../App.scss";
 
 export default function TableNomData({ data, translate }) {
   const dataGet = JSON.stringify(data);
-  const jsonData = JSON.parse(dataGet);
-
+  let jsonData = JSON.parse(dataGet);
+  if (typeof jsonData === "object" && translate) {
+    jsonData = [jsonData];
+  }
   return (
     <>
       {translate && <h1>Viet - Nom</h1>}
@@ -24,42 +26,43 @@ export default function TableNomData({ data, translate }) {
           </thead>
         )}
         <tbody>
-          {jsonData?.map((item, index) =>
-            item?.dinhnghia?.phanloai.map((definition, index2) => (
-              <tr key={index2}>
-                <td
-                  style={{
-                    fontWeight: "600",
-                    color: "blue",
-                    fontSize: "20px",
-                    padding: "30px",
-                  }}
-                >
-                  {item.quocngu}
-                </td>
-                <td>
-                  <ul>
-                    <li className="tb-meaning-cell">
-                      Nôm:{" "}
-                      <span style={{ color: "blue", fontSize: "22px" }}>
-                        {definition.hannom}
-                      </span>
-                    </li>
-                    <li className="tb-meaning-cell">
-                      Ngữ cảnh: {definition.ngucanh}
-                    </li>
-                    <li className="tb-meaning-cell">
-                      Phiên âm: {definition.phienam}
-                    </li>
-                    <p className="tb-meaning-cell">
-                      {" "}
-                      Nguồn tham khảo: {definition.nguon}
-                    </p>
-                  </ul>
-                </td>
-              </tr>
-            ))
-          )}
+          {Array.isArray(jsonData) &&
+            jsonData?.map((item, index) =>
+              item?.dinhnghia?.phanloai.map((definition, index2) => (
+                <tr key={index2}>
+                  <td
+                    style={{
+                      fontWeight: "600",
+                      color: "blue",
+                      fontSize: "20px",
+                      padding: "30px",
+                    }}
+                  >
+                    {item.quocngu}
+                  </td>
+                  <td>
+                    <ul>
+                      <li className="tb-meaning-cell">
+                        Nôm:{" "}
+                        <span style={{ color: "blue", fontSize: "22px" }}>
+                          {definition.hannom}
+                        </span>
+                      </li>
+                      <li className="tb-meaning-cell">
+                        Ngữ cảnh: {definition.ngucanh}
+                      </li>
+                      <li className="tb-meaning-cell">
+                        Phiên âm: {definition.phienam}
+                      </li>
+                      <p className="tb-meaning-cell">
+                        {" "}
+                        Nguồn tham khảo: {definition.nguon}
+                      </p>
+                    </ul>
+                  </td>
+                </tr>
+              ))
+            )}
         </tbody>
       </Table>
     </>

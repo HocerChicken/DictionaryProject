@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import TableVietData from "./TableVietData";
 import TableCheckNomData from "./TableCheckNomData";
+import TableNomData from "./TableNomData";
 
 const MyDict = () => {
   const [title, setTitle] = useState("");
@@ -69,8 +70,8 @@ const MyDict = () => {
   return (
     <>
       <div className="myDict">
-        {Array.isArray(dataDict.title) &&
-          dataDict.title.map((dict) => (
+        {Array.isArray(dataDict?.title) &&
+          dataDict?.title.map((dict) => (
             // <div className="dictWord" key={dict._id} onClick={handleSubmit(dict)}>
             <div
               className="dictWord"
@@ -111,7 +112,7 @@ const MyDict = () => {
               {data?.message ? (
                 "không tim thấy từ"
               ) : (
-                <TableCheckNomData data={data} translate={translate} />
+                <TableNomData data={data} translate={translate} />
               )}
             </p>
           </div>
