@@ -16,4 +16,4 @@ const wordSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("DictViet", wordSchema);
+module.exports = mongoose.model("dictviets", wordSchema);

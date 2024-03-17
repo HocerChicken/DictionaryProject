@@ -30,6 +30,12 @@ $white--color: #fff;
   min-height: 110vh;
   position: relative;
 
+  .card-grid {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fill, minimax(200px, 1fr));
+  }
+
   //login.js
   $color_1: white;
   $background-color_1: white;
@@ -1037,6 +1043,55 @@ $white--color: #fff;
     &:hover {
       background-color: $background-color_3;
     }
+  }
+
+  .card-grid {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+
+    .card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      border-radius: .25rem;
+      box-shadow: 0 0 5px 2px rgba(0, 0, 0, .3);
+      background-color: white;
+      height: 200px;
+      width: 200px;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: 150ms;
+      transform: perspective(1000px) rotateY(var(--rotate-y, 0)) translateY(var(--translate-y, 0));
+
+      &:hover {
+        --translate-y: -2px;
+        box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
+      }
+
+      &.flip {
+        --rotate-y: 180deg;
+      }
+
+      .front,
+      .back {
+        position: absolute;
+        padding: 1rem;
+        backface-visibility: hidden;
+
+
+      }
+
+      .back {
+        transform: rotateY(180deg);
+        overflow: scroll;
+        overscroll-behavior: contain;
+      }
+
+    }
+
   }
 
 
