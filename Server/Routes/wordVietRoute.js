@@ -3,7 +3,7 @@ const DictViets = require("../models/wordVietModel");
 const router = express.Router();
 
 // Get random Viet Word
-// Get all Viet words:
+
 const getRandomWordFromDatabase = async () => {
   try {
     const randomWords = await DictViets.aggregate([
