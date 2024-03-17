@@ -17,8 +17,6 @@ const MyDict = () => {
   const [selectedDict, setSelectedDict] = useState("");
 
   const handleSubmit = async (dict) => {
-    console.log(">>>> count", count);
-
     if (count === 1) {
       const response = await fetch(
         `http://localhost:5000/api/wordviets/${dict}`
@@ -36,18 +34,29 @@ const MyDict = () => {
       setCount(2);
     }
     if (count === 2) {
-      const response = await fetch(
-        `http://localhost:5000/api/wordnoms/${dict}`
-      );
-      if (!response.ok) {
-        if (response.status === 404) {
-          setData(null);
-        } else {
-          throw new Error(`${response.status}`);
+      const getResByTitle = async (title) => {
+        const response = await fetch(
+          `http://localhost:5000/api/wordnoms/${title}`
+        );
+        if (!response.ok) {
+          if (response.status === 404) {
+            return null;
+          } else {
+            throw new Error(`${response.status}`);
+          }
+        }
+        const data = await response.json();
+        return data;
+      };
+      const arrayOfTitle = dict.split(" ") || "";
+      const arrayOfData = [];
+      for (let title of arrayOfTitle) {
+        const resData = await getResByTitle(title);
+        if (resData) {
+          arrayOfData.push(resData);
         }
       }
-      const data = await response.json();
-      setData(data);
+      setData(arrayOfData);
       setTranslate(2);
       setCount(1);
     }
@@ -75,7 +84,7 @@ const MyDict = () => {
             // <div className="dictWord" key={dict._id} onClick={handleSubmit(dict)}>
             <div
               className="dictWord"
-              key={dict._id}
+              key={dict?._id}
               onClick={() => handleSubmit(dict)}
             >
               <span>{dict}</span>

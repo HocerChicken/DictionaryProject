@@ -23,20 +23,13 @@ import AccountSettings from "./components/accountSettings";
 import FlashCardList from "./components/flashCard/FlashCardList";
 import FlashCardNom from "./components/FlashCardNom/FlashCardList";
 
-
 import axios from "axios";
-
 
 function App() {
   const { user } = useContext(Context);
-<<<<<<< HEAD
-  const [flashcards, setFlashcards] = useState(SAMPLE_FLASHCARDS)
-  const [nomFlashcards, setNomFlashcards] = useState()
-
-=======
+  const [nomFlashcards, setNomFlashcards] = useState();
   const [flashcards, setFlashcards] = useState(SAMPLE_FLASHCARDS);
   const [wordData, setWordData] = useState();
->>>>>>> e77dd05f573738dc4c329dcf86b3f4133c5b21f1
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -58,7 +51,9 @@ function App() {
   useEffect(() => {
     const fetchData1 = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/wordnoms/random');
+        const response = await axios.get(
+          "http://localhost:5000/api/wordnoms/random"
+        );
         const data = response.data;
         setNomFlashcards(data); // Lưu trữ danh sách từ ngẫu nhiên trong biến state wordData
         setIsLoading(false);
@@ -87,17 +82,14 @@ function App() {
           <Route path="/adminManage" element={<AdminManage />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/accountSettings" element={<AccountSettings />} />
-<<<<<<< HEAD
-          <Route path="/flashCardList" element={<FlashCardList flashcards={flashcards} />} />
-          <Route path="/flashCardNom" element={<FlashCardNom flashcards={nomFlashcards} />} />
-
-
-=======
           <Route
             path="/flashCardList"
             element={<FlashCardList flashcards={flashcards} />}
           />
->>>>>>> e77dd05f573738dc4c329dcf86b3f4133c5b21f1
+          <Route
+            path="/flashCardNom"
+            element={<FlashCardNom flashcards={nomFlashcards} />}
+          />
         </Routes>
       </Container>
       <Routes>

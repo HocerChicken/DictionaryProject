@@ -19,7 +19,6 @@ export default function TableData({ data, translate }) {
       );
       const data = await response.json();
       if (!data) {
-        console.log("hi");
         const createResponse = await fetch(
           "http://localhost:5000/api/dictionaries",
           {
