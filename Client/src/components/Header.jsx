@@ -8,17 +8,38 @@ import { useContext } from "react";
 import { Context } from "../context/Context";
 
 const Header = (props) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const handleDropdownToggle = () => {
-    setDropdownOpen(!dropdownOpen);
+  const [flashcardDropdownOpen, setFlashcardDropdownOpen] = useState(false);
+  const [translateDropdownOpen, setTranslateDropdownOpen] = useState(false);
+  const [contactDropdownOpen, setContactDropdownOpen] = useState(false);
+
+
+  const handleFlashcardDropdownToggle = () => {
+    setFlashcardDropdownOpen(!flashcardDropdownOpen);
   };
 
-  const handleDropdownClose = () => {
-    setDropdownOpen(false);
+  const handleFlashcardDropdownClose = () => {
+    setFlashcardDropdownOpen(false);
+  };
+
+  const handleTranslateDropdownToggle = () => {
+    setTranslateDropdownOpen(!translateDropdownOpen);
+  };
+
+  const handleTranslateDropdownClose = () => {
+    setTranslateDropdownOpen(false);
+  };
+
+  const handleContactDropdownToggle = () => {
+    setContactDropdownOpen(!contactDropdownOpen);
+  };
+
+  const handleContactDropdownClose = () => {
+    setContactDropdownOpen(false);
   };
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
+    window.location.replace("/");
   };
 
   const { user, dispatch } = useContext(Context);
@@ -56,15 +77,38 @@ const Header = (props) => {
               (
                 <Navbar.Collapse id="basic-navbar-nav1">
                   <Nav className="me-auto">
-                    <NavLink to="/posts" className="nav-link mx-4 fw-bold">
-                      Quản lý bài viết
-                    </NavLink>
-                    <NavLink to="/users" className="nav-link mx-4 fw-bold">
+                    <NavDropdown
+                      title="Quản lý bài viết"
+                      id="basic-nav-dropdown"
+                      className={`mx-4 fw-bold ${flashcardDropdownOpen ? "show" : ""}`}
+                      show={flashcardDropdownOpen}
+                      onMouseEnter={handleFlashcardDropdownToggle}
+                      onMouseLeave={handleFlashcardDropdownClose}
+                    >
+                      <NavLink
+                        to="/adminManage"
+                        className="dropdown-item mt-1 blue"
+                        activeClassName="visited"
+                        onClick={handleFlashcardDropdownClose}
+                      >
+                        Thêm bài viết
+                      </NavLink>
+                      <NavLink
+                        to="/posts"
+                        className="dropdown-item mt-1 blue"
+                        activeClassName="visited"
+                        onClick={handleFlashcardDropdownClose}
+                      >
+                        Sửa bài viết
+                      </NavLink>
+                    </NavDropdown>
+                    {/* <NavLink to="/users" className="nav-link mx-4 fw-bold">
                       Quản lý người dùng
-                    </NavLink>
-                    <NavLink to="/response" className="nav-link mx-4 fw-bold">
+                    </NavLink> */}
+                    <NavLink to="/tablefeedback" className="nav-link mx-4 fw-bold">
                       Quản lý phản hồi
                     </NavLink>
+
                   </Nav>
                   <Nav>
                     <NavDropdown
@@ -74,12 +118,14 @@ const Header = (props) => {
                       id="basic-nav-dropdown"
                     >
                       {user ? (
-                        <NavDropdown.Item
-                          className="topListItem"
-                          onClick={handleLogout}
-                        >
-                          Đăng xuất
-                        </NavDropdown.Item>
+                        <>
+                          <NavDropdown.Item
+                            className="topListItem"
+                            onClick={handleLogout}
+                          >
+                            Đăng xuất
+                          </NavDropdown.Item>
+                        </>
                       ) : (
                         <>
                           <NavDropdown.Item className="login-button" href="/login">
@@ -108,20 +154,46 @@ const Header = (props) => {
                         Từ của bạn
                       </NavLink>
                     )}
-
+                    {/* Mục flashcard */}
+                    <NavDropdown
+                      title="Flashcard"
+                      id="basic-nav-dropdown"
+                      className={`mx-4 fw-bold ${flashcardDropdownOpen ? "show" : ""}`}
+                      show={flashcardDropdownOpen}
+                      onMouseEnter={handleFlashcardDropdownToggle}
+                      onMouseLeave={handleFlashcardDropdownClose}
+                    >
+                      <NavLink
+                        to="/flashcardlist"
+                        className="dropdown-item mt-1 blue"
+                        activeClassName="visited"
+                        onClick={handleFlashcardDropdownClose}
+                      >
+                        Flashcard tiếng Việt
+                      </NavLink>
+                      <NavLink
+                        to="/flashcardnom"
+                        className="dropdown-item mt-1 blue"
+                        activeClassName="visited"
+                        onClick={handleFlashcardDropdownClose}
+                      >
+                        Flashcard Nôm
+                      </NavLink>
+                    </NavDropdown>
+                    {/* Mục tra từ*/}
                     <NavDropdown
                       title="Tra từ"
                       id="basic-nav-dropdown"
-                      className={`mx-4 fw-bold ${dropdownOpen ? "show" : ""}`}
-                      show={dropdownOpen}
-                      onMouseEnter={handleDropdownToggle}
-                      onMouseLeave={handleDropdownClose}
+                      className={`mx-4 fw-bold ${translateDropdownOpen ? "show" : ""}`}
+                      show={translateDropdownOpen}
+                      onMouseEnter={handleTranslateDropdownToggle}
+                      onMouseLeave={handleTranslateDropdownClose}
                     >
                       <NavLink
                         to="/translate"
                         className="dropdown-item mt-1 blue"
                         activeClassName="visited"
-                        onClick={handleDropdownClose}
+                        onClick={handleTranslateDropdownClose}
                       >
                         Từ điển tiếng Việt
                       </NavLink>
@@ -129,7 +201,7 @@ const Header = (props) => {
                         to="/translate2"
                         className="dropdown-item mt-1 blue"
                         activeClassName="visited"
-                        onClick={handleDropdownClose}
+                        onClick={handleTranslateDropdownClose}
                       >
                         Từ điển chữ Nôm
                       </NavLink>
@@ -137,15 +209,39 @@ const Header = (props) => {
                         to="/translate3"
                         className="dropdown-item"
                         activeClassName="visited"
-                        onClick={handleDropdownClose}
+                        onClick={handleTranslateDropdownClose}
                       >
                         Tra cứu chữ nôm
                       </NavLink>
                     </NavDropdown>
-                    <NavLink to="/contact" className="nav-link mx-4 fw-bold">
-                      Liên hệ
-                    </NavLink>
+                    {/* Mục liên hệ*/}
+                    <NavDropdown
+                      title="Liên hệ"
+                      id="basic-nav-dropdown"
+                      className={`mx-4 fw-bold ${contactDropdownOpen ? "show" : ""}`}
+                      show={contactDropdownOpen}
+                      onMouseEnter={handleContactDropdownToggle}
+                      onMouseLeave={handleContactDropdownClose}
+                    >
+                      <NavLink
+                        to="/contact"
+                        className="dropdown-item mt-1 blue"
+                        activeClassName="visited"
+                        onClick={handleContactDropdownToggle}
+                      >
+                        Thông tin liên hệ
+                      </NavLink>
+                      <NavLink
+                        to="/feedback"
+                        className="dropdown-item mt-1 blue"
+                        activeClassName="visited"
+                        onClick={handleContactDropdownClose}
+                      >
+                        Phản hồi
+                      </NavLink>
+                    </NavDropdown>
                   </Nav>
+
                   <Nav>
                     <NavDropdown
                       className="mx-4 fs-5"
@@ -154,12 +250,20 @@ const Header = (props) => {
                       id="basic-nav-dropdown"
                     >
                       {user ? (
-                        <NavDropdown.Item
-                          className="topListItem"
-                          onClick={handleLogout}
-                        >
-                          Đăng xuất
-                        </NavDropdown.Item>
+                        <>
+                          <NavDropdown.Item
+                            className="topListItem"
+                            onClick={handleLogout}
+                          >
+                            Đăng xuất
+                          </NavDropdown.Item>
+                          <NavDropdown.Item
+                            href="/accountSettings"
+                            className=""
+                          >
+                            Cài đặt
+                          </NavDropdown.Item>
+                        </>
                       ) : (
                         <>
                           <NavDropdown.Item className="login-button" href="/login">

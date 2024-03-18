@@ -39,6 +39,7 @@ const Login = () => {
       }
 
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+      window.location.href = "/";
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE" });
       setError("Tên tài khoản hoặc mật khẩu không chính xác!");

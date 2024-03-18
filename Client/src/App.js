@@ -22,16 +22,16 @@ import Posts from "./components/posts";
 import AccountSettings from "./components/accountSettings";
 import FlashCardList from "./components/flashCard/FlashCardList";
 import FlashCardNom from "./components/FlashCardNom/FlashCardList";
-
+import Feedback from "./components/Feedback"
+import TableFeedback from "./components/adminManage/TableFeedback"
 
 import axios from "axios";
 
-
 function App() {
   const { user } = useContext(Context);
-  const [flashcards, setFlashcards] = useState(SAMPLE_FLASHCARDS)
-  const [nomFlashcards, setNomFlashcards] = useState(SAMPLE_FLASHCARDS)
-
+  const [nomFlashcards, setNomFlashcards] = useState(SAMPLE_FLASHCARDS);
+  const [flashcards, setFlashcards] = useState(SAMPLE_FLASHCARDS);
+  const [wordData, setWordData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -53,9 +53,11 @@ function App() {
   useEffect(() => {
     const fetchData1 = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/wordnoms/random');
+        const response = await axios.get(
+          "http://localhost:5000/api/wordnoms/random"
+        );
         const data = response.data;
-        setNomFlashcards(data); // Lưu trữ danh sách từ ngẫu nhiên trong biến state wordData
+        setNomFlashcards(data); // Lưu trữ danh sách từ ngẫu nhiên trong biến state nomFlashcards
         setIsLoading(false);
       } catch (error) {
         console.error(error);
@@ -78,14 +80,22 @@ function App() {
           <Route path="/users" element={<TableUsers />} />
           <Route path="/single/:id" element={<Single />} />
           <Route path="/postsAdmin" element={<PostsAdmin />} />
-          <Route path="/userPost" element={<UserPost />} />
           <Route path="/adminManage" element={<AdminManage />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/accountSettings" element={<AccountSettings />} />
-          <Route path="/flashCardList" element={<FlashCardList flashcards={flashcards} />} />
-          <Route path="/flashCardNom" element={<FlashCardNom flashcards={nomFlashcards} />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/tablefeedback" element={<TableFeedback />} />
 
 
+
+          <Route
+            path="/flashCardList"
+            element={<FlashCardList flashcards={flashcards} />}
+          />
+          <Route
+            path="/flashCardNom"
+            element={<FlashCardNom flashcards={nomFlashcards} />}
+          />
         </Routes>
       </Container>
       <Routes>

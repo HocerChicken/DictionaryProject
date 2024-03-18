@@ -39,10 +39,10 @@ export default function App() {
                 Công cụ dịch thuật
               </h6>
               <p>
-                <Link to="/translate">Công cụ dịch Việt Việt</Link>
+                <Link to="/translate" style={{ textDecoration: "none", fontWeight: "700" }}>Công cụ dịch Việt Việt</Link>
               </p>
               <p>
-                <Link to="/translate2">Công cụ dịch Việt Nôm</Link>
+                <Link to="/translate2" style={{ textDecoration: "none", fontWeight: "700" }}>Công cụ dịch Việt Nôm</Link>
               </p>
             </MDBCol>
 
@@ -73,6 +73,6 @@ export default function App() {
       >
         © 2024 Copyright
       </div>
-    </MDBFooter>
+    </MDBFooter >
   );
 }

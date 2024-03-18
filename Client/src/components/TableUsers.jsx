@@ -33,8 +33,8 @@ const TableUsers = (props) => {
             listUsers.length > 0 &&
             listUsers.map((item, index) => {
               return (
-                <tr key={`users-${index}`}>
-                  <td>{item.id}</td>
+                <tr key={`feedback-${index}`}>
+                  <td>{item.name}</td>
                   <td>{item.email}</td>
                   <td>{item.first_name}</td>
                   <td>{item.last_name}</td>

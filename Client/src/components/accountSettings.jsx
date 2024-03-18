@@ -47,7 +47,7 @@ const AccountSettings = () => {
         <div className="accountSettings">
             <div className="settingsWrapper">
                 <div className="settingsTitle">
-                    <span className="settingsTitleUpdate">Cập nhật tài khoản</span>
+                    <span className="settingsTitleUpdate">Cài đặt tài khoản</span>
                     <span className="settingsTitleDelete" onClick={handleDelete}>Xóa tài khoản</span>
                 </div>
                 <form className="settingsForm" onSubmit={handleSubmit}>

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const PersonalDictionary = require('../models/Dictionary'); // Import model của từ điển cá nhân
 
+
 // Endpoint để kiểm tra bộ từ điển cá nhân của người dùng
 router.get("/:username", async (req, res) => {
     try {
@@ -85,6 +86,30 @@ router.get("/dictionaries/:id", async (req, res) => {
     } catch (error) {
         console.log(error.message);
         return res.status(500).send({ message: error.message });
+    }
+});
+
+// Xóa từ:
+router.delete("/:username/:title", async (req, res) => {
+    try {
+        const username = req.params.username;
+        const title = req.params.title;
+        const dictionaries = await PersonalDictionary.findOne({ username: username });
+        const updatedTitles = dictionaries.title.filter((word) => word !== title);
+
+        if (updatedTitles.length !== dictionaries.title.length) {
+            try {
+                dictionaries.title = updatedTitles;
+                await dictionaries.save();
+                res.status(200).json("Word has been deleted...");
+            } catch (err) {
+                res.status(500).json(err);
+            }
+        } else {
+            res.status(404).json("Word not found.");
+        }
+    } catch (err) {
+        res.status(500).json(err);
     }
 });
 

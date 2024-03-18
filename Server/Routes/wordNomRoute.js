@@ -5,15 +5,14 @@ const router = express.Router();
 // Get random Viet Word
 const getRandomWordFromDatabase = async () => {
   try {
-    const randomWords = await DictViets.aggregate([
-      { $sample: { size: 10 } } // Lấy ngẫu nhiên 20 từ từ cơ sở dữ liệu
+    const randomWords = await DictNoms.aggregate([
+      { $sample: { size: 12 } } // Lấy ngẫu nhiên 20 từ từ cơ sở dữ liệu
     ]);
     return randomWords;
   } catch (error) {
     throw error;
   }
 };
-
 
 router.get("/random", async (req, res) => {
   try {

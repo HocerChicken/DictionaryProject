@@ -802,6 +802,23 @@ $white--color: #fff;
   .myDict {
     margin-top: 20px;
 
+    .button-delete {
+      display: block;
+      border: none;
+      background-color: #e74c3c;
+      padding: 5px;
+      width: 100px;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      margin-left: 15px;
+
+      &:hover {
+        opacity: 80%;
+      }
+    }
+
     .translation-result {
       h3 {
         margin-top: 40px;
@@ -816,11 +833,21 @@ $white--color: #fff;
       border-radius: 5px;
       margin: 15px;
       cursor: pointer;
-      background-color: #b39656;
+      background-color: rgb(59, 151, 151);
+      color: white;
+
+      &.selected {
+        background-color: rgb(2, 82, 82);
+        color: white;
+
+      }
     }
+
+
 
     .dictWord:hover {
       background-color: #f0f0f0;
+      color: #000;
     }
 
 
@@ -1084,12 +1111,96 @@ $white--color: #fff;
 
       .back {
         transform: rotateY(180deg);
-        overflow: scroll;
-        overscroll-behavior: contain;
+        // overflow: scroll;
+        // overscroll-behavior: contain;
+
+        p {
+          display: inline;
+          color: blue;
+          font-size: 22px;
+        }
       }
 
     }
 
+  }
+
+  .feedback-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      resize: none;
+    }
+  }
+
+  button[type='submit'] {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 600px) {
+    .feedback-form {
+      max-width: 100%;
+    }
+  }
+
+  .table-feedback {
+
+    .delete-button {
+      border: none;
+      background-color: teal;
+      padding: 5px;
+      width: 100px;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      // align-self: flex-end;
+      margin-right: 5px;
+    }
+
+    .response-button {
+      border: none;
+      background-color: #e74c3c;
+      padding: 5px;
+      width: 100px;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .subject-link {
+      cursor: pointer;
+    }
   }
 
 

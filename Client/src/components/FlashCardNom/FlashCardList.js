@@ -5,6 +5,7 @@ export default function FlashCardList({ flashcards }) {
     return (
         <div className="card-grid">
             {flashcards.map(flashcard => {
+                console.log(flashcard)
                 return <FlashCard flashcard={flashcard} key={flashcard._id} />
             })}
         </div>

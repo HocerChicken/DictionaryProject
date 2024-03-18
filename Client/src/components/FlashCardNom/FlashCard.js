@@ -15,11 +15,12 @@ export default function FlashCard({ flashcard }) {
         setHeight(Math.max(frontHeight, backHeight, 100));
     }
 
-    useEffect(setMaxHeight, [flashcard.title, flashcard.definitions.source[0]?.meaning])
+    useEffect(setMaxHeight, [flashcard.quocngu, flashcard.dinhnghia?.phanloai[0]])
     useEffect(() => {
         window.addEventListener('resize', setMaxHeight);
         return () => window.removeEventListener('resize', setMaxHeight)
     }, [])
+    console.log(">>>> nghia:", flashcard.dinhnghia?.phanloai[0]?.hannom)
 
     return (
         <div
@@ -28,10 +29,18 @@ export default function FlashCard({ flashcard }) {
             onClick={() => setFlip(!flip)}
         >
             <div className="front" ref={frontEl}>
-                {flashcard.title}
+                {flashcard.quocngu}
             </div>
             <div className="back" ref={backEl}>
-                {flashcard.definitions.source[0]?.meaning || 'Không có thông tin'}
+                {/* {flashcard.dinhnghia.phanloai[0] || 'Không có thông tin'} */}
+                Nôm: <p >{flashcard.dinhnghia?.phanloai[0]?.hannom}</p>
+                <br />
+                Ngữ cảnh: {flashcard.dinhnghia?.phanloai[0]?.ngucanh}
+                <br />
+                Phiên âm: {flashcard.dinhnghia?.phanloai[0]?.phienam}
+                <br />
+                Nguồn: <p style={{ color: "red", fontSize: "16px", display: "in-line" }}>{flashcard.dinhnghia?.phanloai[0]?.nguon}</p>
+
             </div>
         </div>
 

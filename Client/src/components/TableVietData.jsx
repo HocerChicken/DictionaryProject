@@ -19,7 +19,6 @@ export default function TableData({ data, translate }) {
       );
       const data = await response.json();
       if (!data) {
-        console.log("hi");
         const createResponse = await fetch(
           "http://localhost:5000/api/dictionaries",
           {
@@ -29,7 +28,7 @@ export default function TableData({ data, translate }) {
             },
             body: JSON.stringify({
               username: user.username,
-              title: [jsonData.title],
+              title: [jsonData.title.trimEnd()],
             }),
           }
         );
@@ -63,6 +62,9 @@ export default function TableData({ data, translate }) {
         } else {
           console.error("Failed to update data:", updateResponse.statusText);
         }
+        setTimeout(() => {
+          setSaveMessage("");
+        }, 3000);
       }
     } catch (error) {
       console.error("Error saving data:", error.message);

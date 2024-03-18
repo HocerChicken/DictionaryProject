@@ -1,13 +1,85 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Table from "react-bootstrap/Table";
 import "../App.scss";
+import { Context } from "../context/Context";
 
 export default function TableNomData({ data, translate }) {
   const dataGet = JSON.stringify(data);
   let jsonData = JSON.parse(dataGet);
-  if (typeof jsonData === "object" && translate) {
-    jsonData = [jsonData];
-  }
+  const [saveMessage, setSaveMessage] = useState("");
+  const { user } = useContext(Context);
+  let jsonDataTitle = "";
+  // {}
+  // if (typeof jsonData === "object" && translate) {
+  //   jsonData = [jsonData];
+  // }
+
+  const handleSave = async (event) => {
+    event.preventDefault();
+    try {
+      if (Array.isArray(jsonData)) {
+        jsonData.forEach((item, index) => {
+          jsonDataTitle += item.quocngu + " ";
+        });
+      }
+      const response = await fetch(
+        `http://localhost:5000/api/dictionaries/${user.username}`
+      );
+      const data = await response.json();
+      console.log(jsonDataTitle);
+      if (!data) {
+        const createResponse = await fetch(
+          "http://localhost:5000/api/dictionaries",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              username: user.username,
+              title: [jsonDataTitle],
+            }),
+          }
+        );
+
+        if (createResponse.ok) {
+          console.log("New data saved successfully");
+        } else {
+          console.error("Failed to save new data:", createResponse.statusText);
+        }
+      }
+      const isWordExists = data.title.includes(jsonDataTitle.trimEnd());
+      if (isWordExists) {
+        setSaveMessage("Từ đã có trong từ điển");
+      } else {
+        const updatedTitles = [...data.title, jsonDataTitle];
+        const updateResponse = await fetch(
+          `http://localhost:5000/api/dictionaries/${user.username}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: updatedTitles,
+            }),
+          }
+        );
+        if (updateResponse.ok) {
+          setSaveMessage("Đã lưu vào từ điển");
+          console.log("Data updated successfully");
+        } else {
+          console.error("Failed to update data:", updateResponse.statusText);
+        }
+        setTimeout(() => {
+          setSaveMessage("");
+        }, 3000);
+      }
+    } catch (error) {
+      console.error("Error saving data:", error.message);
+    }
+  };
+
   return (
     <>
       {translate && <h1>Viet - Nom</h1>}
@@ -65,6 +137,14 @@ export default function TableNomData({ data, translate }) {
             )}
         </tbody>
       </Table>
+      {data && user && (
+        <button className="saveWord" onClick={handleSave}>
+          Lưu từ
+        </button>
+      )}
+
+      {saveMessage && <p className="saveMessage">{saveMessage}</p>}
+
     </>
   );
 }
