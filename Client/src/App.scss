@@ -33,6 +33,7 @@ $white--color: #fff;
   .card-grid {
     display: grid;
     align-items: center;
+    margin-top: 30px;
     grid-template-columns: repeat(auto-fill, minimax(200px, 1fr));
   }
 
@@ -1078,50 +1079,61 @@ $white--color: #fff;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1rem;
 
-    .card {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      border-radius: .25rem;
-      box-shadow: 0 0 5px 2px rgba(0, 0, 0, .3);
-      background-color: white;
-      cursor: pointer;
-      transform-style: preserve-3d;
-      transition: 150ms;
-      transform: perspective(1000px) rotateY(var(--rotate-y, 0)) translateY(var(--translate-y, 0));
+    .visible-style {
+      display: block;
 
-      &:hover {
-        --translate-y: -2px;
-        box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
-      }
+      /* Các thuộc tính CSS khác cho hiển thị phần tử */
+      .card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: .25rem;
+        box-shadow: 0 0 5px 2px rgba(0, 0, 0, .3);
+        background-color: white;
+        cursor: pointer;
+        transform-style: preserve-3d;
+        transition: 150ms;
+        transform: perspective(1000px) rotateY(var(--rotate-y, 0)) translateY(var(--translate-y, 0));
 
-      &.flip {
-        --rotate-y: 180deg;
-      }
-
-      .front,
-      .back {
-        position: absolute;
-        padding: 1rem;
-        backface-visibility: hidden;
-
-
-      }
-
-      .back {
-        transform: rotateY(180deg);
-        // overflow: scroll;
-        // overscroll-behavior: contain;
-
-        p {
-          display: inline;
-          color: blue;
-          font-size: 22px;
+        &:hover {
+          --translate-y: -2px;
+          box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
         }
-      }
 
+        &.flip {
+          --rotate-y: 180deg;
+        }
+
+        .front,
+        .back {
+          position: absolute;
+          padding: 1rem;
+          backface-visibility: hidden;
+        }
+
+        .back {
+          transform: rotateY(180deg);
+          height: 100px;
+          overflow-y: scroll;
+          // padding: 5px;
+
+          p {
+            display: inline;
+            color: blue;
+            font-size: 22px;
+          }
+        }
+
+      }
     }
+
+    .hidden-style {
+      display: none;
+      /* Các thuộc tính CSS khác để ẩn phần tử */
+    }
+
+
 
   }
 
@@ -1228,6 +1240,8 @@ $white--color: #fff;
       border-radius: 5px;
     }
   }
+
+
 
 
 }

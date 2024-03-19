@@ -4,10 +4,10 @@ import axios from 'axios';
 export default function FlashCard({ flashcard }) {
     const [flip, setFlip] = useState();
     const [height, setHeight] = useState('initial')
-
+    const $s = 5;
     const frontEl = useRef();
     const backEl = useRef();
-
+    console.log($s)
 
     function setMaxHeight() {
         const frontHeight = frontEl.current.getBoundingClientRect().height
@@ -33,13 +33,13 @@ export default function FlashCard({ flashcard }) {
             </div>
             <div className="back" ref={backEl}>
                 {/* {flashcard.dinhnghia.phanloai[0] || 'Không có thông tin'} */}
-                Nôm: <p >{flashcard.dinhnghia?.phanloai[0]?.hannom}</p>
+                Nôm: <p >{flashcard.dinhnghia?.phanloai[0]?.hannom || flashcard.dinhnghia?.phanloai?.hannom}</p>
                 <br />
-                Ngữ cảnh: {flashcard.dinhnghia?.phanloai[0]?.ngucanh}
+                Ngữ cảnh: {flashcard.dinhnghia?.phanloai[0]?.ngucanh || flashcard.dinhnghia?.phanloai?.ngucanh}
                 <br />
-                Phiên âm: {flashcard.dinhnghia?.phanloai[0]?.phienam}
+                Phiên âm: {flashcard.dinhnghia?.phanloai[0]?.phienam || flashcard.dinhnghia?.phanloai?.phienam}
                 <br />
-                Nguồn: <p style={{ color: "red", fontSize: "16px", display: "in-line" }}>{flashcard.dinhnghia?.phanloai[0]?.nguon}</p>
+                Nguồn: <p style={{ color: "red", fontSize: "16px", display: "in-line" }}>{flashcard.dinhnghia?.phanloai[0]?.nguon || flashcard.dinhnghia?.phanloai?.nguon}</p>
 
             </div>
         </div>

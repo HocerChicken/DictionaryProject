@@ -98,7 +98,6 @@ function App() {
         </Routes>
       </Container>
       <Routes>
-        {/* <Route path="/login" element={<Login />} /> */}
         <Route
           path="/login"
           element={
