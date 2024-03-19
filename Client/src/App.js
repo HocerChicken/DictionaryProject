@@ -24,7 +24,7 @@ import FlashCardList from "./components/flashCard/FlashCardList";
 import FlashCardNom from "./components/FlashCardNom/FlashCardList";
 import Feedback from "./components/Feedback"
 import TableFeedback from "./components/adminManage/TableFeedback"
-
+import ManagePost from "./components/ManagePost"
 import axios from "axios";
 
 function App() {
@@ -85,8 +85,7 @@ function App() {
           <Route path="/accountSettings" element={<AccountSettings />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/tablefeedback" element={<TableFeedback />} />
-
-
+          <Route path="/managepost" element={<ManagePost />} />
 
           <Route
             path="/flashCardList"

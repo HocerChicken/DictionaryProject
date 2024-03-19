@@ -32,9 +32,6 @@ const TableFeedback = () => {
     }
   };
 
-
-
-  console.log(feedback);
   return (
     <div className="table-feedback">
       <h2 style={{ margin: "30px 0 20px 0" }}>Danh sách phản hồi</h2>

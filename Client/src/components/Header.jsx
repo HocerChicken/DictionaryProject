@@ -73,38 +73,16 @@ const Header = (props) => {
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav " />
 
-            {(user && user.username === "admin") ?
+            {(user && user.username === "admin123") ?
               (
                 <Navbar.Collapse id="basic-navbar-nav1">
                   <Nav className="me-auto">
-                    <NavDropdown
-                      title="Quản lý bài viết"
-                      id="basic-nav-dropdown"
-                      className={`mx-4 fw-bold ${flashcardDropdownOpen ? "show" : ""}`}
-                      show={flashcardDropdownOpen}
-                      onMouseEnter={handleFlashcardDropdownToggle}
-                      onMouseLeave={handleFlashcardDropdownClose}
-                    >
-                      <NavLink
-                        to="/adminManage"
-                        className="dropdown-item mt-1 blue"
-                        activeClassName="visited"
-                        onClick={handleFlashcardDropdownClose}
-                      >
-                        Thêm bài viết
-                      </NavLink>
-                      <NavLink
-                        to="/posts"
-                        className="dropdown-item mt-1 blue"
-                        activeClassName="visited"
-                        onClick={handleFlashcardDropdownClose}
-                      >
-                        Sửa bài viết
-                      </NavLink>
-                    </NavDropdown>
-                    {/* <NavLink to="/users" className="nav-link mx-4 fw-bold">
-                      Quản lý người dùng
-                    </NavLink> */}
+                    <NavLink to="/" className="nav-link mx-4 fw-bold">
+                      Trang chủ
+                    </NavLink>
+                    <NavLink to="/managepost" className="nav-link mx-4 fw-bold">
+                      Quản lý phản hồi
+                    </NavLink>
                     <NavLink to="/tablefeedback" className="nav-link mx-4 fw-bold">
                       Quản lý phản hồi
                     </NavLink>

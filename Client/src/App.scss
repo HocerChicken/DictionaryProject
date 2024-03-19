@@ -1178,7 +1178,7 @@ $white--color: #fff;
 
     .delete-button {
       border: none;
-      background-color: teal;
+      background-color: #e74c3c;
       padding: 5px;
       width: 100px;
       color: white;
@@ -1190,7 +1190,7 @@ $white--color: #fff;
 
     .response-button {
       border: none;
-      background-color: #e74c3c;
+      background-color: teal;
       padding: 5px;
       width: 100px;
       color: white;
@@ -1200,6 +1200,32 @@ $white--color: #fff;
 
     .subject-link {
       cursor: pointer;
+    }
+  }
+
+
+  .table-posts {
+
+    .delete-button {
+      border: none;
+      background-color: #e74c3c;
+      padding: 5px;
+      width: 100px;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      // align-self: flex-end;
+      margin-right: 5px;
+    }
+
+    .response-button {
+      border: none;
+      background-color: teal;
+      padding: 5px;
+      width: 100px;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
     }
   }
 

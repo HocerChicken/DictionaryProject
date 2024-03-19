@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import "../App.scss";
-// import { Base64 } from "js-base64";
 import { useParams } from "react-router-dom";
 import { Context } from "../context/Context";
 
@@ -74,10 +73,7 @@ const SinglePost = () => {
           </div>
         )}
 
-
         {post.image && (<img src={PF + post.image} className="singlePostImg" alt="error" />)}
-        {/* <div className="singlePostInfo">
-        </div> */}
         {updateMode ? (
           <textarea className="singlePostDescInput"
             value={content}
