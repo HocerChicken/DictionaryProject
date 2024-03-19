@@ -12,27 +12,37 @@ const Login = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setError(null); // Xóa thông báo lỗi sau mỗi 5 giây
-    }, 3000);
+    }, 5000);
 
     return () => {
-      clearInterval(intervalId); // Clear interval khi component bị unmount
+      clearInterval(intervalId);
     };
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(userRef.current.value.length);
+    if (userRef.current.value.length < 6) {
+      setError("Vui lòng nhập tên tài khoản từ 6 kí tự trở lên!");
+      return;
+    }
+
+    if (passwordRef.current.value.length < 6) {
+      setError("Vui lòng nhập mật khẩu từ 6 kí tự trở lên!");
+      return;
+    }
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("/auth/login", {
         username: userRef.current.value,
         password: passwordRef.current.value,
       });
+
       if (
         userRef.current.value === "admin" &&
         passwordRef.current.value === "123456"
       ) {
-        // Chuyển hướng đến một trang khác thay vì trang chính
-        window.location.href = "/posts"; // Thay đổi đường dẫn tùy thuộc vào trang bạn muốn chuyển hướng
+        window.location.href = "/posts";
 
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
         return;
@@ -65,6 +75,9 @@ const Login = () => {
             className="loginInput"
             placeholder="Nhập tên tài khoản..."
             ref={userRef}
+            // minLength={6}
+            required
+            onInput={(e) => (e.target.setCustomValidity(""))}
           />
           <label>Mật khẩu</label>
           <input
@@ -72,6 +85,9 @@ const Login = () => {
             className="loginInput"
             placeholder="Nhập mật khẩu..."
             ref={passwordRef}
+            required
+            onInvalid={(e) => (e.target.setCustomValidity("Vui lòng nhập mật khẩu từ 6 kí tự trở lên."))}
+            onInput={(e) => (e.target.setCustomValidity(""))}
           />
           <button className="loginButton" type="submit" disabled={isFetching}>
             Đăng nhập
