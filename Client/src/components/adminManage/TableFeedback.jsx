@@ -10,9 +10,6 @@ const TableFeedback = () => {
   const [show, setShow] = useState(false);
   const [feedback, setFeedback] = useState([]);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const handleSubjectClick = (message) => {
     setSelectedMessage(message);
     setShowModal(true);
@@ -21,12 +18,15 @@ const TableFeedback = () => {
   useEffect(() => {
     getFeedback();
   }, []);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleDeleteClick = async (event, id) => {
     event.preventDefault();
     await axios.delete(`/feedback/${id}`);
     const updatedFeedback = feedback.filter((item) => item._id !== id);
     setFeedback(updatedFeedback);
+    setShow(false);
   };
 
   const getFeedback = async () => {
@@ -73,7 +73,7 @@ const TableFeedback = () => {
 
                     <Modal show={show} onHide={handleClose}>
                       <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
+                        <Modal.Title>Thông báo</Modal.Title>
                       </Modal.Header>
                       <Modal.Body>Bạn có chắc chắn muốn xóa phản hồi?</Modal.Body>
                       <Modal.Footer>

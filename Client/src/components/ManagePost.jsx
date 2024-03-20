@@ -78,9 +78,9 @@ export default function ManagePost() {
 
                                         <Modal show={show} onHide={handleClose}>
                                             <Modal.Header closeButton>
-                                                <Modal.Title>Modal heading</Modal.Title>
+                                                <Modal.Title>Thông báo</Modal.Title>
                                             </Modal.Header>
-                                            <Modal.Body>Bạn có chắc chắn muốn xóa phản hồi?</Modal.Body>
+                                            <Modal.Body>Bạn có chắc chắn muốn xóa bài viết?</Modal.Body>
                                             <Modal.Footer>
                                                 <Button variant="secondary" onClick={handleClose}>
                                                     Đóng
