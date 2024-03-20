@@ -81,7 +81,7 @@ const Header = (props) => {
                       Trang chủ
                     </NavLink>
                     <NavLink to="/managepost" className="nav-link mx-4 fw-bold">
-                      Quản lý phản hồi
+                      Quản lý bài viết
                     </NavLink>
                     <NavLink to="/tablefeedback" className="nav-link mx-4 fw-bold">
                       Quản lý phản hồi
@@ -239,7 +239,7 @@ const Header = (props) => {
                             href="/accountSettings"
                             className=""
                           >
-                            Cài đặt
+                            Chỉnh sửa thông tin
                           </NavDropdown.Item>
                         </>
                       ) : (

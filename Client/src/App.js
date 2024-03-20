@@ -14,7 +14,6 @@ import Register from "./components/Register";
 import PostsAdmin from "./components/PostsAdmin";
 import Footer from "./components/Footer";
 import Single from "./components/single";
-import UserPost from "./components/userPost/userPosts";
 import AdminManage from "./components/adminManage/adminManage";
 import { useContext, useState, useEffect } from "react";
 import { Context } from "./context/Context";
@@ -80,7 +79,7 @@ function App() {
           <Route path="/users" element={<TableUsers />} />
           <Route path="/single/:id" element={<Single />} />
           <Route path="/postsAdmin" element={<PostsAdmin />} />
-          <Route path="/adminManage" element={<AdminManage />} />
+          <Route path="/admin-manage" element={<AdminManage />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/accountSettings" element={<AccountSettings />} />
           <Route path="/feedback" element={<Feedback />} />
