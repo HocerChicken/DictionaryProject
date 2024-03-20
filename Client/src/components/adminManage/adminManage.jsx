@@ -18,7 +18,6 @@ const AdminManage = () => {
             thumbnail,
             content,
         }
-        console.log(">>> title", title);
         if (file) {
             const data = new FormData();
             const filename = Date.now() + file.name;

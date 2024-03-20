@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react'
+import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 
-export default function FlashCard({ flashcard }) {
+export default function FlashCard({ flashcard, dropdownValue }) {
     const [flip, setFlip] = useState();
     const [height, setHeight] = useState('initial')
     const $s = 5;
@@ -23,26 +24,33 @@ export default function FlashCard({ flashcard }) {
     console.log(">>>> nghia:", flashcard.dinhnghia?.phanloai[0]?.hannom)
 
     return (
-        <div
-            className={`card ${flip ? 'flip' : ''}`}
-            style={{ height: height }}
-            onClick={() => setFlip(!flip)}
-        >
-            <div className="front" ref={frontEl}>
-                {flashcard.quocngu}
-            </div>
-            <div className="back" ref={backEl}>
-                {/* {flashcard.dinhnghia.phanloai[0] || 'Không có thông tin'} */}
-                Nôm: <p >{flashcard.dinhnghia?.phanloai[0]?.hannom || flashcard.dinhnghia?.phanloai?.hannom}</p>
-                <br />
-                Ngữ cảnh: {flashcard.dinhnghia?.phanloai[0]?.ngucanh || flashcard.dinhnghia?.phanloai?.ngucanh}
-                <br />
-                Phiên âm: {flashcard.dinhnghia?.phanloai[0]?.phienam || flashcard.dinhnghia?.phanloai?.phienam}
-                <br />
-                Nguồn: <p style={{ color: "red", fontSize: "16px", display: "in-line" }}>{flashcard.dinhnghia?.phanloai[0]?.nguon || flashcard.dinhnghia?.phanloai?.nguon}</p>
+        <div className={dropdownValue ? 'visible-style' : 'hidden-style'}>
+            <Card
+                bg={dropdownValue}
+                key={dropdownValue}
+                text={'dropdownValue'.toLowerCase() === 'light' ? 'dark' : 'white'}
+                className={`card ${flip ? 'flip' : ''}`}
+                style={{ height: height }}
+                onClick={() => setFlip(!flip)}
+            >
+                <div className="front" ref={frontEl}>
+                    {flashcard.quocngu}
+                </div>
+                <div className="back" ref={backEl}>
+                    Nôm: <p>{flashcard.dinhnghia?.phanloai[0]?.hannom || flashcard.dinhnghia?.phanloai?.hannom}</p>
+                    <br />
+                    Ngữ cảnh: {flashcard.dinhnghia?.phanloai[0]?.ngucanh || flashcard.dinhnghia?.phanloai?.ngucanh}
+                    <br />
+                    Phiên âm: {flashcard.dinhnghia?.phanloai[0]?.phienam || flashcard.dinhnghia?.phanloai?.phienam}
+                    <br />
+                    Nguồn: <p style={{ color: "red", fontSize: "16px", display: "in-line" }}>{flashcard.dinhnghia?.phanloai[0]?.nguon || flashcard.dinhnghia?.phanloai?.nguon}</p>
 
-            </div>
+                </div>
+            </Card>
+            {/* } */}
         </div>
 
     )
 }
+
+

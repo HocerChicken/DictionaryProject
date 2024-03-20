@@ -230,16 +230,16 @@ const Header = (props) => {
                       {user ? (
                         <>
                           <NavDropdown.Item
-                            className="topListItem"
-                            onClick={handleLogout}
-                          >
-                            Đăng xuất
-                          </NavDropdown.Item>
-                          <NavDropdown.Item
                             href="/accountSettings"
                             className=""
                           >
                             Chỉnh sửa thông tin
+                          </NavDropdown.Item>
+                          <NavDropdown.Item
+                            className="topListItem"
+                            onClick={handleLogout}
+                          >
+                            Đăng xuất
                           </NavDropdown.Item>
                         </>
                       ) : (

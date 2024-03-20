@@ -68,7 +68,7 @@ function App() {
   return (
     <div className="app-container">
       <Header />
-      <Container>
+      {/* <Container>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/translate" element={<TranslateViet />} />
@@ -79,12 +79,10 @@ function App() {
           <Route path="/users" element={<TableUsers />} />
           <Route path="/single/:id" element={<Single />} />
           <Route path="/postsAdmin" element={<PostsAdmin />} />
-          <Route path="/admin-create-post" element={<AdminManage />} />
+
           <Route path="/posts" element={<Posts />} />
           <Route path="/accountSettings" element={<AccountSettings />} />
           <Route path="/feedback" element={<Feedback />} />
-          <Route path="/tablefeedback" element={<TableFeedback />} />
-          <Route path="/managepost" element={<ManagePost />} />
 
           <Route
             path="/flashCardList"
@@ -95,6 +93,45 @@ function App() {
             element={<FlashCardNom flashcards={nomFlashcards} />}
           />
         </Routes>
+      </Container> */}
+
+      <Container>
+
+        {
+          user?.username == "admin123" ? (
+            <Routes>
+              <Route path="/admin-create-post" element={<AdminManage />} />
+              <Route path="/managepost" element={<ManagePost />} />
+              <Route path="/tablefeedback" element={<TableFeedback />} />
+              <Route path="/single/:id" element={<Single />} />
+              <Route path="/" element={<Home />} />
+
+            </Routes>
+          )
+            : (
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/translate" element={<TranslateViet />} />
+                <Route path="/translate2" element={<TranslateNom />} />
+                <Route path="/translate3" element={<TranslateCheckNom />} />
+                <Route path="/mydict" element={<MyDict />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/users" element={<TableUsers />} />
+                <Route path="/single/:id" element={<Single />} />
+                <Route path="/posts" element={<Posts />} />
+                <Route path="/accountSettings" element={<AccountSettings />} />
+                <Route path="/feedback" element={<Feedback />} />
+                <Route
+                  path="/flashCardList"
+                  element={<FlashCardList flashcards={flashcards} />}
+                />
+                <Route
+                  path="/flashCardNom"
+                  element={<FlashCardNom flashcards={nomFlashcards} />}
+                />
+              </Routes>
+            )
+        }
       </Container>
       <Routes>
         <Route
@@ -111,6 +148,7 @@ function App() {
         />
         <Route path="/register" element={<Register />} />
       </Routes>
+
       <Footer />
     </div>
   );

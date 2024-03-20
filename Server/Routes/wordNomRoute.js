@@ -6,7 +6,7 @@ const router = express.Router();
 const getRandomWordFromDatabase = async () => {
   try {
     const randomWords = await DictNoms.aggregate([
-      { $sample: { size: 20 } } // Lấy ngẫu nhiên 20 từ từ cơ sở dữ liệu
+      { $sample: { size: 24 } } // Lấy ngẫu nhiên 20 từ từ cơ sở dữ liệu
     ]);
     return randomWords;
   } catch (error) {

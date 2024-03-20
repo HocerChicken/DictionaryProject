@@ -27,7 +27,7 @@ const Sidebar = () => {
             <img src={PF + post.image} alt=""></img>
             <p
               className="section-title"
-              onClick={() => handlePostClick(post.title)}
+              onClick={() => handlePostClick(post._id)}
             >
               {post.title}
             </p>

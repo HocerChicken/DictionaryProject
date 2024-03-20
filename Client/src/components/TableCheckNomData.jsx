@@ -47,7 +47,7 @@ export default function TableCheckNomData({ data, translate }) {
                         </span>
                       </li>
                       <li className="tb-meaning-cell">
-                        Nôm:{" "}
+                        Mã Unicode:{" "}
                         <span style={{ color: "blue", fontSize: "22px" }}>
                           {definition.maunicode}
                         </span>

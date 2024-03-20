@@ -6,7 +6,6 @@ const wordVietRoute = require("./Routes/wordVietRoute.js");
 const wordCheckNomRoute = require("./Routes/wordCheckNomRoute.js");
 const wordNomRoutes = require("./Routes/wordNomRoute.js");
 const dictionaryRoutes = require("./Routes/dictionaries.js");
-const userPostRoute = require("./Routes/userPosts");
 const feedbackRoute = require("./Routes/feedbackRoute")
 const multer = require("multer");
 const path = require("path");
@@ -48,7 +47,6 @@ app.use("/api/wordviets", wordVietRoute);
 app.use("/api/wordchecknoms", wordCheckNomRoute);
 app.use("/api/wordnoms", wordNomRoutes);
 app.use("/api/dictionaries", dictionaryRoutes);
-app.use("/api/userPosts", userPostRoute);
 app.use("/api/feedback", feedbackRoute);
 app.listen(5000, () => {
   console.log("Backend is running.");
