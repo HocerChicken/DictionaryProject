@@ -7,7 +7,11 @@ import Button from "react-bootstrap/Button";
 const TableFeedback = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedMessage, setSelectedMessage] = useState("");
+  const [show, setShow] = useState(false);
   const [feedback, setFeedback] = useState([]);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleSubjectClick = (message) => {
     setSelectedMessage(message);
@@ -63,11 +67,24 @@ const TableFeedback = () => {
                     </span>
                   </td>
                   <td>
-                    <button className="delete-button"
-                      onClick={(event) => handleDeleteClick(event, item._id)}
-                    >
+                    <Button className="delete-button" show={show} variant=" danger" onClick={handleShow}>
                       Xóa
-                    </button>
+                    </Button>
+
+                    <Modal show={show} onHide={handleClose}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Modal heading</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>Bạn có chắc chắn muốn xóa phản hồi?</Modal.Body>
+                      <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                          Đóng
+                        </Button>
+                        <Button variant="danger" onClick={(event) => handleDeleteClick(event, item._id)}>
+                          Xóa
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
                     <button className="response-button">
                       <a style={{ color: "white", textDecoration: "none" }} href={`mailto:${item.email}`}>Phản hồi</a>
                     </button>

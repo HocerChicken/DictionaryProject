@@ -61,6 +61,7 @@ const AdminManage = () => {
                         type="text"
                         autoFocus={true}
                         onChange={e => setTitle(e.target.value)}
+                        required
                     />
 
                 </div>
@@ -71,6 +72,7 @@ const AdminManage = () => {
                         type="text"
                         autoFocus={true}
                         onChange={e => setThumbnail(e.target.value)}
+                        required
                     />
                 </div>
 
@@ -81,6 +83,7 @@ const AdminManage = () => {
                         type="text"
                         autoFocus={true}
                         onChange={e => setContent(e.target.value)}
+                        required
                     />
                 </div>
                 <button className="writeSubmit" type="submit">

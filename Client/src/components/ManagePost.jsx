@@ -3,20 +3,28 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 import Table from "react-bootstrap/Table";
 import { Link, useNavigate } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 export default function ManagePost() {
     const [posts, setPosts] = useState([])
+    const [show, setShow] = useState(false);
     const navigate = useNavigate();
+
 
     useEffect(() => {
         getPosts();
     }, []);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const handleDeleteClick = async (event, id) => {
         event.preventDefault();
         await axios.delete(`/posts/${id}`);
         const updatedPosts = posts.filter((item) => item._id !== id);
         setPosts(updatedPosts);
+        setShow(false);
     };
 
     const handlePostClick = (event, id) => {
@@ -35,6 +43,7 @@ export default function ManagePost() {
 
     return (
         <div className="table-posts">
+            <button className="add-post-button"><a href="/admin-create-post">Thêm bài viết</a></button>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -58,11 +67,29 @@ export default function ManagePost() {
                                         />
                                     </td>
                                     <td>
-                                        <button className="delete-button"
+                                        {/* <button className="delete-button"
                                             onClick={(event) => handleDeleteClick(event, item._id)}
                                         >
                                             Xóa
-                                        </button>
+                                        </button> */}
+                                        <Button className="delete-button" show={show} variant=" danger" onClick={handleShow}>
+                                            Xóa
+                                        </Button>
+
+                                        <Modal show={show} onHide={handleClose}>
+                                            <Modal.Header closeButton>
+                                                <Modal.Title>Modal heading</Modal.Title>
+                                            </Modal.Header>
+                                            <Modal.Body>Bạn có chắc chắn muốn xóa phản hồi?</Modal.Body>
+                                            <Modal.Footer>
+                                                <Button variant="secondary" onClick={handleClose}>
+                                                    Đóng
+                                                </Button>
+                                                <Button variant="danger" onClick={(event) => handleDeleteClick(event, item._id)}>
+                                                    Xóa
+                                                </Button>
+                                            </Modal.Footer>
+                                        </Modal>
                                         <button className="response-button"
                                             onClick={(event) => handlePostClick(event, item._id)}
                                         >
@@ -77,6 +104,6 @@ export default function ManagePost() {
                         })}
                 </tbody>
             </Table>
-        </div>
+        </div >
     )
 }

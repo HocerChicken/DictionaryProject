@@ -1226,7 +1226,6 @@ $white--color: #fff;
       color: white;
       cursor: pointer;
       border-radius: 5px;
-      // align-self: flex-end;
       margin-right: 5px;
     }
 
@@ -1238,6 +1237,23 @@ $white--color: #fff;
       color: white;
       cursor: pointer;
       border-radius: 5px;
+    }
+
+    .add-post-button {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border: none;
+      background-color: teal;
+      padding: 5px;
+      width: 120px;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+
+      a {
+        text-decoration: none;
+        color: white;
+      }
     }
   }
 

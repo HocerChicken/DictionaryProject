@@ -79,7 +79,7 @@ function App() {
           <Route path="/users" element={<TableUsers />} />
           <Route path="/single/:id" element={<Single />} />
           <Route path="/postsAdmin" element={<PostsAdmin />} />
-          <Route path="/admin-manage" element={<AdminManage />} />
+          <Route path="/admin-create-post" element={<AdminManage />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/accountSettings" element={<AccountSettings />} />
           <Route path="/feedback" element={<Feedback />} />
